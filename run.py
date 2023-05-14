@@ -56,7 +56,7 @@ def get_date(sheet_dates):
                                 ['bold'])
         latest_date = colored(sheet_dates[1], 'green', 'on_black',
                                 ['bold'])
-        print(f"Please enter the date to check the historical weather data.\nAvailable dates between {earliest_date} and {latest_date}.")
+        print(f"Please enter the date to check the historical weather data for Dublin Airport.\nAvailable dates between {earliest_date} and {latest_date}.")
         print("The date format should be: DD/MM/YYYY")
         print("Example: 30/04/1978\n")
         date = input("Enter your date here:\n")
@@ -85,8 +85,10 @@ def validate_date(date):
     except ValueError:
         # printing the appropriate text if ValueError occurs
         os.system('clear')
-        print(colored("Incorrect data format, should be DD/MM/YYYY\n",
+        print(colored(f"Incorrect data format, you entered '{date}'\nDate should be in the format DD/MM/YYYY e.g. 30/04/1978\n",
                     'white', 'on_red',['bold']))
+        time.sleep(4)
+        os.system('clear')
         return False
 
 def main():
