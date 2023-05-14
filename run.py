@@ -3,7 +3,7 @@ from google.oauth2.service_account import Credentials
 import time
 import sys
 from termcolor import colored, cprint
-import datetime
+import datetime as d
 import os
 from classes import PastWeather
 
@@ -74,12 +74,12 @@ def validate_date(date):
     # https://www.tutorialspoint.com/How-to-do-date-validation-in-Python
 
     # giving the date format
-    date_format = '%d/%M/%Y'
+    date_format = '%d/%m/%Y'
 
     # using try-except blocks for handling the exceptions
     try:
         # formatting the date using strptime() function
-        dateObject = datetime.datetime.strptime(date, date_format)
+        dateObject = d.datetime.strptime(date, date_format)
         return True
     # If the date validation goes wrong
     except ValueError:
@@ -95,6 +95,6 @@ def main():
     available_dates = find_date_range()
     user_date = get_date(available_dates)
     historical_data = find_historical_data_row(user_date)
-    class_test = PastWeather(historical_data)
+    class_test = PastWeather(historical_data, user_date)
     class_test.parse_data()
 main()
