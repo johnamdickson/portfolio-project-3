@@ -30,7 +30,7 @@ class PastWeather:
         day = date.strftime('%A')
         # Code below to handle singular sunshine hour with correct grammar returned in 
         # instance of 1 hour of sunshine.
-        if int(sunshine_duration) == 1:
+        if float(sunshine_duration) == 1:
             sunshine_string = ["was", "hour"]
 
         os.system('clear')
