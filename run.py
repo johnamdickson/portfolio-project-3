@@ -5,6 +5,7 @@ import sys
 from termcolor import colored, cprint
 import datetime
 import os
+from classes import PastWeather
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -91,6 +92,7 @@ def validate_date(date):
 def main():
     available_dates = find_date_range()
     user_date = get_date(available_dates)
-    find_historical_data_row(user_date)
-    find_date_range()
+    historical_data = find_historical_data_row(user_date)
+    class_test = PastWeather(historical_data)
+    class_test.parse_data()
 main()
