@@ -2,7 +2,9 @@ import gspread
 from google.oauth2.service_account import Credentials
 import time
 import sys
+from termcolor import colored, cprint
 import datetime
+import os
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -45,13 +47,20 @@ def get_date(sheet_dates):
     """
     Request date from user to locate historical weather data.
     """
+    os.system('clear')
     while True:
-
-        print(f"Please enter the date to check the historical weather data.\nAvailable dates between {sheet_dates[0]} and {sheet_dates[1]}.")
+        # Solution to highlighting text found in stack overflow:
+        # https://www.studytonight.com/python-howtos/how-to-print-colored-text-in-python
+        earliest_date = colored(sheet_dates[0], 'green', 'on_black',
+                                ['bold'])
+        latest_date = colored(sheet_dates[1], 'green', 'on_black',
+                                ['bold'])
+        print(f"Please enter the date to check the historical weather data.\nAvailable dates between {earliest_date} and {latest_date}.")
         print("The date format should be: DD/MM/YYYY")
         print("Example: 30/04/1978\n")
         date = input("Enter your date here:\n")
         if validate_date(date):
+            os.system('clear')
             print("Date is valid!")
             break
     return date
@@ -74,7 +83,9 @@ def validate_date(date):
     # If the date validation goes wrong
     except ValueError:
         # printing the appropriate text if ValueError occurs
-        print("Incorrect data format, should be DD/MM/YYYY\n")
+        os.system('clear')
+        print(colored("Incorrect data format, should be DD/MM/YYYY\n",
+                    'white', 'on_red',['bold']))
         return False
 
 def main():
