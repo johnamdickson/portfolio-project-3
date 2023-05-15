@@ -2,6 +2,7 @@ import datetime as d
 import time
 import os
 
+
 class PastWeather:
     """
     Class for past weather data and methods
