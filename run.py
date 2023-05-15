@@ -31,25 +31,30 @@ def find_date_range():
     latest_date = weather_archive_sheet.cell(row_count, 1).value
     return [earliest_date, latest_date]
 
+
 def find_historical_data_row(date, date_range):
     """
-    Function to find row in historical data spreadsheet and return data from 
+    Function to find row in historical data spreadsheet and return data from
     row as list.
     """
     # Solution to selecting cell from Stack Overflow:
     # https://stackoverflow.com/questions/65234180/how-to-find-a-row-based-on-an-id-and-then-edit-the-row-with-gspread-python
     print(f"Locating data for {date}")
     try:
+        # look for cell in spreadsheet that matches the date entered 
+        # and return row data for the cell's row.
         cell = weather_archive_sheet.find(date, in_column=1)
         weather_data = weather_archive_sheet.row_values(cell.row)
         print(weather_data)
         return weather_data
     except AttributeError:
+        # Handle error by informing user of exception and then re-running the main() function.
         os.system('clear')
         print(colored(f"The date you selected is not available. You entered '{date}'\n\nDate should be between {date_range[0]} and {date_range[1]}.\n",
                     'white', 'on_red',['bold']))
         time.sleep(4)
         main()
+
 
 def get_date(sheet_dates):
     """
@@ -68,10 +73,13 @@ def get_date(sheet_dates):
         print("Example: 30/04/1978\n")
         date = input("Enter your date here:\n")
         if validate_date(date):
+            # Give user feedback the data is valid and then break from
+            # While loop to return date.
             os.system('clear')
             print("Date is valid!")
             break
     return date
+
 
 def validate_date(date):
     """Inside the try, creates a date object using datetiem class strptime 
@@ -86,14 +94,14 @@ def validate_date(date):
     # using try-except blocks for handling the exceptions
     try:
         # formatting the date using strptime() function
-        selected_date = d.datetime.strptime(date, date_format)
+        d.datetime.strptime(date, date_format)
         return True
 
     # If the date validation goes wrong
     except ValueError:
         # printing the appropriate text if ValueError occurs
         os.system('clear')
-        print(colored(f"Incorrect data format, you entered '{date}'\nDate should be in the format DD/MM/YYYY e.g. 30/04/1978\n",
+        print(colored(f"""Incorrect data format, you entered '{date}'\nDate should be in the format DD/MM/YYYY e.g. 30/04/1978\n""",
                     'white', 'on_red',['bold']))
         time.sleep(4)
         os.system('clear')
@@ -101,10 +109,13 @@ def validate_date(date):
     else:
         return True
 
+
 def main():
     available_dates = find_date_range()
     user_date = get_date(available_dates)
     historical_data = find_historical_data_row(user_date, available_dates)
     class_test = PastWeather(historical_data, user_date)
     class_test.parse_data()
+
+
 main()

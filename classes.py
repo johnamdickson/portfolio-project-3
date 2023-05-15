@@ -6,14 +6,17 @@ class PastWeather:
     """
     Class for past weather data and methods
     """
+
+
     def __init__(self, weather_data, date):
         self.weather_data = weather_data
         self.date = date
 
+
     def parse_data(self):
         """
-        Select pertinent information from Dublin Airport historical weather data
-        spreadsheet and return a string detailing all info.
+        Select pertinent information from Dublin Airport historical weather 
+        data spreadsheet and return a string detailing all info.
         """
         data = self.weather_data
         max_temp = data[2]
@@ -23,16 +26,18 @@ class PastWeather:
         mean_wind_speed = data[10]
         sunshine_duration = data[17]
         sunshine_string = ["were", "hours"]
-        # Code below to calculate day of the week from date using datetime strftime method.
+        # Code below to calculate day of the week from date using 
+        # datetime strftime method.
         # Used following tutorial: https://www.programiz.com/python-programming/datetime/strftime
         date_format = '%d/%m/%Y'
         date = d.datetime.strptime(self.date, date_format)
         day = date.strftime('%A')
-        # Code below to handle singular sunshine hour with correct grammar returned in 
-        # instance of 1 hour of sunshine.
+        # Code below to handle singular sunshine hour with correct grammar
+        # returned in instance of 1 hour of sunshine.
         if float(sunshine_duration) == 1:
             sunshine_string = ["was", "hour"]
-
+        # Clear terminal and print out readable data to user with 
+        # pauses in between for effect.
         os.system('clear')
         print
         print(f"{self.date} was a {day}.")
