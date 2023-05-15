@@ -4,6 +4,18 @@ import time
 from termcolor import colored, cprint
 import os
 
+def restart_user_selection(choice):
+    if choice == 1:
+        main_menu()
+    elif choice == 2:
+        run_past_weather()
+    elif choice == 3:
+        print("Selected forecast")
+    elif choice == 4:
+        print("Selected feedback")
+
+    return
+    
 
 def run_past_weather():
     """
@@ -13,8 +25,10 @@ def run_past_weather():
     available_dates = past.find_date_range()
     user_date = past.get_date(available_dates)
     historical_data = past.find_historical_data_row(user_date, available_dates)
-    class_test = PastWeather(historical_data, user_date)
-    class_test.parse_data()
+    past_weather = PastWeather(historical_data, user_date)
+    past_weather.parse_data()
+    user_option = past_weather.user_options()
+    restart_user_selection(user_option)
 
 
 def user_selection():
@@ -45,5 +59,4 @@ def main_menu():
     print("Welcome to Weather: Past or Forecast?\n")
     time.sleep(2)
     print("Press 1 for past weather.\nPress 2 for the weather forecast.\n")
-    time.sleep(1)
     user_selection()

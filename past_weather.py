@@ -41,7 +41,7 @@ def find_historical_data_row(date, date_range):
     """
     # Solution to selecting cell from Stack Overflow:
     # https://stackoverflow.com/questions/65234180/how-to-find-a-row-based-on-an-id-and-then-edit-the-row-with-gspread-python
-    print(f"Locating data for {date}")
+    print(f"Locating data for {date}...")
     try:
         # look for cell in spreadsheet that matches the date entered 
         # and return row data for the cell's row.

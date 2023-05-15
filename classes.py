@@ -2,8 +2,6 @@ import datetime as d
 import time
 import os
 from termcolor import colored, cprint
-from menus import main_menu, run_past_weather
-
 
 class PastWeather:
     """
@@ -40,7 +38,6 @@ class PastWeather:
         # Clear terminal and print out readable data to user with 
         # pauses in between for effect.
         os.system('clear')
-        print
         print(f"{self.date} was a {day}.")
         time.sleep(2)
         print(f"On that day at Dublin Airport the maximum temperature was {max_temp}°C and the minimum temperature was {min_temp}°C.")
@@ -49,7 +46,6 @@ class PastWeather:
         time.sleep(3)
         print(f"The mean wind speed for the day was {mean_wind_speed} knots with an atmospheric pressure of {atmos_pressure} mbar.")
         time.sleep(2)
-        self.user_options()
     
     def user_options(self):
         user_input = 0
@@ -62,23 +58,8 @@ class PastWeather:
                     'white', 'on_red', ['bold']))
                 continue
             else:
-                if user_input == 1:
-                    main_menu()
-                elif user_input == 2:
-                    run_past_weather()
-                elif user_input == 3:
-                    print("Go to forecast from switch statement.")
-                elif user_input == 4:
-                    print("Go to feedback from switch statement.")
-                elif user_input not in range(1, 5):
+                if user_input not in range(1, 5):
                     print(colored(f"Invalid entry, please enter an integer between 1 and 4\n",
                         'white', 'on_red',['bold']))
-                    self.user_options()
-               
-                # if user_input not in range(1, 5):
-                #     print(colored(f"Invalid entry, please enter an integer between 1 and 4\n",
-                #         'white', 'on_red',['bold']))       
-                #     self.user_options()
-                # elif user_input 
                 break
-        return 
+        return user_input
