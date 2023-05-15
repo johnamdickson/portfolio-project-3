@@ -31,7 +31,7 @@ def find_date_range():
     latest_date = weather_archive_sheet.cell(row_count, 1).value
     return [earliest_date, latest_date]
 
-def find_historical_data_row(date):
+def find_historical_data_row(date, date_range):
     """
     Function to find row in historical data spreadsheet and return data from 
     row as list.
@@ -39,10 +39,17 @@ def find_historical_data_row(date):
     # Solution to selecting cell from Stack Overflow:
     # https://stackoverflow.com/questions/65234180/how-to-find-a-row-based-on-an-id-and-then-edit-the-row-with-gspread-python
     print(f"Locating data for {date}")
-    cell = weather_archive_sheet.find(date, in_column=1)
-    weather_data = weather_archive_sheet.row_values(cell.row)
-    print(weather_data)
-    return weather_data
+    try:
+        cell = weather_archive_sheet.find(date, in_column=1)
+        weather_data = weather_archive_sheet.row_values(cell.row)
+        print(weather_data)
+        return weather_data
+    except AttributeError:
+        os.system('clear')
+        print(colored(f"The date you selected is not available. You entered '{date}'\n\nDate should be between {date_range[0]} and {date_range[1]}.\n",
+                    'white', 'on_red',['bold']))
+        time.sleep(4)
+        main()
 
 def get_date(sheet_dates):
     """
@@ -79,8 +86,9 @@ def validate_date(date):
     # using try-except blocks for handling the exceptions
     try:
         # formatting the date using strptime() function
-        dateObject = d.datetime.strptime(date, date_format)
+        selected_date = d.datetime.strptime(date, date_format)
         return True
+
     # If the date validation goes wrong
     except ValueError:
         # printing the appropriate text if ValueError occurs
@@ -90,11 +98,13 @@ def validate_date(date):
         time.sleep(4)
         os.system('clear')
         return False
+    else:
+        return True
 
 def main():
     available_dates = find_date_range()
     user_date = get_date(available_dates)
-    historical_data = find_historical_data_row(user_date)
+    historical_data = find_historical_data_row(user_date, available_dates)
     class_test = PastWeather(historical_data, user_date)
     class_test.parse_data()
 main()

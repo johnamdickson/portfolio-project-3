@@ -34,8 +34,8 @@ class PastWeather:
             sunshine_string = ["was", "hour"]
 
         os.system('clear')
-
-        print(f"{self.date} was a Sunday.")
+        print
+        print(f"{self.date} was a {day}.")
         time.sleep(2)
         print(f"On that day at Dublin Airport the maximum temperature was {max_temp}°C and the minimum temperature was {min_temp}°C.")
         time.sleep(3)
