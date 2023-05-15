@@ -3,7 +3,6 @@ from classes import PastWeather
 import time
 from termcolor import colored, cprint
 import os
-import menus
 
 
 def run_past_weather():
@@ -41,14 +40,10 @@ def user_selection():
     return
 
 
-def main():
-    menus.main_menu()
+def main_menu():
     os.system('clear')
     print("Welcome to Weather: Past or Forecast?\n")
     time.sleep(2)
     print("Press 1 for past weather.\nPress 2 for the weather forecast.\n")
     time.sleep(1)
     user_selection()
-
-
-main()

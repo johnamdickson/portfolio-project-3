@@ -2,9 +2,8 @@ import datetime as d
 import time
 import os
 from termcolor import colored, cprint
+from menus import main_menu, run_past_weather
 
-LINE_UP = '\033[1A'
-LINE_CLEAR = '\x1b[2K'
 
 class PastWeather:
     """
@@ -14,7 +13,6 @@ class PastWeather:
     def __init__(self, weather_data, date):
         self.weather_data = weather_data
         self.date = date
-
 
     def parse_data(self):
         """
@@ -60,15 +58,27 @@ class PastWeather:
             try:
                 user_input = int(input("Press 1 to return to Main Menu\nPress 2 to look for past weather again\nPress 3 for forecast at your location\nPress 4 to leave feedback\n"))
             except ValueError:
-                print (colored(f"Invalid entry, please enter an integer between 1 and 4\n",
+                print(colored(f"Invalid entry, please enter an integer between 1 and 4\n",
                     'white', 'on_red', ['bold']))
                 continue
             else:
-                if user_input not in range(1, 5):
+                if user_input == 1:
+                    main_menu()
+                elif user_input == 2:
+                    run_past_weather()
+                elif user_input == 3:
+                    print("Go to forecast from switch statement.")
+                elif user_input == 4:
+                    print("Go to feedback from switch statement.")
+                elif user_input not in range(1, 5):
                     print(colored(f"Invalid entry, please enter an integer between 1 and 4\n",
                         'white', 'on_red',['bold']))
-                    print(LINE_UP, end=LINE_CLEAR)           
                     self.user_options()
-                    
+               
+                # if user_input not in range(1, 5):
+                #     print(colored(f"Invalid entry, please enter an integer between 1 and 4\n",
+                #         'white', 'on_red',['bold']))       
+                #     self.user_options()
+                # elif user_input 
                 break
-        return user_input
+        return 
