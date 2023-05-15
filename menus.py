@@ -4,10 +4,18 @@ import time
 from termcolor import colored, cprint
 import os
 
+
 def restart_user_selection(choice):
+    """
+    Using selection passed in from PastWeather class instance,
+    select appropriate menu.
+    """
     if choice == 1:
+        print("Returning to main menu...")
         main_menu()
     elif choice == 2:
+        os.system('clear')
+        print("Returning to past weather...")
         run_past_weather()
     elif choice == 3:
         print("Selected forecast")
@@ -42,7 +50,7 @@ def user_selection():
             continue
         else:
             if user_input not in range(1, 3):
-                print(colored(f"Invalid entry, please enter 1 or 2",
+                print(colored(f"Invalid number, please enter 1 or 2",
                     'white', 'on_red',['bold']))          
                 user_selection()
             elif user_input == 1:

@@ -55,7 +55,6 @@ def find_historical_data_row(date, date_range):
         os.system('clear')
         print(colored(f"The date you selected is not available. You entered '{date}'\n\nDate should be between {date_range[0]} and {date_range[1]}.\n",
                     'white', 'on_red',['bold']))
-        time.sleep(3)
         run_past_weather()
 
 
@@ -71,10 +70,13 @@ def get_date(sheet_dates):
                                 ['bold'])
         latest_date = colored(sheet_dates[1], 'green', 'on_black',
                                 ['bold'])
-        print(f"Please enter the date to check the historical weather data for Dublin Airport.\nAvailable dates between {earliest_date} and {latest_date}.")
-        print("The date format should be: DD/MM/YYYY")
-        print("Example: 30/04/1978\n")
-        date = input("Enter your date here:\n")
+        print(f"Please enter the date to check the historical weather data for Dublin Airport.\n")
+        time.sleep(1.5)
+        print(f"Available dates between {earliest_date} and {latest_date}.\n")
+        time.sleep(1)
+        print("The date format should be: DD/MM/YYYY e.g 30/04/1978\n")
+        time.sleep(1)
+        date = input("Enter your date below:\n")
         if validate_date(date):
             # Give user feedback the data is valid and then break from
             # While loop to return date.
