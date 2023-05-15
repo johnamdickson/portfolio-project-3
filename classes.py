@@ -1,13 +1,15 @@
 import datetime as d
 import time
 import os
+from termcolor import colored, cprint
 
+LINE_UP = '\033[1A'
+LINE_CLEAR = '\x1b[2K'
 
 class PastWeather:
     """
     Class for past weather data and methods
     """
-
 
     def __init__(self, weather_data, date):
         self.weather_data = weather_data
@@ -48,3 +50,25 @@ class PastWeather:
         print(f"There {sunshine_string[0]} {sunshine_duration} {sunshine_string[1]} of sunshine with a total rainfall of {rain} mm.")
         time.sleep(3)
         print(f"The mean wind speed for the day was {mean_wind_speed} knots with an atmospheric pressure of {atmos_pressure} mbar.")
+        time.sleep(2)
+        self.user_options()
+    
+    def user_options(self):
+        user_input = 0
+        print()
+        while True:
+            try:
+                user_input = int(input("Press 1 to return to Main Menu\nPress 2 to look for past weather again\nPress 3 for forecast at your location\nPress 4 to leave feedback\n"))
+            except ValueError:
+                print (colored(f"Invalid entry, please enter an integer between 1 and 4\n",
+                    'white', 'on_red', ['bold']))
+                continue
+            else:
+                if user_input not in range(1, 5):
+                    print(colored(f"Invalid entry, please enter an integer between 1 and 4\n",
+                        'white', 'on_red',['bold']))
+                    print(LINE_UP, end=LINE_CLEAR)           
+                    self.user_options()
+                    
+                break
+        return user_input
