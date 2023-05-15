@@ -7,6 +7,7 @@ import sys
 from termcolor import colored, cprint
 import datetime as d
 import os
+from menus import run_past_weather
 
 
 SCOPE = [
@@ -54,8 +55,8 @@ def find_historical_data_row(date, date_range):
         os.system('clear')
         print(colored(f"The date you selected is not available. You entered '{date}'\n\nDate should be between {date_range[0]} and {date_range[1]}.\n",
                     'white', 'on_red',['bold']))
-        time.sleep(4)
-        main()
+        time.sleep(3)
+        run_past_weather()
 
 
 def get_date(sheet_dates):
