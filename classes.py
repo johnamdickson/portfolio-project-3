@@ -7,7 +7,7 @@ from google.oauth2.service_account import Credentials
 
 class PastWeather:
     """
-    Class for past weather data and methods
+    Class for past weather data and associated methods
     """
 
     def __init__(self, weather_data, date):
@@ -50,6 +50,10 @@ class PastWeather:
         time.sleep(2)
     
     def user_options(self):
+        """
+        Function to assign 4 options to user on completion
+        of past weather code.
+        """
         user_input = 0
         print()
         while True:
@@ -69,7 +73,7 @@ class PastWeather:
 
 class Feedback:
     """
-    Class for feedback methods
+    Class for user feedback with associated methods
     """
 
     def __init__(self):
@@ -89,13 +93,19 @@ class Feedback:
         SCOPED_CREDS = CREDS.with_scopes(SCOPE)
         GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
         SHEET = GSPREAD_CLIENT.open('historical-weather-data')
-
+        # Access spreadsheet feedback sheet.
         FEEDBACK_SHEET = SHEET.worksheet('feedback')
+        # Add data as row in feedback sheet.
         FEEDBACK_SHEET.append_row(data)
         print("Feedback uploaded, thank you.\n")
         time.sleep(2)
 
     def confirm_feedback(self, data):
+        """
+        function to elicit response from user to ensure name and
+        feedback are correct with checks to confirm correct inputs
+        with associated user feedback.
+        """
         print("Please review your feedback:")
         time.sleep(2)
         print(f"Name: {data[0]}")
