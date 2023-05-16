@@ -2,7 +2,8 @@ import datetime as d
 import time
 import os
 from termcolor import colored, cprint
-
+import gspread
+from google.oauth2.service_account import Credentials
 
 class PastWeather:
     """
@@ -64,3 +65,70 @@ class PastWeather:
                         'white', 'on_red',['bold']))
                 break
         return user_input
+
+
+class Feedback:
+    """
+    Class for feedback methods
+    """
+
+    def __init__(self):
+        print("initialised")
+
+    def upload_feedback(self, data):
+        """
+        Upload feedback to google spreadsheet.
+        """
+        SCOPE = [
+                "https://www.googleapis.com/auth/spreadsheets",
+                "https://www.googleapis.com/auth/drive.file",
+                "https://www.googleapis.com/auth/drive"
+                ]
+
+        CREDS = Credentials.from_service_account_file('creds.json')
+        SCOPED_CREDS = CREDS.with_scopes(SCOPE)
+        GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
+        SHEET = GSPREAD_CLIENT.open('historical-weather-data')
+
+        FEEDBACK_SHEET = SHEET.worksheet('feedback')
+        FEEDBACK_SHEET.append_row(data)
+        print("Feedback uploaded, thank you.\n")
+
+    def confirm_feedback(self, data):
+        print("Please review your feedback:")
+        time.sleep(2)
+        print(f"Name: {data[0]}")
+        print(f"Feedback: {data[1]}\n")
+        time.sleep(1)
+        user_input = input("Are you happy to proceed with this feedback?\nEnter Y to submit N to return to main menu or E to redo feedback:\n")
+        #Check that input is alphabet character only solution from W3 schools:
+        #https://www.w3schools.com/python/ref_string_isalpha.asp#:~:text=The%20isalpha()%20method%20returns,!%23%25%26%3F%20etc.
+        if not user_input.isalpha():
+            print("Invalid entry, please enter Y/N or E to proceed.")
+            self.confirm_feedback(data)
+        elif len(user_input) > 1:
+            print("Invalid entry, please enter only 1 character from Y/N or E to proceed.")
+            self.confirm_feedback(data)
+        elif user_input.lower() == "y":
+            print("Thanks for the feedback, updloading...\n")
+            self.upload_feedback(data)
+        elif user_input.lower() == "n":
+            print("Returning to main menu...")
+        elif user_input.lower() == "e":
+            data[1] = input("Please resubmit your feedback:")
+            self.confirm_feedback(data)
+
+    def get_feedback(self):
+        """
+        Request user inputs for name and feeback, perform confirmation step and 
+        upload to spreadsheet.
+        """
+        os.system('clear')
+        name_input = input('Please enter your name or leave blank to remain anonymous:\n')
+        if name_input == "":
+            name_input = "anonymous"
+        feedback_input = input('Please enter your feedback:\n')
+        now = d.datetime.now()
+        date_input = now.strftime("%d/%m/%Y, %H:%M:%S")
+        feedback_data = [name_input, feedback_input, date_input]
+        self.confirm_feedback(feedback_data)

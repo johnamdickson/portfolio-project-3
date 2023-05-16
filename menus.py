@@ -1,10 +1,14 @@
 import past_weather as past
-from classes import PastWeather
+from classes import PastWeather, Feedback
 import time
 from termcolor import colored, cprint
 import os
-import feedback
 
+
+def run_feedback():
+    feedback = Feedback()
+    feedback.get_feedback()
+    main_menu()
 
 def restart_user_selection(choice):
     """
@@ -21,8 +25,7 @@ def restart_user_selection(choice):
     elif choice == 3:
         print("Selected forecast")
     elif choice == 4:
-        feedback.get_feedback()
-
+        run_feedback()
     return
     
 
