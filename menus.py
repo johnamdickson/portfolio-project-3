@@ -10,6 +10,7 @@ def run_feedback():
     feedback.get_feedback()
     main_menu()
 
+
 def restart_user_selection(choice):
     """
     Using selection passed in from PastWeather class instance,
@@ -27,7 +28,7 @@ def restart_user_selection(choice):
     elif choice == 4:
         run_feedback()
     return
-    
+   
 
 def run_past_weather():
     """

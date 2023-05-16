@@ -7,7 +7,6 @@ import datetime as d
 import os
 from menus import run_past_weather
 
-# from lib import  run_past_weather
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -50,7 +49,8 @@ def find_historical_data_row(date, date_range):
         print(weather_data)
         return weather_data
     except AttributeError:
-        # Handle error by informing user of exception and then re-running the main() function.
+        # Handle error by informing user of exception and then re-running the 
+        # main() function.
         os.system('clear')
         print(colored(f"The date you selected is not available. You entered '{date}'\n\nDate should be between {date_range[0]} and {date_range[1]}.\n",
                     'white', 'on_red',['bold']))
@@ -105,7 +105,7 @@ def validate_date(date):
     except ValueError:
         # printing the appropriate text if ValueError occurs
         os.system('clear')
-        print(colored(f"""Incorrect data format, you entered '{date}'\nDate should be in the format DD/MM/YYYY e.g. 30/04/1978\n""",
+        print(colored(f"Incorrect data format, you entered '{date}'\nDate should be in the format DD/MM/YYYY e.g. 30/04/1978\n",
                     'white', 'on_red',['bold']))
         time.sleep(4)
         os.system('clear')
