@@ -1,7 +1,5 @@
 import gspread
 from google.oauth2.service_account import Credentials
-import gspread
-from google.oauth2.service_account import Credentials
 import time
 import sys
 from termcolor import colored, cprint
@@ -9,6 +7,7 @@ import datetime as d
 import os
 from menus import run_past_weather
 
+# from lib import  run_past_weather
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -21,7 +20,7 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('historical-weather-data')
 
-weather_archive_sheet = SHEET.worksheet('archive')
+WEATHER_ARCHIVE_SHEET = SHEET.worksheet('archive')
 
 
 def find_date_range():
@@ -29,9 +28,9 @@ def find_date_range():
     Calculate date range in worksheet to display to user before making
     their entry.
     """
-    earliest_date = weather_archive_sheet.cell(2, 1).value
-    row_count = len(weather_archive_sheet.get_all_values())
-    latest_date = weather_archive_sheet.cell(row_count, 1).value
+    earliest_date = WEATHER_ARCHIVE_SHEET.cell(2, 1).value
+    row_count = len(WEATHER_ARCHIVE_SHEET.get_all_values())
+    latest_date = WEATHER_ARCHIVE_SHEET.cell(row_count, 1).value
     return [earliest_date, latest_date]
 
 
@@ -46,8 +45,8 @@ def find_historical_data_row(date, date_range):
     try:
         # look for cell in spreadsheet that matches the date entered 
         # and return row data for the cell's row.
-        cell = weather_archive_sheet.find(date, in_column=1)
-        weather_data = weather_archive_sheet.row_values(cell.row)
+        cell = WEATHER_ARCHIVE_SHEET.find(date, in_column=1)
+        weather_data = WEATHER_ARCHIVE_SHEET.row_values(cell.row)
         print(weather_data)
         return weather_data
     except AttributeError:
