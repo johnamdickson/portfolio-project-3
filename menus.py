@@ -15,7 +15,7 @@ def restart_user_selection(choice):
         main_menu()
     elif choice == 2:
         os.system('clear')
-        print("Returning to past weather...")
+        print("Returning to past weather...☼")
         run_past_weather()
     elif choice == 3:
         print("Selected forecast")

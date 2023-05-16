@@ -3,6 +3,7 @@ import time
 import os
 from termcolor import colored, cprint
 
+
 class PastWeather:
     """
     Class for past weather data and methods
