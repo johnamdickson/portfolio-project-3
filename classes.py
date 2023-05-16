@@ -93,6 +93,7 @@ class Feedback:
         FEEDBACK_SHEET = SHEET.worksheet('feedback')
         FEEDBACK_SHEET.append_row(data)
         print("Feedback uploaded, thank you.\n")
+        time.sleep(2)
 
     def confirm_feedback(self, data):
         print("Please review your feedback:")
@@ -104,10 +105,12 @@ class Feedback:
         #Check that input is alphabet character only solution from W3 schools:
         #https://www.w3schools.com/python/ref_string_isalpha.asp#:~:text=The%20isalpha()%20method%20returns,!%23%25%26%3F%20etc.
         if not user_input.isalpha():
-            print("Invalid entry, please enter Y/N or E to proceed.")
+            print(colored("Invalid entry, please enter Y/N or E to proceed.",
+                    'white', 'on_red', ['bold']))
             self.confirm_feedback(data)
         elif len(user_input) > 1:
-            print("Invalid entry, please enter only 1 character from Y/N or E to proceed.")
+            print((colored("Invalid entry, please enter only 1 character from Y/N or E to proceed.",
+                    'white', 'on_red', ['bold'])))
             self.confirm_feedback(data)
         elif user_input.lower() == "y":
             print("Thanks for the feedback, updloading...\n")
