@@ -8,7 +8,7 @@ import weather_forecast as wf
 
 
 def main():
-    menus.main_menu()
-    # wf.weather_forecast()
+    # menus.main_menu()
+    wf.weather_forecast()
 
 main()
