@@ -6,7 +6,8 @@ import os
 
 def weather_forecast():
     API_KEY = os.getenv('API_KEY')
-    owm = OWM(api.API_KEY)
+    # owm = OWM(api.API_KEY)
+    owm = OWM(API_KEY)
     mgr = owm.weather_manager()
     reg = owm.city_id_registry()
     one_call = mgr.one_call(lat=53.90026, lon=-9.60260)
