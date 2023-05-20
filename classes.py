@@ -73,7 +73,7 @@ class PastWeather:
 
 class Feedback:
     """
-    Class for user feedback with associated methods
+    Class for user feedback on past weather with associated methods
     """
 
     def __init__(self):
@@ -145,3 +145,31 @@ class Feedback:
         date_input = now.strftime("%d/%m/%Y, %H:%M:%S")
         feedback_data = [name_input, feedback_input, date_input]
         self.confirm_feedback(feedback_data)
+
+
+class ForecastWeather():
+    """
+    Class for user feedback on forecasted weather with associated methods
+    """
+
+    def __init__(self):
+        print("initialised")
+
+    
+    SUNSHINE = """
+            ██      ██                                                        
+            ██      ██                                            
+      ██    █████████                                       
+        ████          ████                                           
+        ██              ██                                
+  ██████                  ██████                        
+      ██                  ██                            
+      ██                  ██                             
+      ██                  ██                               
+  ██████                  ██████                          
+        ██              ██                               
+        ████          ████                       
+      ██    ██████████    ██                      
+    ██      ██      ██      ██                       
+            ██      ██   
+    """
