@@ -156,6 +156,7 @@ class ForecastWeather():
         self.forecast_dictionary = forecast_dictionary
 
     def parse_forecast(self):
+
         reference_time = []
         sunset_time = []
         sunrise_time = []
@@ -164,16 +165,36 @@ class ForecastWeather():
         weather_code = []
         precipitation_probability = []
 
-        for forecast in self.forecast_dictionary:
-            reference_time.append(forecast['reference_time'])
-            sunset_time.append(forecast['sunset_time'])
-            sunrise_time.append(forecast['sunset_time'])
-            temperature_feels_like.append(forecast['temperature']['feels_like_day'])
-            detailed_status.append(forecast['detailed_status'])
-            weather_code.append(forecast['weather_code'])
-            precipitation_probability.append(forecast['precipitation_probability'])
+        def return_date_format(timestamp):
+            date = d.datetime.fromtimestamp(timestamp).strftime('%d-%m-%y')
+            return (date)
+
+        day_one = [self.forecast_dictionary[0]]
+        day_two = [self.forecast_dictionary[1]]
+        day_three = [self.forecast_dictionary[2]]
+
+        def extract_data_to_days(forecast_dictionary):
+            container = []
+            for forecast in forecast_dictionary:
+
+                container.append(return_date_format(forecast['reference_time']))
+                container.append(forecast['sunset_time'])
+                container.append(forecast['sunrise_time'])
+                container.append(forecast['temperature']['feels_like_day'])
+                container.append(forecast['detailed_status'])
+                container.append(forecast['weather_code'])
+                container.append(forecast['precipitation_probability'])
+            return container
+
+
+        day_one = extract_data_to_days(day_one)
+        print(day_one)
+
+        def return_time_format(timestamps):
+            time = [d.datetime.fromtimestamp(timestamp).strftime('%H:%M') for timestamp in timestamps]
+            print (time)
         
-        print(weather_code)
+
 
 
     SUNSHINE = """
@@ -206,9 +227,9 @@ class ForecastWeather():
                 ▄▄████████████▄▄
               ▄██████▀▀▀  ▀▀▀█████▓▄
             ▄████▀              ▀████
-            ▓███▀                  ▀███▄
+          ▓███▀                  ▀███▄
         ▓███                     ▐████████▓▄
-      ▐███                        ▀▀▀▀▀██████▄
+       ▐███                        ▀▀▀▀▀██████▄
     ▄▄████                                ▀████
     ▓██████▀                                  ▀███
    ▄████▀                                       ███▌
@@ -238,9 +259,9 @@ class ForecastWeather():
         ▀████████████████████████████████████▀▀
                ▄▄      ▄▄▄      ▄▄       ▄▄
             ███     ▄██▀     ███     ▄███
-            ▄██▀     ▓██     ▄███     ▀██▀
-            ██▀     ██      ██▀     ███
-                ▄██▀              ███
-                ▓██▀             ▄██▀
-                ▀▀               ▀▀
+          ▄██▀     ▓██     ▄██     ▀██▀
+         ██▀     ██      ██▀     ███
+             ▄██▀              ███
+             ██▀             ▄██▀
+            ▀▀               ▀▀
     """

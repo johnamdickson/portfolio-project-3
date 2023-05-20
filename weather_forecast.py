@@ -25,7 +25,7 @@ def get_weather_forecast(latitude, longitude):
     one_call = mgr.one_call(latitude, longitude)
     print("Getting weather forecast...")
     forecast_weather_dictionary = [weather.to_dict() for weather in one_call.forecast_daily]
-    print(forecast_weather_dictionary[0])
-    print(len(forecast_weather_dictionary))
+    # print(forecast_weather_dictionary[0])
+    # print(len(forecast_weather_dictionary))
 
     return forecast_weather_dictionary
