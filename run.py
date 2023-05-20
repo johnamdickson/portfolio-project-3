@@ -9,6 +9,6 @@ import weather_forecast as wf
 
 def main():
     # menus.main_menu()
-    wf.weather_forecast()
+    wf.get_weather_forecast(53.90026, -9.60260)
 
 main()
