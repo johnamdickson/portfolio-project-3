@@ -155,7 +155,26 @@ class ForecastWeather():
     def __init__(self, forecast_dictionary):
         self.forecast_dictionary = forecast_dictionary
 
-    # def parse_forecast(self)
+    def parse_forecast(self):
+        reference_time = []
+        sunset_time = []
+        sunrise_time = []
+        temperature_feels_like = []
+        detailed_status = []
+        weather_code = []
+        precipitation_probability = []
+
+        for forecast in self.forecast_dictionary:
+            reference_time.append(forecast['reference_time'])
+            sunset_time.append(forecast['sunset_time'])
+            sunrise_time.append(forecast['sunset_time'])
+            temperature_feels_like.append(forecast['temperature']['feels_like_day'])
+            detailed_status.append(forecast['detailed_status'])
+            weather_code.append(forecast['weather_code'])
+            precipitation_probability.append(forecast['precipitation_probability'])
+        
+        print(weather_code)
+
 
     SUNSHINE = """
                        ▄██▄ 
