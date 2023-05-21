@@ -186,26 +186,95 @@ class ForecastWeather():
         # https://stackoverflow.com/questions/3420122/filter-dict-to-contain-only-certain-keys
 
         day_one = {key: day_one[key] for key in keys}
-        day_two = {key: day_two[key] for key in keys}
-        day_three = {key: day_three[key] for key in keys}
         print(day_one)
 
-        def extract_data_to_days(daily_forecast_dictionary):
+        def create_forecast(forecast_dict):
             """
-            Method to extract the weather forecast data required from 
-            a the daily forecast dictionarys.
+            Method to create weather report by printing off the weather
+            report obtained via API.
             """
-            container = {}
-            keys = [
-                    'reference_time', 'sunset_time', 'sunrise_time', 
-                    'forecast_date', 'wind["deg"]', 'temperature["day_feels_like"]', 'detailed_status', 
-                    'weather_code', 'precipitation_probability'
-                     ]
+            forecast_date = return_date_format(forecast_dict['reference_time'])
+            # Delete 273 from temperatures to account for units in deg Kelvin
+            day_temp = round(
+                                forecast_dict['temperature']['feels_like_day'] 
+                                - 273, 2
+                            )
+            night_temp = round(
+                                forecast_dict['temperature']['feels_like_night'] 
+                                - 273, 2
+                              )
 
-            day_one = {key: day_one[key] for key in keys}
+            # calculate wind direction cardinal and ordinal directions from 
+            # degrees
 
-            # for forecast in forecast_dictionary:
+            card_ord_wind_dir = forecast_dict['wind']['deg']
+            wind_direction = ""
 
+            if card_ord_wind_dir == range(0,22.5):
+                wind_conditions = "northerly"
+            elif card_ord_wind_dir == range(22.5, 45):
+                wind_conditions = "north-north-easterly"
+            elif card_ord_wind_dir == range(45, 67.5):
+                wind_conditions = "north-easterly"             
+            elif card_ord_wind_dir == range(67.5, 90):
+                wind_conditions = "east-north-easterly"    
+            elif card_ord_wind_dir == range(90, 112.5):
+                wind_conditions = "easterly"
+            elif card_ord_wind_dir == range(112.5, 135):
+                wind_conditions = "east-south-easterly"
+            elif card_ord_wind_dir == range(135, 157.5):
+                wind_conditions = "south-easterly"  
+            elif card_ord_wind_dir == range(157.5, 180):
+                wind_conditions = "south-south-easterly"
+            elif card_ord_wind_dir == range(180, 202.5):
+                wind_conditions = "southerly"
+            elif card_ord_wind_dir == range(202.5, 225):
+                wind_conditions = "south-south-westerly"
+            elif card_ord_wind_dir == range(225, 247.5):
+                wind_conditions = "south-westerly"
+            elif card_ord_wind_dir == range(247.5, 270):
+                wind_conditions = "west-south-westerly"
+            elif card_ord_wind_dir == range(270, 292.5):
+                wind_conditions = "westerly"
+            elif card_ord_wind_dir == range(292.5, 315):
+                wind_conditions = "west-north-westerly"
+            elif card_ord_wind_dir == range(315, 337.5):
+                wind_conditions = "north-westerly"
+            elif card_ord_wind_dir == range(337.5, 359):
+                wind_conditions = "north-north-westerly"
+            elif card_ord_wind_dir == 360:
+                wind_conditions = "northerly"
+
+            # Calculate wind conditions description from speed and create
+            # f string for user feedback that includes the wind direction
+            #  information as well.
+            wind_speed = forecast_dict['wind']['speed']
+            if wind_speed < 0.5:
+                wind_conditions = f"Today will be calm with a wind speed of {wind_speed} m/s."
+            elif wind_speed < 1.5:
+                wind_conditions = f"There will be light air today with a wind speed of {wind_speed} m/s."
+            elif wind_speed < 3.3:
+                wind_conditions = f"There will be a light breeze today with a wind speed of {wind_speed} m/s."
+            elif wind_speed < 5.5:
+                wind_conditions = f"There will be a gentle breeze today with a wind speed of {wind_speed} m/s."               
+            elif wind_speed < 7.9:
+                wind_conditions = f"There will be a moderate breeze today with a wind speed of {wind_speed} m/s."
+            elif wind_speed < 10.7:
+                wind_conditions = f"There will be a fresh breeze today with a wind speed of {wind_speed} m/s."   
+            elif wind_speed < 13.8:
+                wind_conditions = f"There will be a strong breeze today with a wind speed of {wind_speed} m/s."   
+            elif wind_speed <17.1:
+                wind_conditions = f"There will be a moderate breeze today with a wind speed of {wind_speed} m/s."  
+
+            # apend wind directions to wind conditions string"
+            wind_conditions.append(f"The wind direction is {wind_direction} at {card_ord_wind_dir} degrees.")  
+
+            print(f"Here is the weather forecast for {forecast_date}")
+            print(f"The temperature during the day will feel like {day_temp}")
+            print(f"At night, the temperature will feel like {night_temp}")
+            print(wind_conditions)
+
+            # for forecast in daily_forecast_dictionary:
             #     forecast_date = return_date_format(forecast['reference_time'])
             #     container["sunset_time"] = forecast['sunset_time']
             #     container["sunrise_time"] = forecast['sunrise_time']
@@ -216,8 +285,9 @@ class ForecastWeather():
             #     # container.append(forecast['detailed_status'])
             #     # container.append(forecast['weather_code'])
             #     # container.append(forecast['precipitation_probability'])
-            # return container
-
+            return 
+        
+        create_forecast(day_one)
 
 
         def return_time_format(timestamps):
