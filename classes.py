@@ -4,6 +4,7 @@ import os
 from termcolor import colored, cprint
 import gspread
 from google.oauth2.service_account import Credentials
+import numpy as np
 
 class PastWeather:
     """
@@ -206,44 +207,43 @@ class ForecastWeather():
 
             # calculate wind direction cardinal and ordinal directions from 
             # degrees
-
             card_ord_wind_dir = forecast_dict['wind']['deg']
             wind_direction = ""
 
-            if card_ord_wind_dir == range(0,22.5):
-                wind_conditions = "northerly"
-            elif card_ord_wind_dir == range(22.5, 45):
-                wind_conditions = "north-north-easterly"
-            elif card_ord_wind_dir == range(45, 67.5):
-                wind_conditions = "north-easterly"             
-            elif card_ord_wind_dir == range(67.5, 90):
-                wind_conditions = "east-north-easterly"    
-            elif card_ord_wind_dir == range(90, 112.5):
-                wind_conditions = "easterly"
-            elif card_ord_wind_dir == range(112.5, 135):
-                wind_conditions = "east-south-easterly"
-            elif card_ord_wind_dir == range(135, 157.5):
-                wind_conditions = "south-easterly"  
-            elif card_ord_wind_dir == range(157.5, 180):
-                wind_conditions = "south-south-easterly"
-            elif card_ord_wind_dir == range(180, 202.5):
-                wind_conditions = "southerly"
-            elif card_ord_wind_dir == range(202.5, 225):
-                wind_conditions = "south-south-westerly"
-            elif card_ord_wind_dir == range(225, 247.5):
-                wind_conditions = "south-westerly"
-            elif card_ord_wind_dir == range(247.5, 270):
-                wind_conditions = "west-south-westerly"
-            elif card_ord_wind_dir == range(270, 292.5):
-                wind_conditions = "westerly"
-            elif card_ord_wind_dir == range(292.5, 315):
-                wind_conditions = "west-north-westerly"
-            elif card_ord_wind_dir == range(315, 337.5):
-                wind_conditions = "north-westerly"
-            elif card_ord_wind_dir == range(337.5, 359):
-                wind_conditions = "north-north-westerly"
+            if card_ord_wind_dir in np.arange(0, 22.5, 0.5):
+                wind_direction = "northerly"
+            elif card_ord_wind_dir in np.arange(22.5, 45, 0.5):
+                wind_direction = "north-north-easterly"
+            elif card_ord_wind_dir in np.arange(45, 67.5, 0.5):
+                wind_direction = "north-easterly"             
+            elif card_ord_wind_dir in np.arange(67.5, 90, 0.5):
+                wind_direction = "east-north-easterly"    
+            elif card_ord_wind_dir in np.arange(90, 112.5, 0.5):
+                wind_direction = "easterly"
+            elif card_ord_wind_dir in np.arange(112.5, 135, 0.5):
+                wind_direction = "east-south-easterly"
+            elif card_ord_wind_dir in np.arange(135, 157.5, 0.5):
+                wind_direction = "south-easterly"  
+            elif card_ord_wind_dir in np.arange(157.5, 180, 0.5):
+                wind_direction = "south-south-easterly"
+            elif card_ord_wind_dir in np.arange(180, 202.5, 0.5):
+                wind_direction = "southerly"
+            elif card_ord_wind_dir in np.arange(202.5, 225, 0.5):
+                wind_direction = "south-south-westerly"
+            elif card_ord_wind_dir in np.arange(225, 247.5, 0.5):
+                wind_direction = "south-westerly"
+            elif card_ord_wind_dir in np.arange(247.5, 270, 0.5):
+                wind_direction = "west-south-westerly"
+            elif card_ord_wind_dir in np.arange(270, 292.5, 0.5):
+                wind_direction = "westerly"
+            elif card_ord_wind_dir in np.arange(292.5, 315, 0.5):
+                wind_direction = "west-north-westerly"
+            elif card_ord_wind_dir in np.arange(315, 337.5, 0.5):
+                wind_direction = "north-westerly"
+            elif card_ord_wind_dir in np.arange(337.5, 359, 0.5):
+                wind_direction = "north-north-westerly"
             elif card_ord_wind_dir == 360:
-                wind_conditions = "northerly"
+                wind_direction = "northerly"
 
             # Calculate wind conditions description from speed and create
             # f string for user feedback that includes the wind direction
@@ -266,8 +266,8 @@ class ForecastWeather():
             elif wind_speed <17.1:
                 wind_conditions = f"There will be a moderate breeze today with a wind speed of {wind_speed} m/s."  
 
-            # apend wind directions to wind conditions string"
-            wind_conditions.append(f"The wind direction is {wind_direction} at {card_ord_wind_dir} degrees.")  
+            # add wind directions to wind conditions string"
+            wind_conditions += f"The wind direction will be {wind_direction} at {card_ord_wind_dir} degrees." 
 
             print(f"Here is the weather forecast for {forecast_date}")
             print(f"The temperature during the day will feel like {day_temp}")
