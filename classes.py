@@ -5,6 +5,7 @@ from termcolor import colored, cprint
 import gspread
 from google.oauth2.service_account import Credentials
 import numpy as np
+import weather_icons as icons
 
 class PastWeather:
     """
@@ -261,6 +262,13 @@ class ForecastWeather():
             # add wind directions to wind conditions string"
             wind_conditions += f"The wind direction will be {wind_direction} at {card_ord_wind_dir} degrees." 
 
+            #calculate weather icon from weather code callback and
+            # assign appropriate icon ot be printed to terminal.
+            weather_icon = ""
+            weather_code = forecast_dict['weather_code']
+            if weather_code == 804:
+                weather_icon = icons.CLOUDY
+            print(weather_icon)
             print(f"Here is the weather forecast for {forecast_date}")
             print(f"The temperature during the day will feel like {day_temp}")
             print(f"At night, the temperature will feel like {night_temp}")
@@ -278,71 +286,3 @@ class ForecastWeather():
 
 
 
-    SUNSHINE = """
-                       ▄██▄ 
-                       ████
-                       ████
-       ▄██▄            ████            ▄██▌
-       █████▄                        ▄█████
-         ▀████                     ▐████▀
-           ▀▀▀     ▄▄▓██████▓▄▄     ▀▀▀
-                 ▓██████▀▀██████▓
-               ▓███▀          ▀████
-              ████              ████
- ▄▄▄▄▄▄▄▄    ▐███                ███▌    ▄▄▄▄▄▄▄▄
-▓████████    ▓███                ███▌    ████████▌
-             ▐███               ▐███▌
-              ▀███▄            ▄███▌
-               ▀████▄▄      ▄▄████▀
-                 ▀██████████████▀
-          ▄██▓       ▀▀▀▀▀▀▀▀       ▓██▄
-        ▄█████                      █████▄
-       █████            ▄▄            █████
-        ▀▀             ████             ▀▀
-                       ████
-                       ████
-                        ▀▀
-    """
-    
-    CLOUDY = """
-                ▄▄████████████▄▄
-              ▄██████▀▀▀  ▀▀▀█████▓▄
-            ▄████▀              ▀████
-          ▓███▀                  ▀███▄
-        ▓███                     ▐████████▓▄
-       ▐███                        ▀▀▀▀▀██████▄
-    ▄▄████                                ▀████
-    ▓██████▀                                  ▀███
-   ▄████▀                                       ███▌
-   ▐███                                          ▓███
-    ▓███                                          ███▌
-    ▐███                                         ████
-    ▀███▄                                    ▄████▀
-     ██████████████████████████████████████████▀
-        ▀▀████████████████████████████████▀▀
-    """
-
-    RAIN = """
-                  ▄▄▄▓████▓▄▄▄
-              ▄▓████████████████▓▄
-            ▄█████▀          ▀█████▄
-          ▄████▀                ▀████
-        ▐████                    ███████▓▄▄
-        ████                      ▀██████████▄
-        ▓███                               ▀████▌
-    ▄▓██████                                  ████
-    █████▀                                      ███▌
-    ████                                         ▓███
-    ███                                          ████
-    ▐███                                         ▓███
-     ████▄                                     ▄████
-      ▀█████▓▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▓██████▀
-        ▀████████████████████████████████████▀▀
-               ▄▄      ▄▄▄      ▄▄       ▄▄
-            ███     ▄██▀     ███     ▄███
-          ▄██▀     ▓██     ▄██     ▀██▀
-         ██▀     ██      ██▀     ███
-             ▄██▀              ███
-             ██▀             ▄██▀
-            ▀▀               ▀▀
-    """
