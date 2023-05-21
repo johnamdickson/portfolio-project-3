@@ -268,8 +268,8 @@ class ForecastWeather():
             weather_code = forecast_dict['weather_code']
             if weather_code == 804:
                 weather_icon = icons.CLOUDY
-            print(weather_icon)
             print(f"Here is the weather forecast for {forecast_date}")
+            print(weather_icon)
             print(f"The temperature during the day will feel like {day_temp}")
             print(f"At night, the temperature will feel like {night_temp}")
             print(wind_conditions)
