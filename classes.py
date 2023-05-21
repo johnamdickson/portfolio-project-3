@@ -158,14 +158,6 @@ class ForecastWeather():
 
     def parse_forecast(self):
 
-        reference_time = []
-        sunset_time = []
-        sunrise_time = []
-        temperature_feels_like = []
-        detailed_status = []
-        weather_code = []
-        precipitation_probability = []
-
         def return_date_format(timestamp):
             date = d.datetime.fromtimestamp(timestamp).strftime('%d-%m-%y')
             return (date)
@@ -263,7 +255,7 @@ class ForecastWeather():
                 wind_conditions = f"There will be a fresh breeze today with a wind speed of {wind_speed} m/s."   
             elif wind_speed < 13.8:
                 wind_conditions = f"There will be a strong breeze today with a wind speed of {wind_speed} m/s."   
-            elif wind_speed <17.1:
+            elif wind_speed < 17.1:
                 wind_conditions = f"There will be a moderate breeze today with a wind speed of {wind_speed} m/s."  
 
             # add wind directions to wind conditions string"
@@ -274,18 +266,7 @@ class ForecastWeather():
             print(f"At night, the temperature will feel like {night_temp}")
             print(wind_conditions)
 
-            # for forecast in daily_forecast_dictionary:
-            #     forecast_date = return_date_format(forecast['reference_time'])
-            #     container["sunset_time"] = forecast['sunset_time']
-            #     container["sunrise_time"] = forecast['sunrise_time']
-            #     container.update("forecast_date", forecast_date)
-            #     # container.append(forecast['wind']['speed'])
-            #     # container.append(forecast['wind']['deg'])
-            #     # container.append(forecast['temperature']['feels_like_day'])
-            #     # container.append(forecast['detailed_status'])
-            #     # container.append(forecast['weather_code'])
-            #     # container.append(forecast['precipitation_probability'])
-            return 
+            return
         
         create_forecast(day_one)
 
