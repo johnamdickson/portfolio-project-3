@@ -169,26 +169,56 @@ class ForecastWeather():
             date = d.datetime.fromtimestamp(timestamp).strftime('%d-%m-%y')
             return (date)
 
-        day_one = [self.forecast_dictionary[0]]
+        # Create 3 day forecast by selecting the first three items in the 
+        # forecast_dictionary.
+        day_one = self.forecast_dictionary[0]
         day_two = [self.forecast_dictionary[1]]
         day_three = [self.forecast_dictionary[2]]
 
-        def extract_data_to_days(forecast_dictionary):
-            container = []
-            for forecast in forecast_dictionary:
+        keys = [
+                'reference_time', 'sunset_time', 'sunrise_time', 
+                'wind', 'temperature', 'detailed_status', 
+                'weather_code', 'precipitation_probability'
+                ]
 
-                container.append(return_date_format(forecast['reference_time']))
-                container.append(forecast['sunset_time'])
-                container.append(forecast['sunrise_time'])
-                container.append(forecast['temperature']['feels_like_day'])
-                container.append(forecast['detailed_status'])
-                container.append(forecast['weather_code'])
-                container.append(forecast['precipitation_probability'])
-            return container
+        # Dictionary comprehension utilised as opposed to extract data function
+        # to clean up code. Solution found on stack overflow:
+        # https://stackoverflow.com/questions/3420122/filter-dict-to-contain-only-certain-keys
 
-
-        day_one = extract_data_to_days(day_one)
+        day_one = {key: day_one[key] for key in keys}
+        day_two = {key: day_two[key] for key in keys}
+        day_three = {key: day_three[key] for key in keys}
         print(day_one)
+
+        def extract_data_to_days(daily_forecast_dictionary):
+            """
+            Method to extract the weather forecast data required from 
+            a the daily forecast dictionarys.
+            """
+            container = {}
+            keys = [
+                    'reference_time', 'sunset_time', 'sunrise_time', 
+                    'forecast_date', 'wind["deg"]', 'temperature["day_feels_like"]', 'detailed_status', 
+                    'weather_code', 'precipitation_probability'
+                     ]
+
+            day_one = {key: day_one[key] for key in keys}
+
+            # for forecast in forecast_dictionary:
+
+            #     forecast_date = return_date_format(forecast['reference_time'])
+            #     container["sunset_time"] = forecast['sunset_time']
+            #     container["sunrise_time"] = forecast['sunrise_time']
+            #     container.update("forecast_date", forecast_date)
+            #     # container.append(forecast['wind']['speed'])
+            #     # container.append(forecast['wind']['deg'])
+            #     # container.append(forecast['temperature']['feels_like_day'])
+            #     # container.append(forecast['detailed_status'])
+            #     # container.append(forecast['weather_code'])
+            #     # container.append(forecast['precipitation_probability'])
+            # return container
+
+
 
         def return_time_format(timestamps):
             time = [d.datetime.fromtimestamp(timestamp).strftime('%H:%M') for timestamp in timestamps]
