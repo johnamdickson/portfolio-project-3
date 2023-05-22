@@ -266,7 +266,10 @@ class ForecastWeather():
             # assign appropriate icon ot be printed to terminal.
             weather_icon = ""
             weather_code = forecast_dict['weather_code']
+
+            # Line below for testing the weather icons to be removed on final deployment
             weather_code = 201
+
             if 200 <= weather_code <= 232:
                 weather_icon = icons.LIGHTNING
             elif 300 <= weather_code <= 321:
