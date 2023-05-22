@@ -266,7 +266,7 @@ class ForecastWeather():
             # assign appropriate icon ot be printed to terminal.
             weather_icon = ""
             weather_code = forecast_dict['weather_code']
-            # weather_code = 752
+            weather_code = 501
             if 200 <= weather_code <= 232:
                 weather_icon = icons.LIGHTNING
             elif 300 <= weather_code <= 321:
