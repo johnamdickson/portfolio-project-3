@@ -265,9 +265,30 @@ class ForecastWeather():
             #calculate weather icon from weather code callback and
             # assign appropriate icon ot be printed to terminal.
             weather_icon = ""
-            weather_code = forecast_dict['weather_code']
-            if weather_code == 804:
+            # weather_code = forecast_dict['weather_code']
+            weather_code = 752
+            if 200 <= weather_code <= 232:
+                weather_icon = icons.LIGHTNING
+            elif 300 <= weather_code <= 321:
+                weather_icon = icons.DRIZZLE
+            elif 500 <= weather_code <= 511:
+                weather_icon = icons.RAIN
+            elif 512 <= weather_code <= 531:
+                weather_icon = icons.SHOWERS
+            elif 600 <= weather_code <= 622:
+                weather_icon = icons.SNOW
+            elif weather_code == 701 or weather_code == 741:
+                weather_icon = icons.MIST_FOG
+            elif 711 <= weather_code <= 731 or 751 <= weather_code <= 771:
+                weather_icon = icons.HAZE
+            elif weather_code == 781:
+                weather_icon = icons.TORNADO
+            elif weather_code == 800:
+                weather_icon = icons.CLEAR
+            elif 801 <= weather_code <= 803:
                 weather_icon = icons.CLOUDY
+            elif weather_code == 804:
+                weather_icon = icons.OVERCAST
             print(f"Here is the weather forecast for {forecast_date}")
             print(weather_icon)
             print(f"The temperature during the day will feel like {day_temp}")
