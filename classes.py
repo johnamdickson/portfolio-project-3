@@ -257,9 +257,19 @@ class ForecastWeather():
             elif wind_speed < 13.8:
                 wind_conditions = f"There will be a strong breeze today with a wind speed of {wind_speed} m/s."   
             elif wind_speed < 17.1:
-                wind_conditions = f"There will be a moderate breeze today with a wind speed of {wind_speed} m/s."  
-
+                wind_conditions = f"There will be moderate gales today with a wind speed of {wind_speed} m/s."  
+            elif wind_speed < 20.7:
+                wind_conditions = f"There will be fresh gales today with a wind speed of {wind_speed} m/s." 
+            elif wind_speed < 24.4:
+                wind_conditions = f"There will be strong gales today with a wind speed of {wind_speed} m/s." 
+            elif wind_speed < 28.4:
+                wind_conditions = f"There will be storm force winds today with a wind speed of {wind_speed} m/s." 
+            elif wind_speed < 32.6:
+                wind_conditions = f"There will be violent storm today with a wind speed of {wind_speed} m/s." 
+            elif wind_speed >= 32.7:
+                wind_conditions = f"There will be hurricane force winds today with a wind speed of {wind_speed} m/s." 
             # add wind directions to wind conditions string"
+            
             wind_conditions += f"The wind direction will be {wind_direction} at {card_ord_wind_dir} degrees." 
 
             #calculate weather icon from weather code callback and
