@@ -38,7 +38,6 @@ and another for longitude.""",
             latitude = float(latitude)
             longitude = float(longitude)
         except ValueError as e:
-            print(e)
             print(colored(f"Invalid entry, please enter a number between -90 to 90 for latitude and -180 to 180 for longitude. ",
                 'white', 'on_red', ['bold']))
             continue

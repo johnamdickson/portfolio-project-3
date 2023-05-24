@@ -242,35 +242,43 @@ class ForecastWeather():
             # f string for user feedback that includes the wind direction
             #  information as well.
             wind_speed = forecast_dict['wind']['speed']
+
+            def wind_conditions_string(description):
+                """
+                Helper function to return string from wind speed description
+                passed in from calculation.
+                """
+                return f"There will be {description} today with a wind speed of {wind_speed} m/s."
+                
             if wind_speed < 0.5:
-                wind_conditions = f"Today will be calm with a wind speed of {wind_speed} m/s."
+                wind_conditions = wind_conditions_string("calm conditions")
             elif wind_speed < 1.5:
-                wind_conditions = f"There will be light air today with a wind speed of {wind_speed} m/s."
+                wind_conditions = wind_conditions_string("light air")
             elif wind_speed < 3.3:
-                wind_conditions = f"There will be a light breeze today with a wind speed of {wind_speed} m/s."
+                wind_conditions = wind_conditions_string("a light breeze")
             elif wind_speed < 5.5:
-                wind_conditions = f"There will be a gentle breeze today with a wind speed of {wind_speed} m/s."               
+                wind_conditions = wind_conditions_string("a gentle breeze")         
             elif wind_speed < 7.9:
-                wind_conditions = f"There will be a moderate breeze today with a wind speed of {wind_speed} m/s."
+                wind_conditions = wind_conditions_string("a moderate breeze")
             elif wind_speed < 10.7:
-                wind_conditions = f"There will be a fresh breeze today with a wind speed of {wind_speed} m/s."   
+                wind_conditions = wind_conditions_string("a fresh breeze")
             elif wind_speed < 13.8:
-                wind_conditions = f"There will be a strong breeze today with a wind speed of {wind_speed} m/s."   
+                wind_conditions = wind_conditions_string("a strong breeze")
             elif wind_speed < 17.1:
-                wind_conditions = f"There will be moderate gales today with a wind speed of {wind_speed} m/s."  
+                wind_conditions = wind_conditions_string("moderate gales")
             elif wind_speed < 20.7:
-                wind_conditions = f"There will be fresh gales today with a wind speed of {wind_speed} m/s." 
+                wind_conditions = wind_conditions_string("fresh gales") 
             elif wind_speed < 24.4:
-                wind_conditions = f"There will be strong gales today with a wind speed of {wind_speed} m/s." 
+                wind_conditions = wind_conditions_string("strong gales") 
             elif wind_speed < 28.4:
-                wind_conditions = f"There will be storm force winds today with a wind speed of {wind_speed} m/s." 
+                wind_conditions = wind_conditions_string("storm force winds") 
             elif wind_speed < 32.6:
-                wind_conditions = f"There will be violent storm today with a wind speed of {wind_speed} m/s." 
+                wind_conditions = wind_conditions_string("a violent storm") 
             elif wind_speed >= 32.7:
-                wind_conditions = f"There will be hurricane force winds today with a wind speed of {wind_speed} m/s." 
+                wind_conditions = wind_conditions_string("hurricane force winds") 
             # add wind directions to wind conditions string"
-            
-            wind_conditions += f"The wind direction will be {wind_direction} at {card_ord_wind_dir} degrees." 
+
+            wind_conditions += f"The wind direction will be {wind_direction} at {card_ord_wind_dir}°." 
 
             #calculate weather icon from weather code callback and
             # assign appropriate icon ot be printed to terminal.
