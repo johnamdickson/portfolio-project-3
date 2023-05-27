@@ -58,7 +58,6 @@ def get_user_coordinates():
                 get_user_coordinates()
                 return
             break
-    print(f"Made it through, here is the lat {latitude} and lon {longitude}")
     return [latitude, longitude]
 
 
@@ -84,7 +83,7 @@ def get_user_forecast_selection():
             break
     return
 
-    
+
 def get_weather_forecast(coordinates):
     """
     Function to retrieve weather forecast data from coordinates specified

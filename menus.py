@@ -4,6 +4,25 @@ import time
 from termcolor import colored, cprint
 import os
 import weather_forecast as wf
+import weather_icons as icons
+
+
+def loading_screens(icons):
+    """
+    Helper function to manage screen loading for
+    3 options taking in parameter of loading screen
+    type to calculate required loading screen option.
+    """
+    os.system('clear')
+    cprint(f"{icons[0]} end='\r'", 'red', 'on_white', ['bold'])
+    time.sleep(1)
+    os.system('clear')
+    cprint(f"{icons[1]} end='\r'", 'red', 'on_white', ['bold'])
+    time.sleep(1)
+    os.system('clear')
+    cprint(f"{icons[2]} end='\r'", 'red', 'on_white', ['bold'])
+    os.system('clear')
+    return
 
 
 def run_feedback():
@@ -37,8 +56,8 @@ def restart_user_selection(choice):
 
 def run_past_weather():
     """
-    Contains all necessary functions to run the past 
-    weather part of app.
+    Function to run past weather main functions and 
+    instantiate respective class.
     """
     available_dates = past.find_date_range()
     user_date = past.get_date(available_dates)
@@ -50,6 +69,10 @@ def run_past_weather():
 
 
 def run_weather_forecast():
+    """
+    Function to run weather forecast main functions and 
+    instantiate respective class.
+    """
     coordinates = wf.get_user_coordinates()
     get_forecast = wf.get_weather_forecast(coordinates)
     forecast = ForecastWeather(get_forecast)
@@ -67,14 +90,15 @@ def user_selection():
             continue
         else:
             if user_input not in range(1, 3):
-                print(colored("Invalid number, please enter 1 or 2",
-                              'white', 'on_red', ['bold']))          
+                cprint("Invalid number, please enter 1 or 2",
+                       'white', 'on_red', ['bold'])         
                 user_selection()
             elif user_input == 1:
-                print("\nLoading past weather...")
+                loading_screens(icons.PAST_WEATHER_LOADING)
                 run_past_weather()
             else:
-                print("\nLoading weather forecast...")
+                os.system('clear')
+
                 run_weather_forecast()
             break
     return
