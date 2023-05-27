@@ -78,7 +78,6 @@ def get_user_forecast_selection():
                               'white', 'on_red', ['bold']))          
                 get_user_forecast_selection
             elif user_input == 1:
-                print("\nLoading weather forecast...")
                 get_user_forecast_selection
             break
     return
@@ -111,10 +110,7 @@ def get_weather_forecast(coordinates):
     longitude = coordinates[1]
     mgr = owm.weather_manager()
     one_call = mgr.one_call(latitude, longitude)
-    print("Getting weather forecast...")
     forecast_weather_dictionary = ([weather.to_dict() for weather
                                     in one_call.forecast_daily])
-    # print(forecast_weather_dictionary[0])
-    # print(len(forecast_weather_dictionary))
 
     return forecast_weather_dictionary

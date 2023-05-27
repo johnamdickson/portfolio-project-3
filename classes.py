@@ -6,7 +6,6 @@ import gspread
 from google.oauth2.service_account import Credentials
 import numpy as np
 import weather_constants as constants
-import sys
 import itertools
 
 
@@ -66,7 +65,6 @@ class PastWeather:
         of past weather code.
         """
         user_input = 0
-        print()
         while True:
             try:
                 user_input = int(input("Press 1 to return to Main Menu\n"
@@ -199,7 +197,6 @@ class ForecastWeather():
         # https://stackoverflow.com/questions/3420122/filter-dict-to-contain-only-certain-keys
 
         day_one = {key: day_one[key] for key in keys}
-        print(day_one)
 
         def create_forecast(forecast_dict):
             """
@@ -333,7 +330,10 @@ class ForecastWeather():
                 weather_icon = constants.OVERCAST
 
             print(f"Here is the weather forecast for {forecast_date}")
+            time.sleep(2)
+            os.system('clear')
             print(weather_icon)
+            time.sleep(2)
             print(f"The temperature during the day will feel like {day_temp}")
             print(f"At night, the temperature will feel like {night_temp}")
             print(wind_conditions)
@@ -354,6 +354,10 @@ class LoadingScreens:
     3 options taking in bool property to determine
     when to stop animation.
     """
+    # Idea of using class for loading animation from
+    #  stack overflow:
+    #  https://stackoverflow.com/questions/22029562/python-how-to-make-simple-animated-loading-while-process-is-running
+
     def __init__(self, complete, type):
         self.complete = complete
         self.type = type

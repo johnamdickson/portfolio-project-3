@@ -25,11 +25,9 @@ def restart_user_selection(choice):
         main_menu()
     elif choice == 2:
         os.system('clear')
-        print("Loading past weather...☼")
         run_past_weather()
     elif choice == 3:
         os.system('clear')
-        print("Loading weather forecast...")
         run_weather_forecast()
     elif choice == 4:
         os.system('clear')
@@ -69,10 +67,21 @@ def run_weather_forecast():
     Function to run weather forecast main functions and 
     instantiate respective class.
     """
+    os.system('clear')
     coordinates = wf.get_user_coordinates()
+    loading = LoadingScreens(False, "Weather Forecast ")
+    t = threading.Thread(target=loading.animate)
+    t.start()
+    # get data from Open Weather API
     get_forecast = wf.get_weather_forecast(coordinates)
+    # loading completion by passing in true to 'loading' instance.
     forecast = ForecastWeather(get_forecast)
+    loading.complete = True
+    # sleep for one second to prevent clearing screen during forecast
+    # weather terminal information printed for user.
+    time.sleep(1)
     forecast.parse_forecast()
+
 
 
 def user_selection():
