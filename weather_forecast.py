@@ -4,7 +4,7 @@ from pyowm.utils import timestamps
 import os
 from termcolor import colored, cprint
 # Testing on Codeanywhere requires local access to api_key on line below
-import api_key as api
+# import api_key as api
 
 
 def get_user_coordinates():
@@ -94,10 +94,10 @@ def get_weather_forecast(coordinates):
 
     # Deploympent to Heroku requires access to environment variable on
     # line below:
-    # API_KEY = os.getenv('API_KEY')
+    API_KEY = os.getenv('API_KEY')
 
     # Testing on Codeanywhere requires local access to api_key on line below
-    owm = OWM(api.API_KEY)
+    # owm = OWM(api.API_KEY)
 
     # Use of pyowm library to utilise Open weather API
     # via documentation below:
@@ -105,7 +105,7 @@ def get_weather_forecast(coordinates):
 
     # Deploympent to Heroku requires access to environment variable on
     # line below
-    # owm = OWM(API_KEY)
+    owm = OWM(API_KEY)
     latitude = coordinates[0]
     longitude = coordinates[1]
     mgr = owm.weather_manager()
