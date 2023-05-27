@@ -1,29 +1,13 @@
 import past_weather as past
-from classes import PastWeather, Feedback, ForecastWeather
+from classes import PastWeather, Feedback, ForecastWeather, LoadingScreens
 import time
 from termcolor import colored, cprint
 import os
 import weather_forecast as wf
-import weather_icons as icons
+import weather_constants as constants
+import threading
 
-
-def loading_screens(icons):
-    """
-    Helper function to manage screen loading for
-    3 options taking in parameter of loading screen
-    type to calculate required loading screen option.
-    """
-    os.system('clear')
-    cprint(f"{icons[0]} end='\r'", 'red', 'on_white', ['bold'])
-    time.sleep(1)
-    os.system('clear')
-    cprint(f"{icons[1]} end='\r'", 'red', 'on_white', ['bold'])
-    time.sleep(1)
-    os.system('clear')
-    cprint(f"{icons[2]} end='\r'", 'red', 'on_white', ['bold'])
-    os.system('clear')
-    return
-
+    
 
 def run_feedback():
     feedback = Feedback()
@@ -59,7 +43,19 @@ def run_past_weather():
     Function to run past weather main functions and 
     instantiate respective class.
     """
+    # Use of threading and loading screens class to create animation
+    # whilst call is being made to Google sheets. Solution found here:
+    # https://stackoverflow.com/questions/22029562/python-how-to-make-simple-animated-loading-while-process-is-running
+    loading = LoadingScreens(False, "Past Weather ")
+    t = threading.Thread(target=loading.animate)
+    t.start()
+    # perform check of Google sheet.
     available_dates = past.find_date_range()
+    # loading completion by passing in true to 'loading' instance.
+    loading.complete = True
+    # sleep for one second to prevent clearing screen during past weather 
+    # terminal information printed for user.
+    time.sleep(1)
     user_date = past.get_date(available_dates)
     historical_data = past.find_historical_data_row(user_date, available_dates)
     past_weather = PastWeather(historical_data, user_date)
@@ -80,6 +76,10 @@ def run_weather_forecast():
 
 
 def user_selection():
+    """
+    Main menu selection for user at initiation of the 
+    app.
+    """
     user_input = 0
     while True:
         try:
@@ -94,11 +94,9 @@ def user_selection():
                        'white', 'on_red', ['bold'])         
                 user_selection()
             elif user_input == 1:
-                loading_screens(icons.PAST_WEATHER_LOADING)
                 run_past_weather()
             else:
                 os.system('clear')
-
                 run_weather_forecast()
             break
     return

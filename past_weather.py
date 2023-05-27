@@ -5,7 +5,7 @@ import sys
 from termcolor import colored, cprint
 import datetime as d
 import os
-from menus import run_past_weather
+from main import run_past_weather
 
 
 SCOPE = [
@@ -40,13 +40,11 @@ def find_historical_data_row(date, date_range):
     """
     # Solution to selecting cell from Stack Overflow:
     # https://stackoverflow.com/questions/65234180/how-to-find-a-row-based-on-an-id-and-then-edit-the-row-with-gspread-python
-    print(f"Locating data for {date}...")
     try:
         # look for cell in spreadsheet that matches the date entered
         # and return row data for the cell's row.
         cell = WEATHER_ARCHIVE_SHEET.find(date, in_column=1)
         weather_data = WEATHER_ARCHIVE_SHEET.row_values(cell.row)
-        print(weather_data)
         return weather_data
     except AttributeError:
         # Handle error by informing user of exception and then re-running the

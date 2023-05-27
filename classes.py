@@ -5,7 +5,9 @@ from termcolor import colored, cprint
 import gspread
 from google.oauth2.service_account import Credentials
 import numpy as np
-import weather_icons as icons
+import weather_constants as constants
+import sys
+import itertools
 
 
 class PastWeather:
@@ -302,33 +304,33 @@ class ForecastWeather():
             weather_icon = ""
             weather_code = forecast_dict['weather_code']
 
-            # Line below for testing the weather icons to be removed
+            # Line below for testing the weather constants to be removed
             # on final deployment
 
             # weather_code = 201
 
             if 200 <= weather_code <= 232:
-                weather_icon = icons.LIGHTNING
+                weather_icon = constants.LIGHTNING
             elif 300 <= weather_code <= 321:
-                weather_icon = icons.DRIZZLE
+                weather_icon = constants.DRIZZLE
             elif 500 <= weather_code <= 511:
-                weather_icon = icons.RAIN
+                weather_icon = constants.RAIN
             elif 512 <= weather_code <= 531:
-                weather_icon = icons.SHOWERS
+                weather_icon = constants.SHOWERS
             elif 600 <= weather_code <= 622:
-                weather_icon = icons.SNOW
+                weather_icon = constants.SNOW
             elif weather_code == 701 or weather_code == 741:
-                weather_icon = icons.MIST_FOG
+                weather_icon = constants.MIST_FOG
             elif 711 <= weather_code <= 731 or 751 <= weather_code <= 771:
-                weather_icon = icons.HAZE
+                weather_icon = constants.HAZE
             elif weather_code == 781:
-                weather_icon = icons.TORNADO
+                weather_icon = constants.TORNADO
             elif weather_code == 800:
-                weather_icon = icons.CLEAR
+                weather_icon = constants.CLEAR
             elif 801 <= weather_code <= 803:
-                weather_icon = icons.CLOUDY
+                weather_icon = constants.CLOUDY
             elif weather_code == 804:
-                weather_icon = icons.OVERCAST
+                weather_icon = constants.OVERCAST
 
             print(f"Here is the weather forecast for {forecast_date}")
             print(weather_icon)
@@ -346,5 +348,23 @@ class ForecastWeather():
             print(time)
         
 
+class LoadingScreens:
+    """
+    Class to manage screen loading for
+    3 options taking in bool property to determine
+    when to stop animation.
+    """
+    def __init__(self, complete, type):
+        self.complete = complete
+        self.type = type
 
+    def animate(self):
+        os.system('clear')
+        for c in itertools.cycle(['|', '/', '-', '\\']):
+            if self.complete:
+                break
+            cprint('\rLoading ' + self.type + c, 'red', None, ['bold'])
+            time.sleep(0.2)
+            os.system('clear')
+        return
 
