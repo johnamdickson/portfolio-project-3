@@ -151,6 +151,10 @@ class ForecastWeather():
     def parse_forecast(self):
 
         def return_date_format(timestamp):
+            """
+            Function to create a date from timestamp provided by
+            Open Weather API.
+            """
             date = d.datetime.fromtimestamp(timestamp).strftime('%d-%m-%y')
             return (date)
 
@@ -229,14 +233,16 @@ class ForecastWeather():
             # f string for user feedback that includes the wind direction
             #  information as well.
             wind_speed = forecast_dict['wind']['speed']
+            formatted_wind_speed = colored(f"{wind_speed} m/s", 'blue', None, ['bold'])
 
             def wind_conditions_string(description):
                 """
                 Helper function to return string from wind speed description
                 passed in from calculation.
                 """
+                description = colored(description, 'blue', None, ['bold'])
                 return (f"There will be {description} with a wind speed"
-                        f" of {wind_speed} m/s.")
+                        f" of {formatted_wind_speed}. ")
 
             if wind_speed < 0.5:
                 wind_conditions = wind_conditions_string("calm conditions")
@@ -266,9 +272,10 @@ class ForecastWeather():
                 wind_conditions = wind_conditions_string("hurricane force "
                                                          "winds")
             # add wind directions to wind conditions string"
-
-            wind_conditions += (f"The wind direction will be {wind_direction}"
-                                f" at {card_ord_wind_dir}°.")
+            formatted_wind_direction = colored(f"{wind_direction}", 'blue', None, ['bold'])
+            formatted_bearing = colored(f"{card_ord_wind_dir}°", 'blue', None, ['bold'])
+            wind_conditions += (f"The wind direction will be {formatted_wind_direction}"
+                                f" at {formatted_bearing}.")
 
             # calculate weather icon from weather code callback and
             # assign appropriate icon ot be printed to terminal.
@@ -303,14 +310,20 @@ class ForecastWeather():
             elif weather_code == 804:
                 weather_icon = constants.OVERCAST
 
-            print(f"Here is the weather forecast for {forecast_date}")
+            formatted_date = colored(forecast_date, 'blue', None, ['bold'])
+            formatted_day_temp = colored(f"{day_temp} °C", 'blue', None, ['bold'])
+            formatted_night_temp = colored(f"{night_temp} °C", 'blue', None, ['bold'])
+
+            print(f"Here is the weather forecast for {formatted_date}")
             time.sleep(2)
-            os.system('clear')
             print(weather_icon)
             time.sleep(2)
-            print(f"The temperature during the day will feel like {day_temp}")
-            print(f"At night, the temperature will feel like {night_temp}")
+            print(f"The temperature during the day will feel like {formatted_day_temp}")
+            time.sleep(3)
+            print(f"At night, the temperature will feel like {formatted_night_temp}")
+            time.sleep(3)
             print(wind_conditions)
+            time.sleep(3)
 
             return
         

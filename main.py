@@ -35,12 +35,6 @@ def user_options():
     return user_input
 
 
-def run_feedback():
-    feedback = Feedback()
-    feedback.get_feedback()
-    main_menu()
-
-
 def restart_user_selection(choice):
     """
     Using selection passed in from PastWeather class instance,
@@ -60,7 +54,13 @@ def restart_user_selection(choice):
         print("Loading feedback...")
         run_feedback()
     return
- 
+
+
+def run_feedback():
+    feedback = Feedback()
+    feedback.get_feedback()
+    main_menu()
+
 
 def run_past_weather():
     """
