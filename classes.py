@@ -7,6 +7,7 @@ from google.oauth2.service_account import Credentials
 import numpy as np
 import weather_icons as icons
 
+
 class PastWeather:
     """
     Class for past weather data and associated methods
@@ -18,7 +19,7 @@ class PastWeather:
 
     def parse_data(self):
         """
-        Select pertinent information from Dublin Airport historical weather 
+        Select pertinent information from Dublin Airport historical weather
         data spreadsheet and return a string detailing all info.
         """
         data = self.weather_data
@@ -29,9 +30,9 @@ class PastWeather:
         mean_wind_speed = data[10]
         sunshine_duration = data[17]
         sunshine_string = ["were", "hours"]
-        # Code below to calculate day of the week from date using 
-        # datetime strftime method.
-        # Used following tutorial: https://www.programiz.com/python-programming/datetime/strftime
+        # Code below to calculate day of the week from date using
+        # datetime strftime method. Used following tutorial:
+        # https://www.programiz.com/python-programming/datetime/strftime
         date_format = '%d/%m/%Y'
         date = d.datetime.strptime(self.date, date_format)
         day = date.strftime('%A')
@@ -39,18 +40,22 @@ class PastWeather:
         # returned in instance of 1 hour of sunshine.
         if float(sunshine_duration) == 1:
             sunshine_string = ["was", "hour"]
-        # Clear terminal and print out readable data to user with 
+        # Clear terminal and print out readable data to user with
         # pauses in between for effect.
         os.system('clear')
         print(f"{self.date} was a {day}.")
         time.sleep(2)
-        print(f"On that day at Dublin Airport the maximum temperature was {max_temp}°C and the minimum temperature was {min_temp}°C.")
+        print(f"On that day at Dublin Airport the maximum temperature was "
+              f"{max_temp}°C and the minimum temperature was {min_temp}°C.")
         time.sleep(3)
-        print(f"There {sunshine_string[0]} {sunshine_duration} {sunshine_string[1]} of sunshine with a total rainfall of {rain} mm.")
+        print(f"There {sunshine_string[0]} {sunshine_duration} "
+              f"{sunshine_string[1]} of sunshine with a total rainfall of"
+              f" {rain} mm.")
         time.sleep(3)
-        print(f"The mean wind speed for the day was {mean_wind_speed} knots with an atmospheric pressure of {atmos_pressure} mbar.")
+        print(f"The mean wind speed for the day was {mean_wind_speed} knots"
+              f" with an atmospheric pressure of {atmos_pressure} mbar.")
         time.sleep(2)
-    
+
     def user_options(self):
         """
         Function to assign 4 options to user on completion
@@ -60,15 +65,21 @@ class PastWeather:
         print()
         while True:
             try:
-                user_input = int(input("Press 1 to return to Main Menu\nPress 2 to look for past weather again\nPress 3 for forecast at your location\nPress 4 to leave feedback\n"))
+                user_input = int(input("Press 1 to return to Main Menu\n"
+                                       "Press 2 to look for past weather again"
+                                       "\nPress 3 for forecast at your "
+                                       "location\n"
+                                       "Press 4 to leave feedback\n"))
             except ValueError:
-                print(colored(f"Invalid entry, please enter an integer between 1 and 4\n",
-                    'white', 'on_red', ['bold']))
+                print(colored("Invalid entry, please enter an integer"
+                              " between 1 and 4\n", 'white', 'on_red',
+                              ['bold']))
                 continue
             else:
                 if user_input not in range(1, 5):
-                    print(colored(f"Invalid entry, please enter an integer between 1 and 4\n",
-                        'white', 'on_red',['bold']))
+                    print(colored("Invalid entry, please enter an integer"
+                                  " between 1 and 4\n", 'white', 'on_red',
+                                  ['bold']))
                 break
         return user_input
 
@@ -113,16 +124,19 @@ class Feedback:
         print(f"Name: {data[0]}")
         print(f"Feedback: {data[1]}\n")
         time.sleep(1)
-        user_input = input("Are you happy to proceed with this feedback?\nEnter Y to submit N to return to main menu or E to redo feedback:\n")
-        #Check that input is alphabet character only solution from W3 schools:
-        #https://www.w3schools.com/python/ref_string_isalpha.asp#:~:text=The%20isalpha()%20method%20returns,!%23%25%26%3F%20etc.
+        user_input = input("Are you happy to proceed with this feedback?\n"
+                           "Enter Y to submit N to return to main menu "
+                           "or E to redo feedback:\n")
+        # Check that input is alphabet character only solution from W3 schools:
+        # https://www.w3schools.com/python/ref_string_isalpha.asp#:~:text=The%20isalpha()%20method%20returns,!%23%25%26%3F%20etc
         if not user_input.isalpha():
             print(colored("Invalid entry, please enter Y/N or E to proceed.",
-                    'white', 'on_red', ['bold']))
+                          'white', 'on_red', ['bold']))
             self.confirm_feedback(data)
         elif len(user_input) > 1:
-            print((colored("Invalid entry, please enter only 1 character from Y/N or E to proceed.",
-                    'white', 'on_red', ['bold'])))
+            print((colored("Invalid entry, please enter only 1 character from"
+                           "Y/N or E to proceed.", 'white', 'on_red',
+                           ['bold'])))
             self.confirm_feedback(data)
         elif user_input.lower() == "y":
             print("Thanks for the feedback, updloading...\n")
@@ -135,11 +149,12 @@ class Feedback:
 
     def get_feedback(self):
         """
-        Request user inputs for name and feeback, perform confirmation step and 
+        Request user inputs for name and feeback, perform confirmation step and
         upload to spreadsheet.
         """
         os.system('clear')
-        name_input = input('Please enter your name or leave blank to remain anonymous:\n')
+        name_input = input("Please enter your name or leave blank to remain"
+                           " anonymous:\n")
         if name_input == "":
             name_input = "anonymous"
         feedback_input = input('Please enter your feedback:\n')
@@ -163,15 +178,15 @@ class ForecastWeather():
             date = d.datetime.fromtimestamp(timestamp).strftime('%d-%m-%y')
             return (date)
 
-        # Create 3 day forecast by selecting the first three items in the 
+        # Create 3 day forecast by selecting the first three items in the
         # forecast_dictionary.
         day_one = self.forecast_dictionary[0]
         day_two = [self.forecast_dictionary[1]]
         day_three = [self.forecast_dictionary[2]]
 
         keys = [
-                'reference_time', 'sunset_time', 'sunrise_time', 
-                'wind', 'temperature', 'detailed_status', 
+                'reference_time', 'sunset_time', 'sunrise_time',
+                'wind', 'temperature', 'detailed_status',
                 'weather_code', 'precipitation_probability'
                 ]
 
@@ -189,18 +204,15 @@ class ForecastWeather():
             """
             forecast_date = return_date_format(forecast_dict['reference_time'])
             # Delete 273 from temperatures to account for units in deg Kelvin
-            day_temp = round(
-                                forecast_dict['temperature']['feels_like_day'] 
-                                - 273, 2
-                            )
-            night_temp = round(
-                                forecast_dict['temperature']['feels_like_night'] 
-                                - 273, 2
-                              )
+            day_temp = round(forecast_dict['temperature']['feels_like_day']
+                             - 273, 2)
+            night_temp = round(forecast_dict['temperature']['feels_like_night']
+                               - 273, 2)
 
-            # calculate wind direction cardinal and ordinal directions from 
+            # calculate wind direction cardinal and ordinal directions from
             # degrees
             card_ord_wind_dir = forecast_dict['wind']['deg']
+
             wind_direction = ""
 
             if card_ord_wind_dir in np.arange(0, 22.5, 0.5):
@@ -208,15 +220,15 @@ class ForecastWeather():
             elif card_ord_wind_dir in np.arange(22.5, 45, 0.5):
                 wind_direction = "north-north-easterly"
             elif card_ord_wind_dir in np.arange(45, 67.5, 0.5):
-                wind_direction = "north-easterly"             
+                wind_direction = "north-easterly"
             elif card_ord_wind_dir in np.arange(67.5, 90, 0.5):
-                wind_direction = "east-north-easterly"    
+                wind_direction = "east-north-easterly"
             elif card_ord_wind_dir in np.arange(90, 112.5, 0.5):
                 wind_direction = "easterly"
             elif card_ord_wind_dir in np.arange(112.5, 135, 0.5):
                 wind_direction = "east-south-easterly"
             elif card_ord_wind_dir in np.arange(135, 157.5, 0.5):
-                wind_direction = "south-easterly"  
+                wind_direction = "south-easterly"
             elif card_ord_wind_dir in np.arange(157.5, 180, 0.5):
                 wind_direction = "south-south-easterly"
             elif card_ord_wind_dir in np.arange(180, 202.5, 0.5):
@@ -248,8 +260,9 @@ class ForecastWeather():
                 Helper function to return string from wind speed description
                 passed in from calculation.
                 """
-                return f"There will be {description} today with a wind speed of {wind_speed} m/s."
-                
+                return (f"There will be {description} today with a wind speed"
+                        f" of {wind_speed} m/s.")
+
             if wind_speed < 0.5:
                 wind_conditions = wind_conditions_string("calm conditions")
             elif wind_speed < 1.5:
@@ -257,7 +270,7 @@ class ForecastWeather():
             elif wind_speed < 3.3:
                 wind_conditions = wind_conditions_string("a light breeze")
             elif wind_speed < 5.5:
-                wind_conditions = wind_conditions_string("a gentle breeze")         
+                wind_conditions = wind_conditions_string("a gentle breeze")
             elif wind_speed < 7.9:
                 wind_conditions = wind_conditions_string("a moderate breeze")
             elif wind_speed < 10.7:
@@ -267,25 +280,29 @@ class ForecastWeather():
             elif wind_speed < 17.1:
                 wind_conditions = wind_conditions_string("moderate gales")
             elif wind_speed < 20.7:
-                wind_conditions = wind_conditions_string("fresh gales") 
+                wind_conditions = wind_conditions_string("fresh gales")
             elif wind_speed < 24.4:
-                wind_conditions = wind_conditions_string("strong gales") 
+                wind_conditions = wind_conditions_string("strong gales")
             elif wind_speed < 28.4:
-                wind_conditions = wind_conditions_string("storm force winds") 
+                wind_conditions = wind_conditions_string("storm force winds")
             elif wind_speed < 32.6:
-                wind_conditions = wind_conditions_string("a violent storm") 
+                wind_conditions = wind_conditions_string("a violent storm")
             elif wind_speed >= 32.7:
-                wind_conditions = wind_conditions_string("hurricane force winds") 
+                wind_conditions = wind_conditions_string("hurricane force "
+                                                         "winds")
             # add wind directions to wind conditions string"
 
-            wind_conditions += f"The wind direction will be {wind_direction} at {card_ord_wind_dir}°." 
+            wind_conditions += (f"The wind direction will be {wind_direction}"
+                                f" at {card_ord_wind_dir}°.")
 
-            #calculate weather icon from weather code callback and
+            # calculate weather icon from weather code callback and
             # assign appropriate icon ot be printed to terminal.
             weather_icon = ""
             weather_code = forecast_dict['weather_code']
 
-            # Line below for testing the weather icons to be removed on final deployment
+            # Line below for testing the weather icons to be removed
+            # on final deployment
+
             # weather_code = 201
 
             if 200 <= weather_code <= 232:
@@ -310,6 +327,7 @@ class ForecastWeather():
                 weather_icon = icons.CLOUDY
             elif weather_code == 804:
                 weather_icon = icons.OVERCAST
+
             print(f"Here is the weather forecast for {forecast_date}")
             print(weather_icon)
             print(f"The temperature during the day will feel like {day_temp}")
@@ -320,10 +338,10 @@ class ForecastWeather():
         
         create_forecast(day_one)
 
-
         def return_time_format(timestamps):
-            time = [d.datetime.fromtimestamp(timestamp).strftime('%H:%M') for timestamp in timestamps]
-            print (time)
+            time = [d.datetime.fromtimestamp(timestamp).strftime('%H:%M')
+                    for timestamp in timestamps]
+            print(time)
         
 
 

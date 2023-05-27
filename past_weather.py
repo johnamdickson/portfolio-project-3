@@ -42,18 +42,19 @@ def find_historical_data_row(date, date_range):
     # https://stackoverflow.com/questions/65234180/how-to-find-a-row-based-on-an-id-and-then-edit-the-row-with-gspread-python
     print(f"Locating data for {date}...")
     try:
-        # look for cell in spreadsheet that matches the date entered 
+        # look for cell in spreadsheet that matches the date entered
         # and return row data for the cell's row.
         cell = WEATHER_ARCHIVE_SHEET.find(date, in_column=1)
         weather_data = WEATHER_ARCHIVE_SHEET.row_values(cell.row)
         print(weather_data)
         return weather_data
     except AttributeError:
-        # Handle error by informing user of exception and then re-running the 
+        # Handle error by informing user of exception and then re-running the
         # main() function.
         os.system('clear')
-        print(colored(f"The date you selected is not available. You entered '{date}'\n\nDate should be between {date_range[0]} and {date_range[1]}.\n",
-                    'white', 'on_red',['bold']))
+        print(colored(f"The date you selected is not available. You entered \
+                    '{date}'\n\nDate should be between {date_range[0]} and \
+                    {date_range[1]}.\n", 'white', 'on_red', ['bold']))
         run_past_weather()
 
 
@@ -68,8 +69,9 @@ def get_date(sheet_dates):
         earliest_date = colored(sheet_dates[0], 'green', 'on_black',
                                 ['bold'])
         latest_date = colored(sheet_dates[1], 'green', 'on_black',
-                                ['bold'])
-        print(f"Please enter the date to check the historical weather data for Dublin Airport.\n")
+                              ['bold'])
+        print(f"Please enter the date to check the historical weather data for"
+              "Dublin Airport.\n")
         time.sleep(1.5)
         print(f"Available dates between {earliest_date} and {latest_date}.\n")
         time.sleep(1)
@@ -86,7 +88,7 @@ def get_date(sheet_dates):
 
 
 def validate_date(date):
-    """Inside the try, creates a date object using datetiem class strptime 
+    """Inside the try, creates a date object using datetiem class strptime
     method. Raises ValueError if date does not conform to date format.
     """
     # The following tutorial was used to determine the correct date format.
@@ -105,8 +107,10 @@ def validate_date(date):
     except ValueError:
         # printing the appropriate text if ValueError occurs
         os.system('clear')
-        print(colored(f"Incorrect data format, you entered '{date}'\nDate should be in the format DD/MM/YYYY e.g. 30/04/1978\n",
-                    'white', 'on_red',['bold']))
+        print(colored(f"Incorrect data format, you entered '{date}'\n"
+                      f"Date should be in the format DD/MM/YYYY "
+                      "e.g. 30/04/1978\n",
+                      'white', 'on_red', ['bold']))
         time.sleep(4)
         os.system('clear')
         return False
