@@ -59,32 +59,6 @@ class PastWeather:
               f" with an atmospheric pressure of {atmos_pressure}.")
         time.sleep(2)
 
-    def user_options(self):
-        """
-        Function to assign 4 options to user on completion
-        of past weather code.
-        """
-        user_input = 0
-        while True:
-            try:
-                user_input = int(input("Press 1 to return to Main Menu\n"
-                                       "Press 2 to look for past weather again"
-                                       "\nPress 3 for forecast at your "
-                                       "location\n"
-                                       "Press 4 to leave feedback\n"))
-            except ValueError:
-                print(colored("Invalid entry, please enter an integer"
-                              " between 1 and 4\n", 'white', 'on_red',
-                              ['bold']))
-                continue
-            else:
-                if user_input not in range(1, 5):
-                    print(colored("Invalid entry, please enter an integer"
-                                  " between 1 and 4\n", 'white', 'on_red',
-                                  ['bold']))
-                break
-        return user_input
-
 
 class Feedback:
     """

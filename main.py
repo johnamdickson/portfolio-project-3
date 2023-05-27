@@ -7,7 +7,33 @@ import weather_forecast as wf
 import weather_constants as constants
 import threading
 
-    
+
+def user_options():
+    """
+    Function to assign 4 options to user on completion
+    of past weather or forecast weather code.
+    """
+    user_input = 0
+    while True:
+        try:
+            user_input = int(input("\nPress 1 to return to Main Menu\n"
+                                   "Press 2 to look for past weather again"
+                                   "\nPress 3 for forecast at your "
+                                   "location\n"
+                                   "Press 4 to leave feedback\n"))
+        except ValueError:
+            print(colored("Invalid entry, please enter an integer"
+                          " between 1 and 4\n", 'white', 'on_red',
+                          ['bold']))
+            continue
+        else:
+            if user_input not in range(1, 5):
+                print(colored("Invalid entry, please enter an integer"
+                              " between 1 and 4\n", 'white', 'on_red',
+                              ['bold']))
+            break
+    return user_input
+
 
 def run_feedback():
     feedback = Feedback()
@@ -58,7 +84,7 @@ def run_past_weather():
     historical_data = past.find_historical_data_row(user_date, available_dates)
     past_weather = PastWeather(historical_data, user_date)
     past_weather.parse_data()
-    user_option = past_weather.user_options()
+    user_option = user_options()
     restart_user_selection(user_option)
 
 
@@ -81,7 +107,8 @@ def run_weather_forecast():
     # weather terminal information printed for user.
     time.sleep(1)
     forecast.parse_forecast()
-
+    user_option = user_options()
+    restart_user_selection(user_option)
 
 
 def user_selection():
