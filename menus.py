@@ -1,8 +1,9 @@
 import past_weather as past
-from classes import PastWeather, Feedback
+from classes import PastWeather, Feedback, ForecastWeather
 import time
 from termcolor import colored, cprint
 import os
+import weather_forecast as wf
 
 
 def run_feedback():
@@ -44,25 +45,33 @@ def run_past_weather():
     restart_user_selection(user_option)
 
 
+def run_weather_forecast():
+    coordinates = wf.get_user_coordinates()
+    get_forecast = wf.get_weather_forecast(coordinates)
+    forecast = ForecastWeather(get_forecast)
+    forecast.parse_forecast()
+
+
 def user_selection():
     user_input = 0
     while True:
         try:
             user_input = int(input("Please make a selection:"))
         except ValueError:
-            print(colored(f"Invalid entry, an integer (1 or 2) is required.",
-                'white', 'on_red', ['bold']))
+            print(colored("Invalid entry, an integer (1 or 2) is required.",
+                          'white', 'on_red', ['bold']))
             continue
         else:
             if user_input not in range(1, 3):
-                print(colored(f"Invalid number, please enter 1 or 2",
-                    'white', 'on_red',['bold']))          
+                print(colored("Invalid number, please enter 1 or 2",
+                              'white', 'on_red',['bold']))          
                 user_selection()
             elif user_input == 1:
                 print("\nLoading past weather...")
                 run_past_weather()
             else:
-                print("Selected forecast.")
+                print("\nLoading weather forecast...")
+                run_weather_forecast()
             break
     return
 

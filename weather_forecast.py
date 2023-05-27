@@ -62,6 +62,29 @@ def get_user_coordinates():
     return [latitude, longitude]
 
 
+def get_user_forecast_selection():
+    user_input = 0
+    while True:
+        try:
+            user_input = int(input("How many days would you like forecast?"
+                                   "1, 2 or 3 day forecasts available\n"
+                                   "Please enter a number from 1 to 3:\n"))
+        except ValueError:
+            print(colored("Invalid entry, an integer (1,2 or 3) is required.",
+                          'white', 'on_red', ['bold']))
+            continue
+        else:
+            if user_input not in range(1, 4):
+                print(colored("Invalid number, please enter 1, 2 or 3",
+                              'white', 'on_red', ['bold']))          
+                get_user_forecast_selection
+            elif user_input == 1:
+                print("\nLoading weather forecast...")
+                get_user_forecast_selection
+            break
+    return
+
+    
 def get_weather_forecast(coordinates):
     """
     Function to retrieve weather forecast data from coordinates specified

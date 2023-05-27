@@ -8,10 +8,11 @@ import weather_forecast as wf
 
 
 def main():
-    # menus.main_menu()
-    coordinates = wf.get_user_coordinates()
-    get_forecast = wf.get_weather_forecast(coordinates)
-    forecast = ForecastWeather(get_forecast)
-    forecast.parse_forecast()
+    menus.main_menu()
+    # coordinates = wf.get_user_coordinates()
+    # get_forecast = wf.get_weather_forecast(coordinates)
+    # forecast = ForecastWeather(get_forecast)
+    # forecast.parse_forecast()
+
 
 main()

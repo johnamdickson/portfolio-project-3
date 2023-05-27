@@ -260,7 +260,7 @@ class ForecastWeather():
                 Helper function to return string from wind speed description
                 passed in from calculation.
                 """
-                return (f"There will be {description} today with a wind speed"
+                return (f"There will be {description} with a wind speed"
                         f" of {wind_speed} m/s.")
 
             if wind_speed < 0.5:
