@@ -23,12 +23,13 @@ class PastWeather:
         data spreadsheet and return a string detailing all info.
         """
         data = self.weather_data
-        max_temp = data[2]
-        min_temp = data[4]
-        rain = data[8]
-        atmos_pressure = data[9]
-        mean_wind_speed = data[10]
+        max_temp = colored(data[2] + "°C", 'blue', None, ['bold'])
+        min_temp = colored(data[4] + "°C", 'blue', None, ['bold'])
+        rain = colored(data[8] + " mm", 'blue', None, ['bold'])
+        atmos_pressure = colored(data[9] + " mbar", 'blue', None, ['bold'])
+        mean_wind_speed = colored(data[10] + " knots", 'blue', None, ['bold'])
         sunshine_duration = data[17]
+        sunshine_duration_string = colored(data[17], 'blue', None, ['bold'])
         sunshine_string = ["were", "hours"]
         # Code below to calculate day of the week from date using
         # datetime strftime method. Used following tutorial:
@@ -43,17 +44,18 @@ class PastWeather:
         # Clear terminal and print out readable data to user with
         # pauses in between for effect.
         os.system('clear')
-        print(f"{self.date} was a {day}.")
+        print(f"{self.date} was a {colored(day, 'blue', None, ['bold'])}.")
         time.sleep(2)
-        print(f"On that day at Dublin Airport the maximum temperature was "
-              f"{max_temp}°C and the minimum temperature was {min_temp}°C.")
+        print("On that day at Dublin Airport the maximum temperature was "
+              f"{max_temp} and the minimum temperature was {min_temp}."
+              )
         time.sleep(3)
-        print(f"There {sunshine_string[0]} {sunshine_duration} "
-              f"{sunshine_string[1]} of sunshine with a total rainfall of"
-              f" {rain} mm.")
+        print(f"There {sunshine_string[0]} {sunshine_duration_string} "
+              f"{colored(sunshine_string[1], 'blue', None, ['bold'])} "
+              f"of sunshine with a total rainfall of {rain}")
         time.sleep(3)
-        print(f"The mean wind speed for the day was {mean_wind_speed} knots"
-              f" with an atmospheric pressure of {atmos_pressure} mbar.")
+        print(f"The mean wind speed for the day was {mean_wind_speed}"
+              f" with an atmospheric pressure of {atmos_pressure}.")
         time.sleep(2)
 
     def user_options(self):

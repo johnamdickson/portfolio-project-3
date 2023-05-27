@@ -22,14 +22,18 @@ def restart_user_selection(choice):
         main_menu()
     elif choice == 2:
         os.system('clear')
-        print("Returning to past weather...☼")
+        print("Loading past weather...☼")
         run_past_weather()
     elif choice == 3:
-        print("Selected forecast")
+        os.system('clear')
+        print("Loading weather forecast...")
+        run_weather_forecast()
     elif choice == 4:
+        os.system('clear')
+        print("Loading feedback...")
         run_feedback()
     return
-   
+ 
 
 def run_past_weather():
     """
@@ -64,7 +68,7 @@ def user_selection():
         else:
             if user_input not in range(1, 3):
                 print(colored("Invalid number, please enter 1 or 2",
-                              'white', 'on_red',['bold']))          
+                              'white', 'on_red', ['bold']))          
                 user_selection()
             elif user_input == 1:
                 print("\nLoading past weather...")
