@@ -70,7 +70,7 @@ def run_past_weather():
     # Use of threading and loading screens class to create animation
     # whilst call is being made to Google sheets. Solution found here:
     # https://stackoverflow.com/questions/22029562/python-how-to-make-simple-animated-loading-while-process-is-running
-    loading = LoadingScreens(False, "Past Weather ")
+    loading = LoadingScreens(False, constants.LOADING_CONSTANT)
     t = threading.Thread(target=loading.animate)
     t.start()
     # perform check of Google sheet.
@@ -139,6 +139,15 @@ def user_selection():
 
 
 def main_menu():
+    os.system('clear')
+    # Instantiate loading screen class for title and then 
+    # call animate method followed by a delay before 
+    # updating complete status to true to move on through
+    # program.
+    loading = LoadingScreens(False, constants.TITLE_CONSTANT)
+    loading.animate()
+    time.sleep(8)
+    loading.complete = True
     os.system('clear')
     print("Welcome to Weather: Past or Forecast?\n")
     time.sleep(2)

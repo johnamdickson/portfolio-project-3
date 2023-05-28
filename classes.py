@@ -233,7 +233,8 @@ class ForecastWeather():
             # f string for user feedback that includes the wind direction
             #  information as well.
             wind_speed = forecast_dict['wind']['speed']
-            formatted_wind_speed = colored(f"{wind_speed} m/s", 'blue', None, ['bold'])
+            formatted_wind_speed = colored(f"{wind_speed} m/s", 'blue', None,
+                                           ['bold'])
 
             def wind_conditions_string(description):
                 """
@@ -351,11 +352,19 @@ class LoadingScreens:
 
     def animate(self):
         os.system('clear')
-        for c in itertools.cycle(['|', '/', '-', '\\']):
-            if self.complete:
-                break
-            cprint('\rLoading ' + self.type + c, 'red', None, ['bold'])
-            time.sleep(0.2)
-            os.system('clear')
+        if self.type == constants.LOADING_CONSTANT:
+            for c in itertools.cycle(constants.LOADING_LIST):
+                if self.complete:
+                    break
+                cprint('\r' + c, 'red', None, ['bold'])
+                time.sleep(0.5)
+                os.system('clear')
+        elif self.type == constants.TITLE_CONSTANT:
+            for c in constants.TITLE_LIST:
+                if self.complete:
+                    break
+                cprint('\r' + c, 'yellow', None, ['bold'])
+                time.sleep(2)
         return
+
 

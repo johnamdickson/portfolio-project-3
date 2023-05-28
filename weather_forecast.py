@@ -18,7 +18,10 @@ def get_user_coordinates():
         # https://www.geeksforgeeks.org/taking-multiple-inputs-from-user-in-python/
 
         colored_note = colored("Note, latitude must be between -90 and 90,"
-                               "longitude between -180 and 180.\n",
+                               "longitude between -180 and 180.\n"
+                               "Latitudes west of the Prime Meridian "
+                               "(Greenwich, London) and longitudes south"
+                               " of the equator should be negative.\n",
                                'blue', None, ['bold'])
         try:
             latitude, longitude = input("Please enter your current location's "
