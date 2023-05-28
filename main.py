@@ -103,7 +103,7 @@ def run_weather_forecast():
     # get data from Open Weather API
     get_forecast = wf.get_weather_forecast(coordinates)
     # loading completion by passing in true to 'loading' instance.
-    forecast = ForecastWeather(get_forecast[0], get_forecast[1])
+    forecast = ForecastWeather(get_forecast)
     loading.complete = True
     # sleep for one second to prevent clearing screen during forecast
     # weather terminal information printed for user.

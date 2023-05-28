@@ -116,9 +116,4 @@ def get_weather_forecast(coordinates):
     forecast_weather_dictionary = ([weather.to_dict() for weather
                                     in one_call.forecast_daily])
     
-    geo_mgr = owm.geocoding_manager()
-
-    list_of_locations = geo_mgr.reverse_geocode(latitude, longitude)
-    dictionary = [location.to_dict() for location in list_of_locations]
-    
-    return forecast_weather_dictionary, dictionary
+    return forecast_weather_dictionary

@@ -147,7 +147,6 @@ class ForecastWeather():
 
     def __init__(self, forecast_dictionary, location):
         self.forecast_dictionary = forecast_dictionary
-        self.location = location
 
     def parse_forecast(self):
 
@@ -166,9 +165,8 @@ class ForecastWeather():
         day_three = [self.forecast_dictionary[2]]
 
         keys = [
-                'reference_time', 'sunset_time', 'sunrise_time',
-                'wind', 'temperature', 'detailed_status',
-                'weather_code', 'precipitation_probability'
+                'reference_time', 'wind', 'temperature', 
+                'detailed_status', 'weather_code', 'precipitation_probability'
                 ]
 
         # Dictionary comprehension utilised as opposed to extract data function
@@ -176,7 +174,8 @@ class ForecastWeather():
         # https://stackoverflow.com/questions/3420122/filter-dict-to-contain-only-certain-keys
 
         day_one = {key: day_one[key] for key in keys}
-
+        day_two = {key: day_two[key] for key in keys}
+        day_three = {key: day_three[key] for key in keys}
         def create_forecast(forecast_dict):
             """
             Method to create weather report by printing off the weather
@@ -320,23 +319,18 @@ class ForecastWeather():
             time.sleep(2)
             print(weather_icon)
             time.sleep(2)
-            print(f"The temperature during the day will feel like {formatted_day_temp}")
+            print(f"The temperature during the day will feel like"
+                  f" {formatted_day_temp}")
             time.sleep(3)
-            print(f"At night, the temperature will feel like {formatted_night_temp}")
+            print(f"At night, the temperature will feel like"
+                  f" {formatted_night_temp}")
             time.sleep(3)
             print(wind_conditions)
-            print(self.location)
             time.sleep(3)
-
             return
         
         create_forecast(day_one)
 
-        def return_time_format(timestamps):
-            time = [d.datetime.fromtimestamp(timestamp).strftime('%H:%M')
-                    for timestamp in timestamps]
-            print(time)
-        
 
 class LoadingScreens:
     """
