@@ -145,8 +145,9 @@ class ForecastWeather():
     Class for user feedback on forecasted weather with associated methods
     """
 
-    def __init__(self, forecast_dictionary):
+    def __init__(self, forecast_dictionary, location):
         self.forecast_dictionary = forecast_dictionary
+        self.location = location
 
     def parse_forecast(self):
 
@@ -324,6 +325,7 @@ class ForecastWeather():
             print(f"At night, the temperature will feel like {formatted_night_temp}")
             time.sleep(3)
             print(wind_conditions)
+            print(self.location)
             time.sleep(3)
 
             return
@@ -366,5 +368,4 @@ class LoadingScreens:
                 cprint('\r' + c, 'yellow', None, ['bold'])
                 time.sleep(2)
         return
-
 

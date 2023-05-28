@@ -6,6 +6,8 @@ import os
 import weather_forecast as wf
 import weather_constants as constants
 import threading
+from geopy.geocoders import Nominatim
+from geopy.geocoders import GoogleV3
 
 
 def user_options():
@@ -17,9 +19,9 @@ def user_options():
     while True:
         try:
             user_input = int(input("\nPress 1 to return to Main Menu\n"
-                                   "Press 2 to look for past weather again"
+                                   "Press 2 to look for past weather"
                                    "\nPress 3 for forecast at your "
-                                   "location\n"
+                                   "chosen location\n"
                                    "Press 4 to leave feedback\n"))
         except ValueError:
             print(colored("Invalid entry, please enter an integer"
@@ -41,7 +43,7 @@ def restart_user_selection(choice):
     select appropriate menu.
     """
     if choice == 1:
-        print("Returning to main menu...")
+        os.system('clear')
         main_menu()
     elif choice == 2:
         os.system('clear')
@@ -101,7 +103,7 @@ def run_weather_forecast():
     # get data from Open Weather API
     get_forecast = wf.get_weather_forecast(coordinates)
     # loading completion by passing in true to 'loading' instance.
-    forecast = ForecastWeather(get_forecast)
+    forecast = ForecastWeather(get_forecast[0], get_forecast[1])
     loading.complete = True
     # sleep for one second to prevent clearing screen during forecast
     # weather terminal information printed for user.
@@ -146,7 +148,7 @@ def main_menu():
     # program.
     loading = LoadingScreens(False, constants.TITLE_CONSTANT)
     loading.animate()
-    time.sleep(8)
+    time.sleep(2)
     loading.complete = True
     os.system('clear')
     print("Welcome to Weather: Past or Forecast?\n")
