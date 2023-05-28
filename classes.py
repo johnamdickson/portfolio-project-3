@@ -148,15 +148,16 @@ class ForecastWeather():
     def __init__(self, forecast_dictionary):
         self.forecast_dictionary = forecast_dictionary
 
+    day_one_parsed = {}
+    day_two_parsed = {}
+    day_three_parsed = {}
+
     def parse_forecast(self):
 
-        def return_date_format(timestamp):
-            """
-            Function to create a date from timestamp provided by
-            Open Weather API.
-            """
-            date = d.datetime.fromtimestamp(timestamp).strftime('%d-%m-%y')
-            return (date)
+        """
+        Function to extract required data from Open Weather API 
+        dictionary.
+        """
 
         # Create 3 day forecast by selecting the first three items in the
         # forecast_dictionary.
@@ -165,7 +166,7 @@ class ForecastWeather():
         day_three = self.forecast_dictionary[2]
 
         keys = [
-                'reference_time', 'wind', 'temperature', 
+                'reference_time', 'wind', 'temperature',
                 'detailed_status', 'weather_code', 'precipitation_probability'
                 ]
 
@@ -173,163 +174,200 @@ class ForecastWeather():
         # to clean up code. Solution found on stack overflow:
         # https://stackoverflow.com/questions/3420122/filter-dict-to-contain-only-certain-keys
 
-        day_one = {key: day_one[key] for key in keys}
-        day_two = {key: day_two[key] for key in keys}
-        day_three = {key: day_three[key] for key in keys}
-        def create_forecast(forecast_dict):
+        self.day_one_parsed = {key: day_one[key] for key in keys}
+        self.day_two_parsed = {key: day_two[key] for key in keys}
+        self.day_three_parsed = {key: day_three[key] for key in keys}
+
+        return
+
+    def create_forecast(self, forecast_dict):
+        """
+        Method to create weather report by printing off the weather
+        report obtained via API.
+        """
+
+        def return_date_format(timestamp):
             """
-            Method to create weather report by printing off the weather
-            report obtained via API.
+            Helper function to create a date from timestamp provided by
+            Open Weather API.
             """
-            forecast_date = return_date_format(forecast_dict['reference_time'])
-            # Delete 273 from temperatures to account for units in deg Kelvin
-            day_temp = round(forecast_dict['temperature']['feels_like_day']
-                             - 273, 2)
-            night_temp = round(forecast_dict['temperature']['feels_like_night']
-                               - 273, 2)
+            date = d.datetime.fromtimestamp(timestamp).strftime('%d-%m-%y')
+            return (date)
 
-            # calculate wind direction cardinal and ordinal directions from
-            # degrees
-            card_ord_wind_dir = forecast_dict['wind']['deg']
+        forecast_date = return_date_format(forecast_dict['reference_time'])
+        # Delete 273 from temperatures to account for units in deg Kelvin
+        day_temp = round(forecast_dict['temperature']['feels_like_day']
+                            - 273, 2)
+        night_temp = round(forecast_dict['temperature']['feels_like_night']
+                            - 273, 2)
 
-            wind_direction = ""
+        # calculate wind direction cardinal and ordinal directions from
+        # degrees
+        card_ord_wind_dir = forecast_dict['wind']['deg']
 
-            if card_ord_wind_dir in np.arange(0, 22.5, 0.5):
-                wind_direction = "northerly"
-            elif card_ord_wind_dir in np.arange(22.5, 45, 0.5):
-                wind_direction = "north-north-easterly"
-            elif card_ord_wind_dir in np.arange(45, 67.5, 0.5):
-                wind_direction = "north-easterly"
-            elif card_ord_wind_dir in np.arange(67.5, 90, 0.5):
-                wind_direction = "east-north-easterly"
-            elif card_ord_wind_dir in np.arange(90, 112.5, 0.5):
-                wind_direction = "easterly"
-            elif card_ord_wind_dir in np.arange(112.5, 135, 0.5):
-                wind_direction = "east-south-easterly"
-            elif card_ord_wind_dir in np.arange(135, 157.5, 0.5):
-                wind_direction = "south-easterly"
-            elif card_ord_wind_dir in np.arange(157.5, 180, 0.5):
-                wind_direction = "south-south-easterly"
-            elif card_ord_wind_dir in np.arange(180, 202.5, 0.5):
-                wind_direction = "southerly"
-            elif card_ord_wind_dir in np.arange(202.5, 225, 0.5):
-                wind_direction = "south-south-westerly"
-            elif card_ord_wind_dir in np.arange(225, 247.5, 0.5):
-                wind_direction = "south-westerly"
-            elif card_ord_wind_dir in np.arange(247.5, 270, 0.5):
-                wind_direction = "west-south-westerly"
-            elif card_ord_wind_dir in np.arange(270, 292.5, 0.5):
-                wind_direction = "westerly"
-            elif card_ord_wind_dir in np.arange(292.5, 315, 0.5):
-                wind_direction = "west-north-westerly"
-            elif card_ord_wind_dir in np.arange(315, 337.5, 0.5):
-                wind_direction = "north-westerly"
-            elif card_ord_wind_dir in np.arange(337.5, 359, 0.5):
-                wind_direction = "north-north-westerly"
-            elif card_ord_wind_dir == 360:
-                wind_direction = "northerly"
+        wind_direction = ""
 
-            # Calculate wind conditions description from speed and create
-            # f string for user feedback that includes the wind direction
-            #  information as well.
-            wind_speed = forecast_dict['wind']['speed']
-            formatted_wind_speed = colored(f"{wind_speed} m/s", 'blue', None,
-                                           ['bold'])
+        if card_ord_wind_dir in np.arange(0, 22.5, 0.5):
+            wind_direction = "northerly"
+        elif card_ord_wind_dir in np.arange(22.5, 45, 0.5):
+            wind_direction = "north-north-easterly"
+        elif card_ord_wind_dir in np.arange(45, 67.5, 0.5):
+            wind_direction = "north-easterly"
+        elif card_ord_wind_dir in np.arange(67.5, 90, 0.5):
+            wind_direction = "east-north-easterly"
+        elif card_ord_wind_dir in np.arange(90, 112.5, 0.5):
+            wind_direction = "easterly"
+        elif card_ord_wind_dir in np.arange(112.5, 135, 0.5):
+            wind_direction = "east-south-easterly"
+        elif card_ord_wind_dir in np.arange(135, 157.5, 0.5):
+            wind_direction = "south-easterly"
+        elif card_ord_wind_dir in np.arange(157.5, 180, 0.5):
+            wind_direction = "south-south-easterly"
+        elif card_ord_wind_dir in np.arange(180, 202.5, 0.5):
+            wind_direction = "southerly"
+        elif card_ord_wind_dir in np.arange(202.5, 225, 0.5):
+            wind_direction = "south-south-westerly"
+        elif card_ord_wind_dir in np.arange(225, 247.5, 0.5):
+            wind_direction = "south-westerly"
+        elif card_ord_wind_dir in np.arange(247.5, 270, 0.5):
+            wind_direction = "west-south-westerly"
+        elif card_ord_wind_dir in np.arange(270, 292.5, 0.5):
+            wind_direction = "westerly"
+        elif card_ord_wind_dir in np.arange(292.5, 315, 0.5):
+            wind_direction = "west-north-westerly"
+        elif card_ord_wind_dir in np.arange(315, 337.5, 0.5):
+            wind_direction = "north-westerly"
+        elif card_ord_wind_dir in np.arange(337.5, 359, 0.5):
+            wind_direction = "north-north-westerly"
+        elif card_ord_wind_dir == 360:
+            wind_direction = "northerly"
 
-            def wind_conditions_string(description):
-                """
-                Helper function to return string from wind speed description
-                passed in from calculation.
-                """
-                description = colored(description, 'blue', None, ['bold'])
-                return (f"There will be {description} with a wind speed"
-                        f" of {formatted_wind_speed}. ")
+        # Calculate wind conditions description from speed and create
+        # f string for user feedback that includes the wind direction
+        #  information as well.
+        wind_speed = forecast_dict['wind']['speed']
+        formatted_wind_speed = colored(f"{wind_speed} m/s", 'blue', None,
+                                       ['bold'])
 
-            if wind_speed < 0.5:
-                wind_conditions = wind_conditions_string("calm conditions")
-            elif wind_speed < 1.5:
-                wind_conditions = wind_conditions_string("light air")
-            elif wind_speed < 3.3:
-                wind_conditions = wind_conditions_string("a light breeze")
-            elif wind_speed < 5.5:
-                wind_conditions = wind_conditions_string("a gentle breeze")
-            elif wind_speed < 7.9:
-                wind_conditions = wind_conditions_string("a moderate breeze")
-            elif wind_speed < 10.7:
-                wind_conditions = wind_conditions_string("a fresh breeze")
-            elif wind_speed < 13.8:
-                wind_conditions = wind_conditions_string("a strong breeze")
-            elif wind_speed < 17.1:
-                wind_conditions = wind_conditions_string("moderate gales")
-            elif wind_speed < 20.7:
-                wind_conditions = wind_conditions_string("fresh gales")
-            elif wind_speed < 24.4:
-                wind_conditions = wind_conditions_string("strong gales")
-            elif wind_speed < 28.4:
-                wind_conditions = wind_conditions_string("storm force winds")
-            elif wind_speed < 32.6:
-                wind_conditions = wind_conditions_string("a violent storm")
-            elif wind_speed >= 32.7:
-                wind_conditions = wind_conditions_string("hurricane force "
-                                                         "winds")
-            # add wind directions to wind conditions string"
-            formatted_wind_direction = colored(f"{wind_direction}", 'blue', None, ['bold'])
-            formatted_bearing = colored(f"{card_ord_wind_dir}°", 'blue', None, ['bold'])
-            wind_conditions += (f"The wind direction will be {formatted_wind_direction}"
-                                f" at {formatted_bearing}.")
+        def wind_conditions_string(description):
+            """
+            Helper function to return string from wind speed description
+            passed in from calculation.
+            """
+            description = colored(description, 'blue', None, ['bold'])
+            return (f"There will be {description} with a wind speed"
+                    f" of {formatted_wind_speed}. ")
 
-            # calculate weather icon from weather code callback and
-            # assign appropriate icon ot be printed to terminal.
-            weather_icon = ""
-            weather_code = forecast_dict['weather_code']
+        if wind_speed < 0.5:
+            wind_conditions = wind_conditions_string("calm conditions")
+        elif wind_speed < 1.5:
+            wind_conditions = wind_conditions_string("light air")
+        elif wind_speed < 3.3:
+            wind_conditions = wind_conditions_string("a light breeze")
+        elif wind_speed < 5.5:
+            wind_conditions = wind_conditions_string("a gentle breeze")
+        elif wind_speed < 7.9:
+            wind_conditions = wind_conditions_string("a moderate breeze")
+        elif wind_speed < 10.7:
+            wind_conditions = wind_conditions_string("a fresh breeze")
+        elif wind_speed < 13.8:
+            wind_conditions = wind_conditions_string("a strong breeze")
+        elif wind_speed < 17.1:
+            wind_conditions = wind_conditions_string("moderate gales")
+        elif wind_speed < 20.7:
+            wind_conditions = wind_conditions_string("fresh gales")
+        elif wind_speed < 24.4:
+            wind_conditions = wind_conditions_string("strong gales")
+        elif wind_speed < 28.4:
+            wind_conditions = wind_conditions_string("storm force winds")
+        elif wind_speed < 32.6:
+            wind_conditions = wind_conditions_string("a violent storm")
+        elif wind_speed >= 32.7:
+            wind_conditions = wind_conditions_string("hurricane force "
+                                                     "winds")
+        # add wind directions to wind conditions string"
+        formatted_wind_direction = colored(f"{wind_direction}", 'blue', None, ['bold'])
+        formatted_bearing = colored(f"{card_ord_wind_dir}°", 'blue', None, ['bold'])
+        wind_conditions += ("The wind direction will be "
+                            f"{formatted_wind_direction} at "
+                            f"{formatted_bearing}.")
 
-            # Line below for testing the weather constants to be removed
-            # on final deployment
+        # calculate weather icon from weather code callback and
+        # assign appropriate icon ot be printed to terminal.
+        weather_icon = ""
+        weather_code = forecast_dict['weather_code']
 
-            # weather_code = 201
+        # Line below for testing the weather constants to be removed
+        # on final deployment
 
-            if 200 <= weather_code <= 232:
-                weather_icon = constants.LIGHTNING
-            elif 300 <= weather_code <= 321:
-                weather_icon = constants.DRIZZLE
-            elif 500 <= weather_code <= 511:
-                weather_icon = constants.RAIN
-            elif 512 <= weather_code <= 531:
-                weather_icon = constants.SHOWERS
-            elif 600 <= weather_code <= 622:
-                weather_icon = constants.SNOW
-            elif weather_code == 701 or weather_code == 741:
-                weather_icon = constants.MIST_FOG
-            elif 711 <= weather_code <= 731 or 751 <= weather_code <= 771:
-                weather_icon = constants.HAZE
-            elif weather_code == 781:
-                weather_icon = constants.TORNADO
-            elif weather_code == 800:
-                weather_icon = constants.CLEAR
-            elif 801 <= weather_code <= 803:
-                weather_icon = constants.CLOUDY
-            elif weather_code == 804:
-                weather_icon = constants.OVERCAST
+        # weather_code = 201
 
-            formatted_date = colored(forecast_date, 'blue', None, ['bold'])
-            formatted_day_temp = colored(f"{day_temp} °C", 'blue', None, ['bold'])
-            formatted_night_temp = colored(f"{night_temp} °C", 'blue', None, ['bold'])
+        if 200 <= weather_code <= 232:
+            weather_icon = constants.LIGHTNING
+        elif 300 <= weather_code <= 321:
+            weather_icon = constants.DRIZZLE
+        elif 500 <= weather_code <= 511:
+            weather_icon = constants.RAIN
+        elif 512 <= weather_code <= 531:
+            weather_icon = constants.SHOWERS
+        elif 600 <= weather_code <= 622:
+            weather_icon = constants.SNOW
+        elif weather_code == 701 or weather_code == 741:
+            weather_icon = constants.MIST_FOG
+        elif 711 <= weather_code <= 731 or 751 <= weather_code <= 771:
+            weather_icon = constants.HAZE
+        elif weather_code == 781:
+            weather_icon = constants.TORNADO
+        elif weather_code == 800:
+            weather_icon = constants.CLEAR
+        elif 801 <= weather_code <= 803:
+            weather_icon = constants.CLOUDY
+        elif weather_code == 804:
+            weather_icon = constants.OVERCAST
 
-            print(f"Here is the weather forecast for {formatted_date}")
-            time.sleep(2)
-            print(weather_icon)
-            time.sleep(2)
-            print(f"The temperature during the day will feel like"
-                  f" {formatted_day_temp}")
-            time.sleep(3)
-            print(f"At night, the temperature will feel like"
-                  f" {formatted_night_temp}")
-            time.sleep(3)
-            print(wind_conditions)
-            time.sleep(3)
-            return
-        
-        create_forecast(day_one)
+        formatted_date = colored(forecast_date, 'blue', None, ['bold'])
+        formatted_day_temp = colored(f"{day_temp} °C", 'blue', None, ['bold'])
+        formatted_night_temp = colored(f"{night_temp} °C", 'blue', None, ['bold'])
+
+        return [formatted_date, weather_icon, formatted_day_temp, 
+                formatted_night_temp, wind_conditions]
+
+    def print_forecast_to_console(self, day_number, forecast):
+        """
+        Return forecast to terminal along with the forcast 
+        title graphics determined from day number
+        """
+        if day_number == 1:
+            os.system('clear')
+            cprint(constants.TODAYS_FORECAST, 'green', None, None)
+            time.sleep(4)
+        elif day_number == 2:
+            os.system('clear')
+            cprint(constants.TOMORROWS_FORECAST, 'cyan', None, None)
+            time.sleep(4)
+        else:
+            os.system('clear')
+            colored
+            cprint(constants.DAY_AFTER_TOMORROWS_FORECAST, 'light_magenta',
+                   None, None)
+            time.sleep(4)
+        os.system('clear')
+        print(f"Here is the weather forecast for {forecast[0]}")
+        time.sleep(3)
+        print(forecast[1])
+        time.sleep(2)
+        print(f"The temperature during the day will feel like"
+              f" {forecast[2]}")
+        time.sleep(3)
+        print(f"At night, the temperature will feel like"
+              f" {forecast[3]}")
+        time.sleep(3)
+        print(forecast[4])
+        time.sleep(3)
+        return
+
+    def move_to_next_day(self):
+        input("\nHit return to see the next day's forcast\n")
 
 
 class LoadingScreens:
@@ -362,4 +400,3 @@ class LoadingScreens:
                 cprint('\r' + c, 'yellow', None, ['bold'])
                 time.sleep(2)
         return
-

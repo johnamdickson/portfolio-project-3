@@ -6,8 +6,6 @@ import os
 import weather_forecast as wf
 import weather_constants as constants
 import threading
-from geopy.geocoders import Nominatim
-from geopy.geocoders import GoogleV3
 
 
 def user_options():
@@ -112,10 +110,22 @@ def run_weather_forecast():
     # loading completion by passing in true to 'loading' instance.
     forecast = ForecastWeather(get_forecast)
     loading.complete = True
-    # sleep for one second to prevent clearing screen during forecast
+    # Sleep for one second to prevent clearing screen during forecast
     # weather terminal information printed for user.
     time.sleep(1)
+    # Create parsed three day forecast dictionaries by calling parse_forecast
+    # method.
     forecast.parse_forecast()
+    # Create forecast from three day dictionaries and then print each to 
+    # console followed by user prompts to move to next or menu options at end.
+    day_one = forecast.create_forecast(forecast.day_one_parsed)
+    forecast.print_forecast_to_console(1, day_one)
+    forecast.move_to_next_day()
+    day_two = forecast.create_forecast(forecast.day_two_parsed)
+    forecast.print_forecast_to_console(2, day_two)
+    forecast.move_to_next_day()
+    day_three = forecast.create_forecast(forecast.day_three_parsed)
+    forecast.print_forecast_to_console(3, day_three)
     user_option = user_options()
     restart_user_selection(user_option)
 
