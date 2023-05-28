@@ -13,7 +13,7 @@ def get_user_coordinates():
     error checking before returning both in a list.
     """
     while True:
-
+        
         # Taking multiple inputs in one command solution found here:
         # https://www.geeksforgeeks.org/taking-multiple-inputs-from-user-in-python/
 
@@ -115,5 +115,5 @@ def get_weather_forecast(coordinates):
     one_call = mgr.one_call(latitude, longitude)
     forecast_weather_dictionary = ([weather.to_dict() for weather
                                     in one_call.forecast_daily])
-
+    
     return forecast_weather_dictionary

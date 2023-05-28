@@ -10,5 +10,4 @@ import weather_forecast as wf
 def main():
     m.main_menu()
 
-
 main()

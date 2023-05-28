@@ -17,9 +17,9 @@ def user_options():
     while True:
         try:
             user_input = int(input("\nPress 1 to return to Main Menu\n"
-                                   "Press 2 to look for past weather again"
+                                   "Press 2 to look for past weather"
                                    "\nPress 3 for forecast at your "
-                                   "location\n"
+                                   "chosen location\n"
                                    "Press 4 to leave feedback\n"))
         except ValueError:
             print(colored("Invalid entry, please enter an integer"
@@ -41,7 +41,7 @@ def restart_user_selection(choice):
     select appropriate menu.
     """
     if choice == 1:
-        print("Returning to main menu...")
+        os.system('clear')
         main_menu()
     elif choice == 2:
         os.system('clear')
@@ -81,8 +81,15 @@ def run_past_weather():
     # terminal information printed for user.
     time.sleep(1)
     user_date = past.get_date(available_dates)
+    loading.complete = False
+    t_2 = threading.Thread(target=loading.animate)
+    t_2.start()
     historical_data = past.find_historical_data_row(user_date, available_dates)
     past_weather = PastWeather(historical_data, user_date)
+    loading.complete = True
+    # sleep for one second to prevent clearing screen during past weather 
+    # terminal information printed for user.
+    time.sleep(1)
     past_weather.parse_data()
     user_option = user_options()
     restart_user_selection(user_option)
@@ -95,7 +102,7 @@ def run_weather_forecast():
     """
     os.system('clear')
     coordinates = wf.get_user_coordinates()
-    loading = LoadingScreens(False, "Weather Forecast ")
+    loading = LoadingScreens(False, constants.LOADING_CONSTANT)
     t = threading.Thread(target=loading.animate)
     t.start()
     # get data from Open Weather API
@@ -103,10 +110,22 @@ def run_weather_forecast():
     # loading completion by passing in true to 'loading' instance.
     forecast = ForecastWeather(get_forecast)
     loading.complete = True
-    # sleep for one second to prevent clearing screen during forecast
+    # Sleep for one second to prevent clearing screen during forecast
     # weather terminal information printed for user.
     time.sleep(1)
+    # Create parsed three day forecast dictionaries by calling parse_forecast
+    # method.
     forecast.parse_forecast()
+    # Create forecast from three day dictionaries and then print each to 
+    # console followed by user prompts to move to next or menu options at end.
+    day_one = forecast.create_forecast(forecast.day_one_parsed)
+    forecast.print_forecast_to_console(1, day_one)
+    forecast.move_to_next_day()
+    day_two = forecast.create_forecast(forecast.day_two_parsed)
+    forecast.print_forecast_to_console(2, day_two)
+    forecast.move_to_next_day()
+    day_three = forecast.create_forecast(forecast.day_three_parsed)
+    forecast.print_forecast_to_console(3, day_three)
     user_option = user_options()
     restart_user_selection(user_option)
 
@@ -146,7 +165,7 @@ def main_menu():
     # program.
     loading = LoadingScreens(False, constants.TITLE_CONSTANT)
     loading.animate()
-    time.sleep(8)
+    time.sleep(2)
     loading.complete = True
     os.system('clear')
     print("Welcome to Weather: Past or Forecast?\n")
