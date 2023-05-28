@@ -145,7 +145,7 @@ class ForecastWeather():
     Class for user feedback on forecasted weather with associated methods
     """
 
-    def __init__(self, forecast_dictionary, location):
+    def __init__(self, forecast_dictionary):
         self.forecast_dictionary = forecast_dictionary
 
     def parse_forecast(self):
@@ -161,8 +161,8 @@ class ForecastWeather():
         # Create 3 day forecast by selecting the first three items in the
         # forecast_dictionary.
         day_one = self.forecast_dictionary[0]
-        day_two = [self.forecast_dictionary[1]]
-        day_three = [self.forecast_dictionary[2]]
+        day_two = self.forecast_dictionary[1]
+        day_three = self.forecast_dictionary[2]
 
         keys = [
                 'reference_time', 'wind', 'temperature', 

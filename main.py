@@ -83,8 +83,15 @@ def run_past_weather():
     # terminal information printed for user.
     time.sleep(1)
     user_date = past.get_date(available_dates)
+    loading.complete = False
+    t_2 = threading.Thread(target=loading.animate)
+    t_2.start()
     historical_data = past.find_historical_data_row(user_date, available_dates)
     past_weather = PastWeather(historical_data, user_date)
+    loading.complete = True
+    # sleep for one second to prevent clearing screen during past weather 
+    # terminal information printed for user.
+    time.sleep(1)
     past_weather.parse_data()
     user_option = user_options()
     restart_user_selection(user_option)
@@ -97,7 +104,7 @@ def run_weather_forecast():
     """
     os.system('clear')
     coordinates = wf.get_user_coordinates()
-    loading = LoadingScreens(False, "Weather Forecast ")
+    loading = LoadingScreens(False, constants.LOADING_CONSTANT)
     t = threading.Thread(target=loading.animate)
     t.start()
     # get data from Open Weather API

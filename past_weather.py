@@ -80,7 +80,6 @@ def get_date(sheet_dates):
             # Give user feedback the data is valid and then break from
             # While loop to return date.
             os.system('clear')
-            print("Date is valid!")
             break
     return date
 
