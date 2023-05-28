@@ -79,20 +79,29 @@ def run_past_weather():
     loading.complete = True
     # sleep for one second to prevent clearing screen during past weather 
     # terminal information printed for user.
-    time.sleep(1)
+    time.sleep(0.5)
     user_date = past.get_date(available_dates)
     loading.complete = False
     t_2 = threading.Thread(target=loading.animate)
     t_2.start()
     historical_data = past.find_historical_data_row(user_date, available_dates)
-    past_weather = PastWeather(historical_data, user_date)
     loading.complete = True
-    # sleep for one second to prevent clearing screen during past weather 
-    # terminal information printed for user.
-    time.sleep(1)
-    past_weather.parse_data()
-    user_option = user_options()
-    restart_user_selection(user_option)
+    if historical_data[0] != True:
+        loading.complete = True
+        os.system('clear')
+        time.sleep(0.5)
+        print(historical_data[1])
+        time.sleep(4)
+        run_past_weather()
+    else:
+        past_weather = PastWeather(historical_data[1], user_date)
+        loading_complete = True
+        # sleep for one second to prevent clearing screen during past weather 
+        # terminal information printed for user.
+        time.sleep(1)
+        past_weather.parse_data()
+        user_option = user_options()
+        restart_user_selection(user_option)
 
 
 def run_weather_forecast():

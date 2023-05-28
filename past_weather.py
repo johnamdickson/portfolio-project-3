@@ -45,15 +45,16 @@ def find_historical_data_row(date, date_range):
         # and return row data for the cell's row.
         cell = WEATHER_ARCHIVE_SHEET.find(date, in_column=1)
         weather_data = WEATHER_ARCHIVE_SHEET.row_values(cell.row)
-        return weather_data
+        return True, weather_data
     except AttributeError:
         # Handle error by informing user of exception and then re-running the
         # main() function.
-        os.system('clear')
-        print(colored(f"The date you selected is not available. You entered \
-                    '{date}'\n\nDate should be between {date_range[0]} and \
-                    {date_range[1]}.\n", 'white', 'on_red', ['bold']))
-        run_past_weather()
+        error_message = (colored(f"The date you selected is not available."
+                                 f" You entered {date}\n\nDate should be "
+                                 f"between {date_range[0]} and "
+                                 f"{date_range[1]}.\n", 'white', 'on_red',
+                                 ['bold']))
+        return False, error_message
 
 
 def get_date(sheet_dates):
@@ -70,11 +71,8 @@ def get_date(sheet_dates):
                               ['bold'])
         print(f"Please enter the date to check the historical weather data for"
               " Dublin Airport.\n")
-        time.sleep(1.5)
         print(f"Available dates between {earliest_date} and {latest_date}.\n")
-        time.sleep(1)
         print("The date format should be: DD/MM/YYYY e.g 30/04/1978\n")
-        time.sleep(1)
         date = input("Enter your date below:\n")
         if validate_date(date):
             # Give user feedback the data is valid and then break from
