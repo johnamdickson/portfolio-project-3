@@ -78,28 +78,21 @@ class Feedback:
     FEEDBACK_SHEET = SHEET.worksheet('feedback')
 
     def __init__(self):
-        print("initialised")
-
-    def upload_feedback(self, data):
-        """
-        Upload feedback to google spreadsheet.
-        """
-        SCOPE = [
-                "https://www.googleapis.com/auth/spreadsheets",
-                "https://www.googleapis.com/auth/drive.file",
-                "https://www.googleapis.com/auth/drive"
-                ]
-
-        CREDS = Credentials.from_service_account_file('creds.json')
-        SCOPED_CREDS = CREDS.with_scopes(SCOPE)
-        GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
-        SHEET = GSPREAD_CLIENT.open('historical-weather-data')
-        # Access spreadsheet feedback sheet.
-        FEEDBACK_SHEET = SHEET.worksheet('feedback')
-        # Add data as row in feedback sheet.
-        FEEDBACK_SHEET.append_row(data)
-        print("Feedback uploaded, thank you.\n")
-        time.sleep(2)
+        return
+    
+    def delete_feedback(self, row_count):
+        self.FEEDBACK_SHEET.delete_rows(row_count)
+        return
+        
+    def update_feedback(self, column, row):
+        if column == 1:
+            name = input("Please update your name:")
+            self.FEEDBACK_SHEET.update_cell(row, column, name)
+            self.read_feedback()
+        if column == 2:
+            feedback = input("Please update your feedback:")
+            self.FEEDBACK_SHEET.update_cell(row, column, feedback)
+            self.read_feedback()
 
     def read_feedback(self):
         """
@@ -109,33 +102,45 @@ class Feedback:
         """
         row_count = len(self.FEEDBACK_SHEET.get_all_values())
         feedback = self.FEEDBACK_SHEET.row_values(row_count)
+        os.system('clear')
         print("Please review your feedback:")
         time.sleep(2)
-        print(f"Name: {feedback[0]}")
+        print(f"Name: {feedback[0]}\n")
         print(f"Feedback: {feedback[1]}\n")
         time.sleep(1)
         user_input = input("Are you happy to proceed with this feedback?\n"
-                           "Enter Y to submit N to return to main menu "
-                           "or E to redo feedback:\n")
-        # Check that input is alphabet character only solution from W3 schools:
+                           "Enter C to Confirm and return to main menu\n" 
+                           "Enter D to Delete entries and return to main menu\n"
+                           "Enter N to change Name\nEnter F to change Feedback:\n")
+        # Check that input is alphabet character only, solution from W3 schools:
         # https://www.w3schools.com/python/ref_string_isalpha.asp#:~:text=The%20isalpha()%20method%20returns,!%23%25%26%3F%20etc
         if not user_input.isalpha():
-            print(colored("Invalid entry, please enter Y/N or E to proceed.",
+            print(colored("Invalid entry, please enter C/D/N/ or F to proceed.",
                           'white', 'on_red', ['bold']))
-            self.confirm_feedback(data)
+            time.sleep(2)
+            # user_input
         elif len(user_input) > 1:
             print((colored("Invalid entry, please enter only 1 character from"
-                           "Y/N or E to proceed.", 'white', 'on_red',
+                           "C/D/N/ or F to proceed.", 'white', 'on_red',
                            ['bold'])))
-            self.confirm_feedback(data)
-        elif user_input.lower() == "y":
+            self.create_feedback
+        elif user_input.lower() == "c":
             print("Thanks for the feedback!\n")
-            self.upload_feedback(data)
-        elif user_input.lower() == "n":
+            return
+        elif user_input.lower() == "d":
             print("Deleting and returning to main menu...")
-        elif user_input.lower() == "e":
-            data[1] = input("Please resubmit your feedback:")
-            self.confirm_feedback(data)
+            self.delete_feedback(row_count)
+        elif user_input.lower() == "n":
+            self.update_feedback(1, row_count)
+        elif user_input.lower() == "f":
+            self.update_feedback(2, row_count)
+        else:
+            print((colored("Invalid entry, please enter only character from"
+                           "C/D/N/ or F to proceed.", 'white', 'on_red',
+                           ['bold'])))
+            self.read_feedback()
+            
+        return
 
     def create_feedback(self):
         """
@@ -153,7 +158,7 @@ class Feedback:
         feedback_data = [name_input, feedback_input, date_input]
         # Add data as row in feedback sheet.
         self.FEEDBACK_SHEET.append_row(feedback_data)
-        # self.confirm_feedback(feedback_data)
+
 
 
 class ForecastWeather():

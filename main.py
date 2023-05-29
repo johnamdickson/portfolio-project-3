@@ -182,15 +182,16 @@ def main_menu():
     # call animate method followed by a delay before 
     # updating complete status to true to move on through
     # program.
-    loading = LoadingScreens(False, constants.TITLE_CONSTANT)
-    loading.animate()
-    time.sleep(2)
-    loading.complete = True
-    os.system('clear')
-    print("Welcome to Weather: Past or Forecast?\n"
-          "\nThe app which lets you review historical"
-          " weather at Dublin Airport or access a"
-          " 3 day weather forecast for your location.\n"
-          "\nPress 1 for past weather.\nPress 2 for "
-          "the weather forecast.\n")
-    user_selection()
+    run_feedback()
+    # loading = LoadingScreens(False, constants.TITLE_CONSTANT)
+    # loading.animate()
+    # time.sleep(2)
+    # loading.complete = True
+    # os.system('clear')
+    # print("Welcome to Weather: Past or Forecast?\n"
+    #       "\nThe app which lets you review historical"
+    #       " weather at Dublin Airport or access a"
+    #       " 3 day weather forecast for your location.\n"
+    #       "\nPress 1 for past weather.\nPress 2 for "
+    #       "the weather forecast.\n")
+    # user_selection()
