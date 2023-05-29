@@ -121,9 +121,12 @@ def run_weather_forecast():
     # Sleep for one second to prevent clearing screen during forecast
     # weather terminal information printed for user.
     time.sleep(1)
+    # Check if get_forecast call was successful, based on boolean
+    # passed from function return.
     if get_forecast[0] == False:
-        print("Sorry, the following error was encountered:\n"
-              f"{get_forecast[1][0]}\nPlease select an option:")
+        cprint("Sorry, the following error was encountered:\n"
+               f" ** {get_forecast[1][0]} ** ", 'white', 'on_red', ['bold'])
+        print("\nPlease select an option:")
         user_option = user_options()
         restart_user_selection(user_option)
     else:
