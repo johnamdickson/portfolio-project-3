@@ -101,16 +101,18 @@ class Feedback:
         print("Feedback uploaded, thank you.\n")
         time.sleep(2)
 
-    def confirm_feedback(self, data):
+    def read_feedback(self):
         """
         function to elicit response from user to ensure name and
         feedback are correct with checks to confirm correct inputs
         with associated user feedback.
         """
+        row_count = len(self.FEEDBACK_SHEET.get_all_values())
+        feedback = self.FEEDBACK_SHEET.row_values(row_count)
         print("Please review your feedback:")
         time.sleep(2)
-        print(f"Name: {data[0]}")
-        print(f"Feedback: {data[1]}\n")
+        print(f"Name: {feedback[0]}")
+        print(f"Feedback: {feedback[1]}\n")
         time.sleep(1)
         user_input = input("Are you happy to proceed with this feedback?\n"
                            "Enter Y to submit N to return to main menu "
@@ -127,10 +129,10 @@ class Feedback:
                            ['bold'])))
             self.confirm_feedback(data)
         elif user_input.lower() == "y":
-            print("Thanks for the feedback, updloading...\n")
+            print("Thanks for the feedback!\n")
             self.upload_feedback(data)
         elif user_input.lower() == "n":
-            print("Returning to main menu...")
+            print("Deleting and returning to main menu...")
         elif user_input.lower() == "e":
             data[1] = input("Please resubmit your feedback:")
             self.confirm_feedback(data)
