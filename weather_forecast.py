@@ -3,6 +3,8 @@ from pyowm.utils import config
 from pyowm.utils import timestamps
 import os
 from termcolor import colored, cprint
+import main
+import time
 # Testing on Codeanywhere requires local access to api_key on line below
 import api_key as api
 
@@ -112,8 +114,14 @@ def get_weather_forecast(coordinates):
     latitude = coordinates[0]
     longitude = coordinates[1]
     mgr = owm.weather_manager()
-    one_call = mgr.one_call(latitude, longitude)
-    forecast_weather_dictionary = ([weather.to_dict() for weather
+    try:
+        one_call = mgr.one_call(latitude, longitude)
+        forecast_weather_dictionary = ([weather.to_dict() for weather
                                     in one_call.forecast_daily])
-    
-    return forecast_weather_dictionary
+    # Following code to handle any errors coming back from OWM API
+    # Tutorial below used for Exceptions:
+    # https://docs.python.org/3/tutorial/errors.html
+    except Exception as err:
+        return False, err.args
+    else:
+        return True, forecast_weather_dictionary
