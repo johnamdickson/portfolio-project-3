@@ -64,6 +64,18 @@ class Feedback:
     """
     Class for user feedback on past weather with associated methods
     """
+    SCOPE = [
+                "https://www.googleapis.com/auth/spreadsheets",
+                "https://www.googleapis.com/auth/drive.file",
+                "https://www.googleapis.com/auth/drive"
+                ]
+
+    CREDS = Credentials.from_service_account_file('creds.json')
+    SCOPED_CREDS = CREDS.with_scopes(SCOPE)
+    GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
+    SHEET = GSPREAD_CLIENT.open('historical-weather-data')
+    # Access spreadsheet feedback sheet.
+    FEEDBACK_SHEET = SHEET.worksheet('feedback')
 
     def __init__(self):
         print("initialised")
@@ -123,7 +135,7 @@ class Feedback:
             data[1] = input("Please resubmit your feedback:")
             self.confirm_feedback(data)
 
-    def get_feedback(self):
+    def create_feedback(self):
         """
         Request user inputs for name and feeback, perform confirmation step and
         upload to spreadsheet.
@@ -137,7 +149,9 @@ class Feedback:
         now = d.datetime.now()
         date_input = now.strftime("%d/%m/%Y, %H:%M:%S")
         feedback_data = [name_input, feedback_input, date_input]
-        self.confirm_feedback(feedback_data)
+        # Add data as row in feedback sheet.
+        self.FEEDBACK_SHEET.append_row(feedback_data)
+        # self.confirm_feedback(feedback_data)
 
 
 class ForecastWeather():

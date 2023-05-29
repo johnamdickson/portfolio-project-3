@@ -58,7 +58,7 @@ def restart_user_selection(choice):
 
 def run_feedback():
     feedback = Feedback()
-    feedback.get_feedback()
+    feedback.create_feedback()
     main_menu()
 
 
