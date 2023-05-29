@@ -4,7 +4,7 @@ import time
 from termcolor import colored, cprint
 import os
 import weather_forecast as wf
-import weather_constants as constants
+import constants as const
 import threading
 
 
@@ -71,7 +71,7 @@ def run_past_weather():
     # Use of threading and loading screens class to create animation
     # whilst call is being made to Google sheets. Solution found here:
     # https://stackoverflow.com/questions/22029562/python-how-to-make-simple-animated-loading-while-process-is-running
-    loading = LoadingScreens(False, constants.LOADING_CONSTANT)
+    loading = LoadingScreens(False, const.LOADING_CONSTANT)
     t = threading.Thread(target=loading.animate)
     t.start()
     # perform check of Google sheet.
@@ -112,7 +112,7 @@ def run_weather_forecast():
     """
     os.system('clear')
     coordinates = wf.get_user_coordinates()
-    loading = LoadingScreens(False, constants.LOADING_CONSTANT)
+    loading = LoadingScreens(False, const.LOADING_CONSTANT)
     t = threading.Thread(target=loading.animate)
     t.start()
     # get data from Open Weather API
@@ -182,16 +182,15 @@ def main_menu():
     # call animate method followed by a delay before 
     # updating complete status to true to move on through
     # program.
-    run_feedback()
-    # loading = LoadingScreens(False, constants.TITLE_CONSTANT)
-    # loading.animate()
-    # time.sleep(2)
-    # loading.complete = True
-    # os.system('clear')
-    # print("Welcome to Weather: Past or Forecast?\n"
-    #       "\nThe app which lets you review historical"
-    #       " weather at Dublin Airport or access a"
-    #       " 3 day weather forecast for your location.\n"
-    #       "\nPress 1 for past weather.\nPress 2 for "
-    #       "the weather forecast.\n")
-    # user_selection()
+    loading = LoadingScreens(False, const.TITLE_CONSTANT)
+    loading.animate()
+    time.sleep(2)
+    loading.complete = True
+    os.system('clear')
+    print("Welcome to Weather: Past or Forecast?\n"
+          "\nThe app which lets you review historical"
+          " weather at Dublin Airport or access a"
+          " 3 day weather forecast for your location.\n"
+          "\nPress 1 for past weather.\nPress 2 for "
+          "the weather forecast.\n")
+    user_selection()

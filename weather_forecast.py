@@ -19,17 +19,16 @@ def get_user_coordinates():
         # Taking multiple inputs in one command solution found here:
         # https://www.geeksforgeeks.org/taking-multiple-inputs-from-user-in-python/
 
-        colored_note = colored("Note, latitude must be between -90 and 90,"
-                               "longitude between -180 and 180.\n"
-                               "Latitudes west of the Prime Meridian "
-                               "(Greenwich, London) and longitudes south"
-                               " of the equator should be negative.\n",
-                               'blue', None, ['bold'])
+        colored_latitude = colored("-90 and 90,",'green', None, ['bold'])
+        colored_longitude = colored("-180 and 180.", 'green', None, ['bold'])
+        print("Please enter your chosen location's latitude and longitude "
+              "separated by a whitespace.\n")
+        print(f"Note, latitude must be between {colored_latitude} longitude"
+              f" between {colored_longitude}\n")
+        print("Latitudes west of the Prime Meridian(Greenwich, London) and "
+              "longitudes south of the equator should be negative.\n")
         try:
-            latitude, longitude = input("Please enter your current location's "
-                                        "latitude and longitude separated by a"
-                                        " whitespace.\n"
-                                        + colored_note).split()
+            latitude, longitude = input(f"Please enter coordinates below:\n").split()
         except ValueError as e:
             if e.args[0] == "not enough values to unpack (expected 2, got 1)":
                 print(colored("You only made one entry or did not include"

@@ -5,7 +5,7 @@ from termcolor import colored, cprint
 import gspread
 from google.oauth2.service_account import Credentials
 import numpy as np
-import weather_constants as constants
+import constants as const
 import itertools
 
 
@@ -318,33 +318,33 @@ class ForecastWeather():
         weather_icon = ""
         weather_code = forecast_dict['weather_code']
 
-        # Line below for testing the weather constants to be removed
+        # Line below for testing the weather const to be removed
         # on final deployment
 
         # weather_code = 201
 
         if 200 <= weather_code <= 232:
-            weather_icon = constants.LIGHTNING
+            weather_icon = const.LIGHTNING
         elif 300 <= weather_code <= 321:
-            weather_icon = constants.DRIZZLE
+            weather_icon = const.DRIZZLE
         elif 500 <= weather_code <= 511:
-            weather_icon = constants.RAIN
+            weather_icon = const.RAIN
         elif 512 <= weather_code <= 531:
-            weather_icon = constants.SHOWERS
+            weather_icon = const.SHOWERS
         elif 600 <= weather_code <= 622:
-            weather_icon = constants.SNOW
+            weather_icon = const.SNOW
         elif weather_code == 701 or weather_code == 741:
-            weather_icon = constants.MIST_FOG
+            weather_icon = const.MIST_FOG
         elif 711 <= weather_code <= 731 or 751 <= weather_code <= 771:
-            weather_icon = constants.HAZE
+            weather_icon = const.HAZE
         elif weather_code == 781:
-            weather_icon = constants.TORNADO
+            weather_icon = const.TORNADO
         elif weather_code == 800:
-            weather_icon = constants.CLEAR
+            weather_icon = const.CLEAR
         elif 801 <= weather_code <= 803:
-            weather_icon = constants.CLOUDY
+            weather_icon = const.CLOUDY
         elif weather_code == 804:
-            weather_icon = constants.OVERCAST
+            weather_icon = const.OVERCAST
 
         formatted_date = colored(forecast_date, 'blue', None, ['bold'])
         formatted_day_temp = colored(f"{day_temp} °C", 'blue', None, ['bold'])
@@ -360,16 +360,16 @@ class ForecastWeather():
         """
         if day_number == 1:
             os.system('clear')
-            cprint(constants.TODAYS_FORECAST, 'green', None, None)
+            cprint(const.TODAYS_FORECAST, 'green', None, None)
             time.sleep(4)
         elif day_number == 2:
             os.system('clear')
-            cprint(constants.TOMORROWS_FORECAST, 'cyan', None, None)
+            cprint(const.TOMORROWS_FORECAST, 'cyan', None, None)
             time.sleep(4)
         else:
             os.system('clear')
             colored
-            cprint(constants.DAY_AFTER_TOMORROWS_FORECAST, 'light_magenta',
+            cprint(const.DAY_AFTER_TOMORROWS_FORECAST, 'light_magenta',
                    None, None)
             time.sleep(4)
         os.system('clear')
@@ -407,15 +407,15 @@ class LoadingScreens:
 
     def animate(self):
         os.system('clear')
-        if self.type == constants.LOADING_CONSTANT:
-            for c in itertools.cycle(constants.LOADING_LIST):
+        if self.type == const.LOADING_CONSTANT:
+            for c in itertools.cycle(const.LOADING_LIST):
                 if self.complete:
                     break
                 cprint('\r' + c, 'red', None, ['bold'])
                 time.sleep(0.5)
                 os.system('clear')
-        elif self.type == constants.TITLE_CONSTANT:
-            for c in constants.TITLE_LIST:
+        elif self.type == const.TITLE_CONSTANT:
+            for c in const.TITLE_LIST:
                 if self.complete:
                     break
                 cprint('\r' + c, 'yellow', None, ['bold'])
