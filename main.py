@@ -100,7 +100,8 @@ def run_past_weather():
         # sleep for one second to prevent clearing screen during past weather 
         # terminal information printed for user.
         time.sleep(1)
-        past_weather.parse_data()
+        weather_data = past_weather.parse_data()
+        past_weather.print_weather_to_console(weather_data)
         user_option = user_options()
         restart_user_selection(user_option)
 
@@ -141,11 +142,11 @@ def run_weather_forecast():
         day_one = forecast.create_forecast(forecast.day_one_parsed)
         forecast.print_forecast_to_console(1, day_one, coordinates)
         forecast.move_to_next_day()
-        day_two = forecast.create_forecast(forecast.day_two_parsed, coordinates)
-        forecast.print_forecast_to_console(2, day_two)
+        day_two = forecast.create_forecast(forecast.day_two_parsed)
+        forecast.print_forecast_to_console(2, day_two, coordinates)
         forecast.move_to_next_day()
-        day_three = forecast.create_forecast(forecast.day_three_parsed, coordinates)
-        forecast.print_forecast_to_console(3, day_three)
+        day_three = forecast.create_forecast(forecast.day_three_parsed)
+        forecast.print_forecast_to_console(3, day_three, coordinates)
         user_option = user_options()
         restart_user_selection(user_option)
 

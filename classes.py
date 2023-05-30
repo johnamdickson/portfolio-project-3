@@ -15,6 +15,9 @@ class PastWeather:
     """
 
     def __init__(self, weather_data, date):
+        """
+        Initialise class instance with weather_data and date.
+        """
         self.weather_data = weather_data
         self.date = date
 
@@ -37,27 +40,37 @@ class PastWeather:
         # https://www.programiz.com/python-programming/datetime/strftime
         date_format = '%d/%m/%Y'
         date = d.datetime.strptime(self.date, date_format)
-        day = date.strftime('%A')
+        day = colored(date.strftime('%A'), 'blue', None, ['bold'])
         # Code below to handle singular sunshine hour with correct grammar
         # returned in instance of 1 hour of sunshine.
         if float(sunshine_duration) == 1:
             sunshine_string = ["was", "hour"]
+        
+        return {'d': day, 'max_t': max_temp, 'min_t': min_temp,'sun_verb': sunshine_string[0], 
+               'sun_dur': sunshine_duration_string, 'sun_noun': sunshine_string[1], 'r': rain, 
+               'ws': mean_wind_speed, 'ap': atmos_pressure}
+
+    def print_weather_to_console(self, data):
+        """
+        Print past weather data to the console using data from parse_data function.
+        """
         # Clear terminal and print out readable data to user with
         # pauses in between for effect.
         os.system('clear')
-        print(f"{self.date} was a {colored(day, 'blue', None, ['bold'])}.")
+        print(f"{self.date} was a {data['d']}.")
         time.sleep(2)
         print("On that day at Dublin Airport the maximum temperature was "
-              f"{max_temp} and the minimum temperature was {min_temp}."
-              )
+            f"{data['max_t']} and the minimum temperature was {data['min_t']}."
+            )
         time.sleep(3)
-        print(f"There {sunshine_string[0]} {sunshine_duration_string} "
-              f"{colored(sunshine_string[1], 'blue', None, ['bold'])} "
-              f"of sunshine with a total rainfall of {rain}")
+        print(f"There {data['sun_verb']} {data['sun_dur']} "
+            f"{colored(data['sun_noun'], 'blue', None, ['bold'])} "
+            f"of sunshine with a total rainfall of {data['r']}")
         time.sleep(3)
-        print(f"The mean wind speed for the day was {mean_wind_speed}"
-              f" with an atmospheric pressure of {atmos_pressure}.")
+        print(f"The mean wind speed for the day was {data['ws']}"
+            f" with an atmospheric pressure of {data['ap']}.")
         time.sleep(2)
+        return
 
 
 class Feedback:
