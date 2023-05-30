@@ -115,7 +115,7 @@ def run_weather_forecast():
     coordinates = wf.get_user_coordinates()
     loading = LoadingScreens(False, const.LOADING_CONSTANT)
     t = threading.Thread(target=loading.animate)
-    t.start()
+    # t.start()
     # get data from Open Weather API
     get_forecast = wf.get_weather_forecast(coordinates)
     get_location = wf.get_weather_location(coordinates)
