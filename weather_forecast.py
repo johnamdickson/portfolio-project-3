@@ -90,15 +90,41 @@ def get_weather_forecast(coordinates):
     # owm = OWM(API_KEY)
     latitude = coordinates[0]
     longitude = coordinates[1]
+    # instantiate weather manager
     mgr = owm.weather_manager()
+
+    # insantiate geocoding manager.
+    geo_mgr = owm.geocoding_manager()
+    # obtain forecast and location from Open Weather using coordinates.
     try:
         one_call = mgr.one_call(latitude, longitude)
         forecast_weather_dictionary = ([weather.to_dict() for weather
                                     in one_call.forecast_daily])
+        location = geo_mgr.reverse_geocode(latitude, longitude)
+        location_dict = [location.to_dict() for location in location]
     # Following code to handle any errors coming back from OWM API
     # Tutorial below used for Exceptions:
     # https://docs.python.org/3/tutorial/errors.html
     except Exception as err:
         return False, err.args
     else:
-        return True, forecast_weather_dictionary
+        return True, forecast_weather_dictionary, location_dict
+
+
+def get_weather_location(coordinates):
+    """
+    Function to reverse geocode coordinates to obtain 
+    weather forecast location using API.
+    """
+    # Deploympent to Heroku requires access to environment variable on
+    # line below:
+    # API_KEY = os.getenv('API_KEY')
+
+    # Testing on Codeanywhere requires local access to api_key on line below
+    owm = OWM(api.API_KEY)
+
+    # Deploympent to Heroku requires access to environment variable on
+    # line below
+    # owm = OWM(API_KEY)
+
+ 

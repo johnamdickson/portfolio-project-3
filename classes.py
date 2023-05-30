@@ -166,9 +166,10 @@ class ForecastWeather():
     Class for user feedback on forecasted weather with associated methods
     """
 
-    def __init__(self, forecast_dictionary):
+    def __init__(self, forecast_dictionary, location_dictionary):
         self.forecast_dictionary = forecast_dictionary
-
+        self.location_dictionary = location_dictionary
+        
     day_one_parsed = {}
     day_two_parsed = {}
     day_three_parsed = {}
@@ -353,11 +354,21 @@ class ForecastWeather():
         return [formatted_date, weather_icon, formatted_day_temp, 
                 formatted_night_temp, wind_conditions]
 
-    def print_forecast_to_console(self, day_number, forecast):
+    def print_forecast_to_console(self, day_number, forecast, coordinates):
         """
         Return forecast to terminal along with the forcast 
         title graphics determined from day number
         """
+        # if open weather returns a location print given location to terminal,
+        # otherwise return the latitude and longitude.
+        if self.location_dictionary:
+            location = colored(self.location_dictionary[0]['name'], 'blue', None,
+                               ['bold'])
+        else:
+            colored_latitude = colored(f"{coordinates[0]}°", 'blue', None, ['bold'])
+            colored_longitude = colored(f"{coordinates[1]}°", 'blue', None, ['bold'])
+            location = f"latitude {colored_latitude} and longitude {colored_longitude}"
+
         if day_number == 1:
             os.system('clear')
             cprint(const.TODAYS_FORECAST, 'green', None, None)
@@ -373,7 +384,7 @@ class ForecastWeather():
                    None, None)
             time.sleep(4)
         os.system('clear')
-        print(f"Here is the weather forecast for {forecast[0]}")
+        print(f"Here is the weather forecast for {location} on {forecast[0]}")
         time.sleep(3)
         print(forecast[1])
         time.sleep(2)
