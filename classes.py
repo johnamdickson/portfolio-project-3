@@ -52,7 +52,7 @@ class PastWeather:
 
     def print_weather_to_console(self, data):
         """
-        Print past weather data to the console using data from parse_data function.
+        Print past weather data to the console using data from data parameter dictionary.
         """
         # Clear terminal and print out readable data to user with
         # pauses in between for effect.
