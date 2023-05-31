@@ -118,15 +118,19 @@ The objective of the site is to allow users to review past weather for a locatio
 <a href="#contents">BACK TO CONTENTS 🔼</a>
 
 ## Technologies Used
-### Languages Used
-- Python
-- HTML5
-- CSS3
-- Javascript ES6.
+### Frameworks, Libraries & Programs Used<br>
+#### Languages Used
+- Python: used extensively during project.
+- Markdown: Used exclusively for README.
+- HTML5: minor use when applying styling to app view.
+- CSS3:minor use when applying styling to app view.<br>
 
-### Frameworks, Libraries & Programs Used
-- **ADD <br><br>
-
+#### Libraries Used
+- gspread: used to complete CRUD actions on Google Sheets.
+- termcolor: used to apply foreground and background colors to terminal text.
+- datetime: from the standard library, used to perform operations on date and time objects and strings.
+- numpy: used to create a range of floats due to python range only returning a range of integers.
+- itertools: from standard library used to iterate over list for loading animation.
 <a href="#contents">BACK TO CONTENTS 🔼</a>
 ## Testing 
 ### Development Testing
