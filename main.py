@@ -118,7 +118,6 @@ def run_weather_forecast():
     # t.start()
     # get data from Open Weather API
     get_forecast = wf.get_weather_forecast(coordinates)
-    get_location = wf.get_weather_location(coordinates)
     # loading completion by passing in true to 'loading' instance.
     loading.complete = True
     # Sleep for one second to prevent clearing screen during forecast
