@@ -80,7 +80,8 @@ The objective of the site is to allow users to review past weather for a locatio
 ![Colour Palette](/assets/README-files/color-palette.png)
 - **ADD
 #### Imagery
-![Background Image](/assets/images/jungle.jpg)
+- The background image was sourced from [Pexels](https://www.pexels.com/) and was selected for exhibiting a number of different weather types in one image.
+![Background Image](views/README-files/background-picture.webp)
 - **ADD.<br><br>
 #### Logo
 ![Site Logo](/assets/README-files/logo.png)
