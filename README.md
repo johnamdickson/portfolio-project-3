@@ -3,9 +3,9 @@
 
 Weather: Past or Forecast is a command line application that allows the user to check past weather or get a weather forecast directly from the terminal.
 
-This applicaion is showcasing Python coding for Project Portfolio 3 and can be accessed by following this [link.] **ADD LINK
+This application is showcasing Python coding for Project Portfolio 3 and can be accessed by following this [link.] **ADD LINK
 
-![Responsive Mockup Screenshot] **ADD MOCKUP
+![Responsive Mockup Screenshot](views/README-files/am-i-responsive.png)
 
 ## Contents
 <a name="contents"></a>
