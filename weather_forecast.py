@@ -111,20 +111,5 @@ def get_weather_forecast(coordinates):
         return True, forecast_weather_dictionary, location_dict
 
 
-def get_weather_location(coordinates):
-    """
-    Function to reverse geocode coordinates to obtain 
-    weather forecast location using API.
-    """
-    # Deploympent to Heroku requires access to environment variable on
-    # line below:
-    # API_KEY = os.getenv('API_KEY')
-
-    # Testing on Codeanywhere requires local access to api_key on line below
-    owm = OWM(api.API_KEY)
-
-    # Deploympent to Heroku requires access to environment variable on
-    # line below
-    # owm = OWM(API_KEY)
 
  
