@@ -65,10 +65,10 @@ class PastWeather:
         t.sleep(3)
         print(f"There {data['sun_verb']} {data['sun_dur']} "
             f"{colored(data['sun_noun'], 'blue', None, ['bold'])} "
-            f"of sunshine with a total rainfall of {data['r']}")
+            f"of sunshine with a total rainfall of {data['r']}.")
         t.sleep(3)
         print(f"The mean wind speed for the day was {data['ws']}"
-            f" with an atmospheric pressure of {data['ap']}.")
+            f" with an atmospheric pressure of \n{data['ap']}.")
         t.sleep(2)
         return
 
@@ -168,7 +168,7 @@ class Feedback:
         while True:
             feedback_input = input('Please enter your feedback:\n')
             if feedback_input.strip() == '':
-                cprint("Please do not leave the feedback section empty, we want"
+                cprint("Please do not leave the feedback section empty, we'd love"
                       " to hear what you think of the app.\n", 'magenta', None, ['bold'])
             else:
                 break

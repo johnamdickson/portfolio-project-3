@@ -73,7 +73,7 @@ def run_past_weather():
     # https://stackoverflow.com/questions/22029562/python-how-to-make-simple-animated-loading-while-process-is-running
     loading = LoadingScreens(False, const.LOADING_CONSTANT)
     thread = threading.Thread(target=loading.animate)
-    # thread.start()
+    thread.start()
     # perform check of Google sheet.
     available_dates = past.find_date_range()
     # loading completion by passing in true to 'loading' instance.
