@@ -1,6 +1,6 @@
 import past_weather as past
 from classes import PastWeather, ForecastWeather
-import time
+import time as t
 from termcolor import colored, cprint
 import os
 import main as m
