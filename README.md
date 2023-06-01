@@ -118,20 +118,23 @@ The objective of the site is to allow users to review past weather for a locatio
 <a href="#contents">BACK TO CONTENTS 🔼</a>
 
 ## Technologies Used
-### Frameworks, Libraries & Programs Used<br>
-#### Languages Used
+
+### Languages Used
 - Python: used extensively during project.
 - Markdown: Used exclusively for README.
 - HTML5: minor use when applying styling to app view.
 - CSS3:minor use when applying styling to app view.<br>
 
-#### Libraries Used
+### Frameworks, Libraries & Programs Used
 - gspread: used to complete CRUD actions on Google Sheets.
 - termcolor: used to apply foreground and background colors to terminal text.
 - datetime: from the standard library, used to perform operations on date and time objects and strings.
 - numpy: used to create a range of floats due to python range only returning a range of integers.
 - itertools: from standard library used to iterate over list for loading animation.
-<a href="#contents">BACK TO CONTENTS 🔼</a>
+- pyowm: library with classes used to manage Open Weather API calls.
+- time: from the standard library used to access sleep method for pauses during pertinent points of relaying information to the user.
+- os: from the standard library used to access system method to clear terminal screen at appropriate points whilst the program is running.
+<br><a href="#contents">BACK TO CONTENTS 🔼</a>
 ## Testing 
 ### Development Testing
 
