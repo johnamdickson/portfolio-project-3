@@ -122,7 +122,7 @@ class Feedback:
         table = [[feedback[0], feedback[1]]] 
         # print(f"Name: {feedback[0]}\n")
         # print(f"Feedback: {feedback[1]}\n")
-        print(tabulate(table, headers = ["Name", "Feedback"]))
+        print(tabulate(table, headers = ["Name", "Feedback"],tablefmt="rounded_grid", maxcolwidths=[20, 40]))
 
         t.sleep(1)
         user_input = input("\nAre you happy to proceed with this feedback?\n"
