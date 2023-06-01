@@ -7,6 +7,7 @@ from google.oauth2.service_account import Credentials
 import numpy as np
 import constants as const
 import itertools
+from tabulate import tabulate
 
 
 class PastWeather:
@@ -116,12 +117,15 @@ class Feedback:
         row_count = len(self.FEEDBACK_SHEET.get_all_values())
         feedback = self.FEEDBACK_SHEET.row_values(row_count)
         os.system('clear')
-        print("Please review your feedback:")
+        print("Please review your feedback:\n")
         t.sleep(2)
-        print(f"Name: {feedback[0]}\n")
-        print(f"Feedback: {feedback[1]}\n")
+        table = [[feedback[0], feedback[1]]] 
+        # print(f"Name: {feedback[0]}\n")
+        # print(f"Feedback: {feedback[1]}\n")
+        print(tabulate(table, headers = ["Name", "Feedback"]))
+
         t.sleep(1)
-        user_input = input("Are you happy to proceed with this feedback?\n"
+        user_input = input("\nAre you happy to proceed with this feedback?\n"
                            "Enter C to Confirm and return to main menu\n" 
                            "Enter D to Delete entries and return to main menu\n"
                            "Enter N to change Name\nEnter F to change Feedback:\n")
