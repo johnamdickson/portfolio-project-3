@@ -165,7 +165,13 @@ class Feedback:
                            " anonymous:\n")
         if name_input == "":
             name_input = "anonymous"
-        feedback_input = input('Please enter your feedback:\n')
+        while True:
+            feedback_input = input('Please enter your feedback:\n')
+            if feedback_input.strip() == '':
+                print("Please do not leave the feedback section empty, we want"
+                      " to hear what you think of the app.\n")
+            else:
+                break
         now = d.datetime.now()
         date_input = now.strftime("%d/%m/%Y, %H:%M:%S")
         feedback_data = [name_input, feedback_input, date_input]
