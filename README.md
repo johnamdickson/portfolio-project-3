@@ -1,5 +1,5 @@
 
-# <img src="/workspace/Portfolio-Project-3/views/README-files/icon.png"  width="50" height="50"> Weather: Past or Forecast?
+# <img src="views/README-files/icon.png"  width="50" height="50"> Weather: Past or Forecast?
 
 Weather: Past or Forecast is a command line application that allows the user to check past weather or get a weather forecast directly from the terminal.
 
