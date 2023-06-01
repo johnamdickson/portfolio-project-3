@@ -59,10 +59,15 @@ This application is showcasing Python coding for Project Portfolio 3 and can be 
 The objective of the site is to allow users to review past weather for a location in Ireland or obtain a weather forecast for a geographic location using coordinates.
 #### User Stories
 - User Goals:
-  - **ADD
+  - To access the historical weather for a selected date at Dublin airport.
+  - To access a 3 day weather forecast for a given location.
+  - To be able to leave feedback on the app.
 <br><br>
 - Site Administrator Goals:
-  - **ADD
+  - To give users the options to access historical weather, weather forecasts and have the option to create, read, update and delete feedback.
+  - To create an application using Python with clean, resuable and commented code, utilising atomic functionality and OOP where appropriate.
+  - To handle any potential errors appropriately.
+  - To maintain secrecy of API key for weather data provider.
 
 ### Scope
 #### Essential Content
