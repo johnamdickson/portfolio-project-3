@@ -190,7 +190,7 @@ def main_menu():
     os.system('clear')
     print("Welcome to Weather: Past or Forecast?\n"
           "\nThe app which lets you review historical"
-          " weather at Dublin Airport or access a"
+          " weather at Dublin Airport or access a\n"
           " 3 day weather forecast for your location.\n"
           "\nPress 1 for past weather.\nPress 2 for "
           "the weather forecast.\n")
