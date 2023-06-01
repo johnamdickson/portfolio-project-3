@@ -168,8 +168,8 @@ class Feedback:
         while True:
             feedback_input = input('Please enter your feedback:\n')
             if feedback_input.strip() == '':
-                print("Please do not leave the feedback section empty, we want"
-                      " to hear what you think of the app.\n")
+                cprint("Please do not leave the feedback section empty, we want"
+                      " to hear what you think of the app.\n", 'magenta', None, ['bold'])
             else:
                 break
         now = d.datetime.now()
