@@ -16,7 +16,7 @@ def user_options():
     user_input = 0
     while True:
         try:
-            user_input = int(input("\nPress 1 to return to Main Menu\n"
+            user_input = int(input("\nPress 1 to return to main menu\n"
                                    "Press 2 to look for past weather"
                                    "\nPress 3 for forecast at your "
                                    "chosen location\n"
@@ -72,8 +72,8 @@ def run_past_weather():
     # whilst call is being made to Google sheets. Solution found here:
     # https://stackoverflow.com/questions/22029562/python-how-to-make-simple-animated-loading-while-process-is-running
     loading = LoadingScreens(False, const.LOADING_CONSTANT)
-    t = threading.Thread(target=loading.animate)
-    t.start()
+    thread = threading.Thread(target=loading.animate)
+    # thread.start()
     # perform check of Google sheet.
     available_dates = past.find_date_range()
     # loading completion by passing in true to 'loading' instance.
@@ -83,8 +83,8 @@ def run_past_weather():
     t.sleep(0.5)
     user_date = past.get_date(available_dates)
     loading.complete = False
-    t_2 = threading.Thread(target=loading.animate)
-    t_2.start()
+    thread_2 = threading.Thread(target=loading.animate)
+    thread_2.start()
     historical_data = past.find_historical_data_row(user_date, available_dates)
     loading.complete = True
     if historical_data[0] != True:
@@ -114,8 +114,8 @@ def run_weather_forecast():
     os.system('clear')
     coordinates = wf.get_user_coordinates()
     loading = LoadingScreens(False, const.LOADING_CONSTANT)
-    t = threading.Thread(target=loading.animate)
-    # t.start()
+    thread = threading.Thread(target=loading.animate)
+    thread.start()
     # get data from Open Weather API
     get_forecast = wf.get_weather_forecast(coordinates)
     # loading completion by passing in true to 'loading' instance.
