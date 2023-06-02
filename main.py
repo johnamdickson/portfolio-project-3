@@ -8,30 +8,54 @@ import constants as const
 import threading
 
 
-def user_options():
+def user_options(number_of_options):
     """
     Function to assign 4 options to user on completion
     of past weather or forecast weather code.
     """
     user_input = 0
+    five_options = ("\nPress 1 to return to main menu\nPress 2 "
+                   "to look for past weather \nPress 3 for forecast"
+                   " at your chosen location\nPress 4 to leave" 
+                   "feedback\nPress 5 to see the 3 day summary.\n")
+    four_options = ("\nPress 1 to return to main menu\nPress 2 "
+                   "to look for past weather \nPress 3 for forecast"
+                   " at your chosen location\nPress 4 to leave "
+                   "feedback.\n")
     while True:
         try:
-            user_input = int(input("\nPress 1 to return to main menu\n"
-                                   "Press 2 to look for past weather"
-                                   "\nPress 3 for forecast at your "
-                                   "chosen location\n"
-                                   "Press 4 to leave feedback\n"))
+            if number_of_options == 5:
+                user_input = int(input(five_options))
+            else:
+                user_input = int(input(four_options))
         except ValueError:
-            print(colored("Invalid entry, please enter an integer"
-                          " between 1 and 4\n", 'white', 'on_red',
-                          ['bold']))
-            continue
-        else:
-            if user_input not in range(1, 5):
+            if number_of_options == 5:
+                print(colored("Invalid entry, please enter an integer"
+                              " between 1 and 5\n", 'white', 'on_red',
+                              ['bold']))
+                continue
+            else:
                 print(colored("Invalid entry, please enter an integer"
                               " between 1 and 4\n", 'white', 'on_red',
                               ['bold']))
-            break
+                continue
+        else:
+            if number_of_options == 5:
+                if user_input not in range(1, 6):
+                    print(colored("Invalid entry, please enter an integer"
+                                  " between 1 and 5\n", 'white', 'on_red',
+                                  ['bold']))
+                    user_options(5)
+                else:
+                    break
+            elif number_of_options == 4:
+                if user_input not in range(1, 5):
+                    print(colored("Invalid entry, please enter an integer"
+                                  " between 1 and 4\n", 'white', 'on_red',
+                                  ['bold']))  
+                    user_options(4)  
+                else:
+                    break
     return user_input
 
 
@@ -102,7 +126,7 @@ def run_past_weather():
         t.sleep(1)
         weather_data = past_weather.parse_data()
         past_weather.print_weather_to_console(weather_data)
-        user_option = user_options()
+        user_option = user_options(4)
         restart_user_selection(user_option)
 
 
@@ -129,7 +153,7 @@ def run_weather_forecast():
         cprint("Sorry, the following error was encountered:\n"
                f" ** {get_forecast[1][0]} ** ", 'white', 'on_red', ['bold'])
         print("\nPlease select an option:")
-        user_option = user_options()
+        user_option = user_options(4)
         restart_user_selection(user_option)
     else:
         forecast = ForecastWeather(get_forecast[1], get_forecast[2])
@@ -146,7 +170,7 @@ def run_weather_forecast():
         forecast.move_to_next_day()
         day_three = forecast.create_forecast(forecast.day_three_parsed)
         forecast.print_forecast_to_console(3, day_three, coordinates)
-        user_option = user_options()
+        user_option = user_options(5)
         restart_user_selection(user_option)
 
 
