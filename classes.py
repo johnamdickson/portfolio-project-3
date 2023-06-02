@@ -410,6 +410,7 @@ class ForecastWeather():
         system('clear')
         print(f"Here is the weather forecast for {location} on {forecast[0]}")
         sleep(3)
+        system('clear')
         print(forecast[1])
         sleep(3)
         system('clear')
