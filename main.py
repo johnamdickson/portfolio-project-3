@@ -174,7 +174,8 @@ def run_weather_forecast():
         if user_option == 5:
             forecast.print_three_day_summary(day_one, day_two, day_three)
             input("Hit return to access other user options.")
-            user_options(4)
+            user_option = user_options(4)
+            restart_user_selection(user_option)
         else:
             restart_user_selection(user_option)
 
