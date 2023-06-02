@@ -22,7 +22,7 @@ def get_user_coordinates():
         colored_latitude = colored("-90 and 90,",'green', None, ['bold'])
         colored_longitude = colored("-180 and 180.", 'green', None, ['bold'])
         print("Please enter your chosen location's latitude and longitude "
-              "separated by a whitespace.\n")
+              "separated by a\nwhitespace.\n")
         print(f"Note, latitude must be between {colored_latitude} longitude"
               f" between {colored_longitude}\n")
         print("Latitudes west of the Prime Meridian(Greenwich, London) and "
