@@ -2,7 +2,7 @@ import past_weather as past
 from classes import PastWeather, Feedback, ForecastWeather, LoadingScreens
 from time import sleep
 from termcolor import colored, cprint
-import os
+from os import system
 import weather_forecast as wf
 import constants as const
 import threading
@@ -65,16 +65,16 @@ def restart_user_selection(choice):
     select appropriate menu.
     """
     if choice == 1:
-        os.system('clear')
+        system('clear')
         main_menu()
     elif choice == 2:
-        os.system('clear')
+        system('clear')
         run_past_weather()
     elif choice == 3:
-        os.system('clear')
+        system('clear')
         run_weather_forecast()
     elif choice == 4:
-        os.system('clear')
+        system('clear')
         print("Loading feedback...")
         run_feedback()
     return
@@ -113,7 +113,7 @@ def run_past_weather():
     loading.complete = True
     if historical_data[0] != True:
         loading.complete = True
-        os.system('clear')
+        system('clear')
         sleep(0.5)
         print(historical_data[1])
         sleep(4)
@@ -135,7 +135,7 @@ def run_weather_forecast():
     Function to run weather forecast main functions and 
     instantiate respective class.
     """
-    os.system('clear')
+    system('clear')
     coordinates = wf.get_user_coordinates()
     loading = LoadingScreens(False, const.LOADING_CONSTANT)
     thread = threading.Thread(target=loading.animate)
@@ -201,14 +201,14 @@ def user_selection():
             elif user_input == 1:
                 run_past_weather()
             else:
-                os.system('clear')
+                system('clear')
                 run_weather_forecast()
             break
     return
 
 
 def main_menu():
-    os.system('clear')
+    system('clear')
     # Instantiate loading screen class for title and then 
     # call animate method followed by a delay before 
     # updating complete status to true to move on through
@@ -217,7 +217,7 @@ def main_menu():
     loading.animate()
     sleep(2)
     loading.complete = True
-    os.system('clear')
+    system('clear')
     print("Welcome to Weather: Past or Forecast?\n"
           "\nThe app which lets you review historical"
           " weather at Dublin Airport or access a\n"

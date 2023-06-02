@@ -1,6 +1,6 @@
 import datetime as d
 from time import sleep
-import os
+from os import system
 from termcolor import colored, cprint
 import gspread
 from google.oauth2.service_account import Credentials
@@ -57,7 +57,7 @@ class PastWeather:
         """
         # Clear terminal and print out readable data to user with
         # pauses in between for effect.
-        os.system('clear')
+        system('clear')
         print(f"{self.date} was a {data['d']}.")
         sleep(2)
         print("On that day at Dublin Airport the maximum temperature was "
@@ -116,7 +116,7 @@ class Feedback:
         """
         row_count = len(self.FEEDBACK_SHEET.get_all_values())
         feedback = self.FEEDBACK_SHEET.row_values(row_count)
-        os.system('clear')
+        system('clear')
         print("Please review your feedback:\n")
         sleep(2)
         table = [[feedback[0], feedback[1]]] 
@@ -164,7 +164,7 @@ class Feedback:
         Request user inputs for name and feeback, perform confirmation step and
         upload to spreadsheet.
         """
-        os.system('clear')
+        system('clear')
         name_input = input("Please enter your name or leave blank to remain"
                            " anonymous:\n")
         if name_input == "":
@@ -394,20 +394,20 @@ class ForecastWeather():
             location = f"latitude {colored_latitude} and longitude {colored_longitude}"
 
         if day_number == 1:
-            os.system('clear')
+            system('clear')
             cprint(const.TODAYS_FORECAST, 'green', None, None)
             sleep(4)
         elif day_number == 2:
-            os.system('clear')
+            system('clear')
             cprint(const.TOMORROWS_FORECAST, 'cyan', None, None)
             sleep(4)
         else:
-            os.system('clear')
+            system('clear')
             colored
             cprint(const.DAY_AFTER_TOMORROWS_FORECAST, 'light_magenta',
                    None, None)
             sleep(4)
-        os.system('clear')
+        system('clear')
         print(f"Here is the weather forecast for {location} on {forecast[0]}")
         sleep(3)
         print(forecast[1])
@@ -429,7 +429,7 @@ class ForecastWeather():
         input("\nHit return to see the next day's forcast\n")
 
     def print_three_day_summary(self, day_one, day_two, day_three):
-        os.system('clear')
+        system('clear')
         table = [[day_one[0], day_one[2] + "\n/\n" + day_one[3],day_one[5], day_one[4]],
                  [day_two[0], day_two[2] + "\n/\n" + day_two[3],day_two[5], day_two[4]],
                  [day_three[0], day_three[2] + "\n/\n" + day_three[3], day_three[5], day_three[4]]
@@ -451,14 +451,14 @@ class LoadingScreens:
         self.type = type
 
     def animate(self):
-        os.system('clear')
+        system('clear')
         if self.type == const.LOADING_CONSTANT:
             for c in itertools.cycle(const.LOADING_LIST):
                 if self.complete:
                     break
                 cprint('\r' + c, 'red', None, ['bold'])
                 sleep(0.5)
-                os.system('clear')
+                system('clear')
         elif self.type == const.TITLE_CONSTANT:
             for c in const.TITLE_LIST:
                 if self.complete:

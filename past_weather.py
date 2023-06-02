@@ -4,7 +4,7 @@ from time import sleep
 import sys
 from termcolor import colored, cprint
 import datetime as d
-import os
+from os import system
 from main import run_past_weather
 
 
@@ -61,7 +61,7 @@ def get_date(sheet_dates):
     """
     Request date from user to locate historical weather data.
     """
-    os.system('clear')
+    system('clear')
     while True:
         # Solution to highlighting text found in stack overflow:
         # https://www.studytonight.com/python-howtos/how-to-print-colored-text-in-python
@@ -77,7 +77,7 @@ def get_date(sheet_dates):
         if validate_date(date):
             # Give user feedback the data is valid and then break from
             # While loop to return date.
-            os.system('clear')
+            system('clear')
             break
     return date
 
@@ -101,13 +101,13 @@ def validate_date(date):
     # If the date validation goes wrong
     except ValueError:
         # printing the appropriate text if ValueError occurs
-        os.system('clear')
+        system('clear')
         print(colored(f"Incorrect data format, you entered '{date}'\n"
                       f"Date should be in the format DD/MM/YYYY "
                       "e.g. 30/04/1978\n",
                       'white', 'on_red', ['bold']))
         sleep(4)
-        os.system('clear')
+        system('clear')
         return False
     else:
         return True
