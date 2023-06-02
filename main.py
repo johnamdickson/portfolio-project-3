@@ -1,6 +1,6 @@
 import past_weather as past
 from classes import PastWeather, Feedback, ForecastWeather, LoadingScreens
-import time as t
+from time import sleep
 from termcolor import colored, cprint
 import os
 import weather_forecast as wf
@@ -104,7 +104,7 @@ def run_past_weather():
     loading.complete = True
     # sleep for one second to prevent clearing screen during past weather 
     # terminal information printed for user.
-    t.sleep(0.5)
+    sleep(0.5)
     user_date = past.get_date(available_dates)
     loading.complete = False
     thread_2 = threading.Thread(target=loading.animate)
@@ -114,16 +114,16 @@ def run_past_weather():
     if historical_data[0] != True:
         loading.complete = True
         os.system('clear')
-        t.sleep(0.5)
+        sleep(0.5)
         print(historical_data[1])
-        t.sleep(4)
+        sleep(4)
         run_past_weather()
     else:
         past_weather = PastWeather(historical_data[1], user_date)
         loading_complete = True
         # sleep for one second to prevent clearing screen during past weather 
         # terminal information printed for user.
-        t.sleep(1)
+        sleep(1)
         weather_data = past_weather.parse_data()
         past_weather.print_weather_to_console(weather_data)
         user_option = user_options(4)
@@ -146,7 +146,7 @@ def run_weather_forecast():
     loading.complete = True
     # Sleep for one second to prevent clearing screen during forecast
     # weather terminal information printed for user.
-    t.sleep(1)
+    sleep(1)
     # Check if get_forecast call was successful, based on boolean
     # passed from function return.
     if get_forecast[0] == False:
@@ -215,7 +215,7 @@ def main_menu():
     # program.
     loading = LoadingScreens(False, const.TITLE_CONSTANT)
     loading.animate()
-    t.sleep(2)
+    sleep(2)
     loading.complete = True
     os.system('clear')
     print("Welcome to Weather: Past or Forecast?\n"

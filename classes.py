@@ -1,5 +1,5 @@
 import datetime as d
-import time as t
+from time import sleep
 import os
 from termcolor import colored, cprint
 import gspread
@@ -59,18 +59,18 @@ class PastWeather:
         # pauses in between for effect.
         os.system('clear')
         print(f"{self.date} was a {data['d']}.")
-        t.sleep(2)
+        sleep(2)
         print("On that day at Dublin Airport the maximum temperature was "
             f"{data['max_t']} and the minimum temperature was {data['min_t']}."
             )
-        t.sleep(3)
+        sleep(3)
         print(f"There {data['sun_verb']} {data['sun_dur']} "
             f"{colored(data['sun_noun'], 'blue', None, ['bold'])} "
             f"of sunshine with a total rainfall of {data['r']}.")
-        t.sleep(3)
+        sleep(3)
         print(f"The mean wind speed for the day was {data['ws']}"
             f" with an atmospheric pressure of \n{data['ap']}.")
-        t.sleep(2)
+        sleep(2)
         return
 
 
@@ -118,13 +118,13 @@ class Feedback:
         feedback = self.FEEDBACK_SHEET.row_values(row_count)
         os.system('clear')
         print("Please review your feedback:\n")
-        t.sleep(2)
+        sleep(2)
         table = [[feedback[0], feedback[1]]] 
         # print(f"Name: {feedback[0]}\n")
         # print(f"Feedback: {feedback[1]}\n")
         print(tabulate(table, headers = ["Name", "Feedback"],tablefmt="rounded_grid", maxcolwidths=[20, 40]))
 
-        t.sleep(1)
+        sleep(1)
         user_input = input("\nAre you happy to proceed with this feedback?\n"
                            "Enter C to Confirm and return to main menu\n" 
                            "Enter D to Delete entries and return to main menu\n"
@@ -134,7 +134,7 @@ class Feedback:
         if not user_input.isalpha():
             print(colored("Invalid entry, please enter C/D/N/ or F to proceed.",
                           'white', 'on_red', ['bold']))
-            t.sleep(2)
+            sleep(2)
             # user_input
         elif len(user_input) > 1:
             print((colored("Invalid entry, please enter only 1 character from"
@@ -396,30 +396,30 @@ class ForecastWeather():
         if day_number == 1:
             os.system('clear')
             cprint(const.TODAYS_FORECAST, 'green', None, None)
-            t.sleep(4)
+            sleep(4)
         elif day_number == 2:
             os.system('clear')
             cprint(const.TOMORROWS_FORECAST, 'cyan', None, None)
-            t.sleep(4)
+            sleep(4)
         else:
             os.system('clear')
             colored
             cprint(const.DAY_AFTER_TOMORROWS_FORECAST, 'light_magenta',
                    None, None)
-            t.sleep(4)
+            sleep(4)
         os.system('clear')
         print(f"Here is the weather forecast for {location} on {forecast[0]}")
-        t.sleep(3)
+        sleep(3)
         print(forecast[1])
-        t.sleep(2)
+        sleep(2)
         print(f"The temperature during the day will feel like"
               f" {forecast[2]}")
-        t.sleep(3)
+        sleep(3)
         print(f"At night, the temperature will feel like"
               f" {forecast[3]}")
-        t.sleep(3)
+        sleep(3)
         print(forecast[4])
-        t.sleep(3)
+        sleep(3)
         return
 
     def move_to_next_day(self):
@@ -457,12 +457,12 @@ class LoadingScreens:
                 if self.complete:
                     break
                 cprint('\r' + c, 'red', None, ['bold'])
-                t.sleep(0.5)
+                sleep(0.5)
                 os.system('clear')
         elif self.type == const.TITLE_CONSTANT:
             for c in const.TITLE_LIST:
                 if self.complete:
                     break
                 cprint('\r' + c, 'yellow', None, ['bold'])
-                t.sleep(2)
+                sleep(2)
         return

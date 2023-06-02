@@ -1,6 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
-import time as t
+from time import sleep
 import sys
 from termcolor import colored, cprint
 import datetime as d
@@ -106,7 +106,7 @@ def validate_date(date):
                       f"Date should be in the format DD/MM/YYYY "
                       "e.g. 30/04/1978\n",
                       'white', 'on_red', ['bold']))
-        t.sleep(4)
+        sleep(4)
         os.system('clear')
         return False
     else:

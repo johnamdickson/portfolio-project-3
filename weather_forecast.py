@@ -4,7 +4,7 @@ from pyowm.utils import timestamps
 import os
 from termcolor import colored, cprint
 import main
-import time
+# import time
 # Testing on Codeanywhere requires local access to api_key on line below
 # import api_key as api
 
