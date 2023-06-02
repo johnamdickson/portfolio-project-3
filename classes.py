@@ -431,10 +431,10 @@ class ForecastWeather():
     def print_three_day_summary(self, day_one, day_two, day_three):
         os.system('clear')
         table = [[day_one[0], day_one[2] + "/" + day_one[3],day_one[5], day_one[4]],
-                 [day_two[0], day_two[2] +"/" + day_two[3],day_two[5], day_two[4]],
+                 [day_two[0], day_two[2] + "/" + day_two[3],day_two[5], day_two[4]],
                  [day_three[0], day_three[2] + "/" + day_three[3], day_three[5], day_three[4]]
                  ]
-        print(tabulate(table, headers = ["Date", "Day/Night Temp","Conditions", "Wind"],tablefmt="rounded_grid", maxcolwidths=[8, 7, 7, 7,25]))
+        print(tabulate(table, headers = ["Date", "Day/Night Temp","Conditions", "Wind"],tablefmt="rounded_grid", maxcolwidths=[8, 7, 7,25]))
 
 class LoadingScreens:
     """
