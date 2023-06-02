@@ -411,7 +411,8 @@ class ForecastWeather():
         print(f"Here is the weather forecast for {location} on {forecast[0]}")
         sleep(3)
         print(forecast[1])
-        sleep(2)
+        sleep(3)
+        system('clear')
         print(f"The temperature during the day will feel like"
               f" {forecast[2]}")
         sleep(3)
