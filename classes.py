@@ -433,7 +433,7 @@ class ForecastWeather():
                  [day_two[0], day_two[2], day_two[3],day_two[5], day_two[4]],
                  [day_three[0], day_three[2], day_three[3], day_three[5], day_three[4]]
                  ]
-        print(tabulate(table, headers = ["Date", "Day Temp", "Night Temp","Conditions", "Wind"],tablefmt="rounded_grid", maxcolwidths=[12, 8, 8, 12,30]))
+        print(tabulate(table, headers = ["Date", "Day Temp", "Night Temp","Conditions", "Wind"],tablefmt="rounded_grid", maxcolwidths=[10, 7, 7, 10,25]))
 
 class LoadingScreens:
     """
