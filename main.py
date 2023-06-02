@@ -171,7 +171,10 @@ def run_weather_forecast():
         day_three = forecast.create_forecast(forecast.day_three_parsed)
         forecast.print_forecast_to_console(3, day_three, coordinates)
         user_option = user_options(5)
-        restart_user_selection(user_option)
+        if user_option == 5:
+            forecast.print_three_day_summary(day_one, day_two, day_three)
+        else:
+            restart_user_selection(user_option)
 
 
 def user_selection():

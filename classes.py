@@ -212,7 +212,7 @@ class ForecastWeather():
 
         keys = [
                 'reference_time', 'wind', 'temperature',
-                'detailed_status', 'weather_code', 'precipitation_probability'
+                'detailed_status', 'weather_code', 'precipitation_probability',
                 ]
 
         # Dictionary comprehension utilised as opposed to extract data function
@@ -370,12 +370,13 @@ class ForecastWeather():
         elif weather_code == 804:
             weather_icon = const.OVERCAST
 
+        formatted_conditions = colored(forecast_dict['detailed_status'].title(), 'blue', None, ['bold'])
         formatted_date = colored(forecast_date, 'blue', None, ['bold'])
         formatted_day_temp = colored(f"{day_temp} °C", 'blue', None, ['bold'])
         formatted_night_temp = colored(f"{night_temp} °C", 'blue', None, ['bold'])
 
         return [formatted_date, weather_icon, formatted_day_temp, 
-                formatted_night_temp, wind_conditions]
+                formatted_night_temp, wind_conditions,formatted_conditions]
 
     def print_forecast_to_console(self, day_number, forecast, coordinates):
         """
@@ -422,8 +423,17 @@ class ForecastWeather():
         return
 
     def move_to_next_day(self):
+        """
+        Function called from main to step through forecasts.
+        """
         input("\nHit return to see the next day's forcast\n")
 
+    def print_three_day_summary(self, day_one, day_two, day_three):
+        table = [[day_one[0], day_one[2], day_one[3],day_one[5], day_one[4]],
+                 [day_two[0], day_two[2], day_two[3],day_two[5], day_two[4]],
+                 [day_three[0], day_three[2], day_three[3], day_three[5], day_three[4]]
+                 ]
+        print(tabulate(table, headers = ["Date", "Day Temp", "Night Temp","Conditions", "Wind"],tablefmt="rounded_grid", maxcolwidths=[20, 10, 10, 20,40]))
 
 class LoadingScreens:
     """
