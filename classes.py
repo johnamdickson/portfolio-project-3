@@ -156,13 +156,11 @@ class Feedback:
             print(colored("Invalid entry, please enter C/D/N/ or F to proceed.",
                           'white', 'on_red', ['bold']))
             sleep(2)
-            self.create_feedback()
         elif len(user_input) > 1:
             print((colored("Invalid entry, please enter only 1 character from"
                            "C/D/N/ or F to proceed.", 'white', 'on_red',
                            ['bold'])))
             sleep(2)
-            self.create_feedback()
         elif user_input.lower() == "c":
             # if feedback is OK, return from function and allow programme to 
             # proceed.
