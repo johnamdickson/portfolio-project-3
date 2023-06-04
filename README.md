@@ -22,8 +22,7 @@ This application is showcasing Python coding for Project Portfolio 3 and can be 
   - [Surface(Design)](#surface-design)
     - [Colour Scheme](#colour-scheme)
     - [Imagery](#imagery)
-    - [Logo](#logo)
-    - [Typography](#typography)
+    - [Favicon](#favicon)
 - [Features](#features)
   - [Existing Features](#existing-features)
   - [Features Left to Implement](#features-left-to-implement)
@@ -82,17 +81,21 @@ The objective of the site is to allow users to review past weather for a locatio
 - **ADD
 ### Surface (Design)
 #### Colour Scheme
-![Colour Palette](/assets/README-files/color-palette.png)
-- **ADD
+- The Termcolor library was used, providing *"ANSI color formatting for output in terminal"*.
+- The availalble colours are understandably limited however the following colour schemes were used for specific terminal outputs throughout the program:
+  - **Errors**: errors (invalid entries, exceptions etc.) are formatted with bold white writing on a red background. ![Error Message](views/README-files/error-message-formatting.png)
+  - **Information**: information that the user should know before taking an action formatted as bold green. ![Information Message](views/README-files/information-message-formatting.png)
+  - **Data**: pertinent data points either sourced/calculated from Google Sheets or Open Weather API are formatted as bold blue. ![Data Message](views/README-files/data-message-formatting.png)
+  - **Feedback**: a message to request the user does not leave the feedback message empty in bold magenta. Although this could be deemed an app error, I felt that the white on red would be too forceful to request feedback is entered. ![Feedback Message](views/README-files/feedback-message-formatting.png)
+- There are a series of screens using text art to depict titles or loading information. Different colours were selected for each one to differentiate them from the others.
+  - **Title**: Displayed when the program first runs.![Title Screen](views/README-files/title-screen.png)
+  - **Loading**: Displayed when the program is laoding data that may take time to read.![Title Screen](views/README-files/title-screen.png)
+  - **Forecast Days**: Displayed when the program is about to display the weather for a given forecast day.![Day One](views/README-files/forecast-one.png) ![Day Two](views/README-files/forecast-two.png) ![Day Three](views/README-files/forecast-three.png)
 #### Imagery
 - The background image was sourced from [Pexels](https://www.pexels.com/) and was selected for exhibiting a number of different weather types in one image.
 ![Background Image](views/README-files/background-picture.webp)
-- **ADD.<br><br>
-#### Logo
-![Site Logo](/assets/README-files/logo.png)
-- **ADD
-#### Typography
-- **ADD
+#### Favicon
+- The Favicon logo was sourced from [Favicon.io](https://favicon.io/) and was selected to show a dramatic weather event.![Favicon Image](views/README-files/icon.png)
 
 <a href="#contents">BACK TO CONTENTS 🔼</a>
 
