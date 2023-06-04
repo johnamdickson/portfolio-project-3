@@ -27,7 +27,10 @@ class PastWeather:
         Select pertinent information from Dublin Airport historical weather
         data spreadsheet and return a string detailing all info.
         """
+        # set variable 'data' as weather data passed in during instantiation of 
+        # class.
         data = self.weather_data
+        # format all the relevant data points and add units to string.
         max_temp = colored(data[2] + "°C", 'blue', None, ['bold'])
         min_temp = colored(data[4] + "°C", 'blue', None, ['bold'])
         rain = colored(data[8] + " mm", 'blue', None, ['bold'])
@@ -35,6 +38,7 @@ class PastWeather:
         mean_wind_speed = colored(data[10] + " knots", 'blue', None, ['bold'])
         sunshine_duration = data[17]
         sunshine_duration_string = colored(data[17], 'blue', None, ['bold'])
+        # assign verb and noun for sunshine duration description.
         sunshine_string = ["were", "hours"]
         # Code below to calculate day of the week from date using
         # datetime strftime method. Used following tutorial:
@@ -46,14 +50,14 @@ class PastWeather:
         # returned in instance of 1 hour of sunshine.
         if float(sunshine_duration) == 1:
             sunshine_string = ["was", "hour"]
-        
+        # return the pertinent data required when printing data to the console.
         return {'d': day, 'max_t': max_temp, 'min_t': min_temp,'sun_verb': sunshine_string[0], 
                'sun_dur': sunshine_duration_string, 'sun_noun': sunshine_string[1], 'r': rain, 
                'ws': mean_wind_speed, 'ap': atmos_pressure}
 
     def print_weather_to_console(self, data):
         """
-        Print past weather data to the console using data from data parameter dictionary.
+        Print past weather data to the console using data from 'data' parameter dictionary.
         """
         # Clear terminal and print out readable data to user with
         # pauses in between for effect.
@@ -76,7 +80,8 @@ class PastWeather:
 
 class Feedback:
     """
-    Class for user feedback on past weather with associated methods
+    Class for user feedback on past weather with associated methods to 
+    create, read, update and delete data in Google Sheets.
     """
     SCOPE = [
                 "https://www.googleapis.com/auth/spreadsheets",
@@ -92,13 +97,24 @@ class Feedback:
     FEEDBACK_SHEET = SHEET.worksheet('feedback')
 
     def __init__(self):
+        """
+        Initialising only self with this class, function returns
+        nothing.
+        """
         return
     
     def delete_feedback(self, row_count):
+        """
+        Function to delete feedback from Google Sheet.
+        """
         self.FEEDBACK_SHEET.delete_rows(row_count)
         return
         
     def update_feedback(self, column, row):
+        """ 
+        Update feedback using column and row indices to determine
+        if name or feedback is to be updated.
+        """
         if column == 1:
             name = input("Please update your name:")
             self.FEEDBACK_SHEET.update_cell(row, column, name)
@@ -114,17 +130,22 @@ class Feedback:
         feedback are correct with checks to confirm correct inputs
         with associated user feedback.
         """
+        # count rows to determine how many exist on sheet.
         row_count = len(self.FEEDBACK_SHEET.get_all_values())
-        feedback = self.FEEDBACK_SHEET.row_values(row_count)
+        # create variable to indicate which row the feedback was on
+        # using row_count
+        feedback_row = self.FEEDBACK_SHEET.row_values(row_count)
+        # assign data from feedback row to name and feedback variables
+        name = feedback_row[0]
+        feedback = feedback_row[1]
         system('clear')
         print("Please review your feedback:\n")
         sleep(2)
-        table = [[feedback[0], feedback[1]]] 
-        # print(f"Name: {feedback[0]}\n")
-        # print(f"Feedback: {feedback[1]}\n")
+        # create table with feedback name and 
+        table = [[name, feedback]] 
         print(tabulate(table, headers = ["Name", "Feedback"],tablefmt="rounded_grid", maxcolwidths=[20, 40]))
-
         sleep(1)
+        # request response from user that they are happy with their feedback.
         user_input = input("\nAre you happy to proceed with this feedback?\n"
                            "Enter C to Confirm and return to main menu\n" 
                            "Enter D to Delete entries and return to main menu\n"
@@ -135,26 +156,38 @@ class Feedback:
             print(colored("Invalid entry, please enter C/D/N/ or F to proceed.",
                           'white', 'on_red', ['bold']))
             sleep(2)
-            # user_input
+            self.create_feedback()
         elif len(user_input) > 1:
             print((colored("Invalid entry, please enter only 1 character from"
                            "C/D/N/ or F to proceed.", 'white', 'on_red',
                            ['bold'])))
-            self.create_feedback
+            sleep(2)
+            self.create_feedback()
         elif user_input.lower() == "c":
+            # if feedback is OK, return from function and allow programme to 
+            # proceed.
             print("Thanks for the feedback!\n")
             return
         elif user_input.lower() == "d":
+            # if user wants to delete their feedback, call delete_feedback 
+            # function and pass in row_count variable.
             print("Deleting and returning to main menu...")
             self.delete_feedback(row_count)
         elif user_input.lower() == "n":
+            # if user wants to change their name, call update_feedback 
+            # function and pass in int 1 to denote name and row_count variable.
             self.update_feedback(1, row_count)
         elif user_input.lower() == "f":
+            # if user wants to change their feedback, call update_feedback 
+            # function and pass in int 2 to denote feedback and row_count variable.
             self.update_feedback(2, row_count)
         else:
+            # function passes through to here if any other character is used
+            # read.feedback function is then called again.
             print((colored("Invalid entry, please enter only character from"
                            "C/D/N/ or F to proceed.", 'white', 'on_red',
                            ['bold'])))
+            sleep(2)
             self.read_feedback()
             
         return
@@ -167,15 +200,20 @@ class Feedback:
         system('clear')
         name_input = input("Please enter your name or leave blank to remain"
                            " anonymous:\n")
+        # allow user to remain anonymous by returning that as name if no input 
+        # is given.
         if name_input == "":
             name_input = "anonymous"
         while True:
             feedback_input = input('Please enter your feedback:\n')
+            # solution to detecting no characters from link below:
+            # https://bobbyhadz.com/blog/python-check-if-input-is-empty
             if feedback_input.strip() == '':
                 cprint("Please do not leave the feedback section empty, we'd love"
                       " to hear what you think of the app.\n", 'magenta', None, ['bold'])
             else:
                 break
+        # Create a date and time for feedback entry.
         now = d.datetime.now()
         date_input = now.strftime("%d/%m/%Y, %H:%M:%S")
         feedback_data = [name_input, feedback_input, date_input]
