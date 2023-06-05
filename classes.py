@@ -163,8 +163,9 @@ class Feedback:
             sleep(2)
         elif user_input.lower() == "c":
             # if feedback is OK, return from function and allow programme to 
-            # proceed.
-            print("Thanks for the feedback!\n")
+            # proceed after displaying a thank you message.
+            cprint(f"{constants.THANK_YOU}", light_yellow, None, None)
+            sleep(2)
             return
         elif user_input.lower() == "d":
             # if user wants to delete their feedback, call delete_feedback 
