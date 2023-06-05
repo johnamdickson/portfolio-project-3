@@ -97,7 +97,8 @@ The structure of the app was defined and mapped out on a [flow chart](views/READ
 ![Background Image](views/README-files/background-picture.webp)
 #### Favicon
 - The Favicon logo was sourced from [Favicon.io](https://favicon.io/) and was selected to show a dramatic weather event.![Favicon Image](views/README-files/icon.png)
-
+#### Typography
+- The title font was sourced from Google Fonts and is called Merriweather. This was selected purely on the presence of weather in the name and was seen as a good link back to the purpose of the app.
 <a href="#contents">BACK TO CONTENTS 🔼</a>
 
 ## Features 
