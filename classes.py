@@ -118,7 +118,6 @@ class Feedback:
         if column == 1:
             name = input("Please update your name:")
             self.FEEDBACK_SHEET.update_cell(row, column, name)
-            # self.read_feedback()
         if column == 2:
             feedback = input("Please update your feedback:")
             if feedback.strip() == '':
@@ -127,7 +126,7 @@ class Feedback:
                            " the app.\n", 'magenta', None, ['bold'])
                 self.update_feedback(2, row)
             self.FEEDBACK_SHEET.update_cell(row, column, feedback)
-            # self.read_feedback()
+
 
     def read_feedback(self):
         """
@@ -206,7 +205,6 @@ class Feedback:
                 sleep(3)
                 system('clear')
                 continue
-            
         return
 
     def create_feedback(self):
