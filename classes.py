@@ -164,7 +164,7 @@ class Feedback:
         elif user_input.lower() == "c":
             # if feedback is OK, return from function and allow programme to 
             # proceed after displaying a thank you message.
-            cprint(f"{const.THANK_YOU}", light_yellow, None, None)
+            cprint(f"{const.THANK_YOU}", 'light_yellow', None, None)
             sleep(2)
             return
         elif user_input.lower() == "d":
