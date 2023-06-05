@@ -78,7 +78,7 @@ The objective of the site is to allow users to review past weather for a locatio
 The structure of the app was defined and mapped out on a [flow chart](views/README-files/flowchart.png). This helped define the required interactions to develop a usuable product.
 ### Skeleton
 #### Wireframes
-- **ADD
+- The project wireframe can be found [here.](views/README-files/project-portfolio-three-wireframes.pdf)
 ### Surface (Design)
 #### Colour Scheme
 - The Termcolor library was used, providing *"ANSI color formatting for output in terminal"*.
