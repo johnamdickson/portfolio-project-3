@@ -118,7 +118,7 @@ class Feedback:
         if column == 1:
             name = input("Please update your name:")
             self.FEEDBACK_SHEET.update_cell(row, column, name)
-            self.read_feedback()
+            # self.read_feedback()
         if column == 2:
             feedback = input("Please update your feedback:")
             if feedback.strip() == '':
@@ -127,7 +127,7 @@ class Feedback:
                            " the app.\n", 'magenta', None, ['bold'])
                 self.update_feedback(2, row)
             self.FEEDBACK_SHEET.update_cell(row, column, feedback)
-            self.read_feedback()
+            # self.read_feedback()
 
     def read_feedback(self):
         """
@@ -135,69 +135,77 @@ class Feedback:
         feedback are correct with checks to confirm correct inputs
         with associated user feedback.
         """
-        # count rows to determine how many exist on sheet.
-        row_count = len(self.FEEDBACK_SHEET.get_all_values())
-        # create variable to indicate which row the feedback was on
-        # using row_count
-        feedback_row = self.FEEDBACK_SHEET.row_values(row_count)
-        # assign data from feedback row to name and feedback variables
-        name = feedback_row[0]
-        feedback = feedback_row[1]
-        system('clear')
-        print("Please review your feedback:\n")
-        sleep(2)
-        # create table with feedback name and 
-        table = [[name, feedback]] 
-        print(tabulate(table, headers = ["Name", "Feedback"],tablefmt="rounded_grid", maxcolwidths=[20, 40]))
-        # request response from user that they are happy with their feedback.
-        user_input = input("\nAre you happy to proceed with this feedback?\n"
-                           "Enter C to Confirm and return to main menu\n" 
-                           "Enter D to Delete entries and return to main menu\n"
-                           "Enter N to change Name\nEnter F to change Feedback:\n")
-        # Check that input is alphabet character only, solution from W3 schools:
-        # https://www.w3schools.com/python/ref_string_isalpha.asp#:~:text=The%20isalpha()%20method%20returns,!%23%25%26%3F%20etc
-        if not user_input.isalpha():
+        while True:
+            # count rows to determine how many exist on sheet.
+            row_count = len(self.FEEDBACK_SHEET.get_all_values())
+            # create variable to indicate which row the feedback was on
+            # using row_count
+            feedback_row = self.FEEDBACK_SHEET.row_values(row_count)
+            # assign data from feedback row to name and feedback variables
+            name = feedback_row[0]
+            feedback = feedback_row[1]
             system('clear')
-            print(colored("Invalid entry, please enter C/D/N/ or F to proceed.",
-                          'white', 'on_red', ['bold']))
-            sleep(2)
-            self.read_feedback()
-        elif len(user_input) > 1:
-            system('clear')
-            print((colored("Invalid entry, please enter only 1 character from"
-                           " C/D/N/ or F to proceed.", 'white', 'on_red',
-                           ['bold'])))
-            sleep(2)
-            self.read_feedback()
-        elif user_input.lower() == "c":
-            # if feedback is OK, return from function and allow programme to 
-            # proceed after displaying a thank you message.
-            system('clear')
-            cprint(f"{const.THANK_YOU}", 'light_green', None, None)
-            sleep(2)
-            return
-        elif user_input.lower() == "d":
-            # if user wants to delete their feedback, call delete_feedback 
-            # function and pass in row_count variable.
-            print("Deleting and returning to main menu...")
-            self.delete_feedback(row_count)
-        elif user_input.lower() == "n":
-            # if user wants to change their name, call update_feedback 
-            # function and pass in int 1 to denote name and row_count variable.
-            self.update_feedback(1, row_count)
-        elif user_input.lower() == "f":
-            # if user wants to change their feedback, call update_feedback 
-            # function and pass in int 2 to denote feedback and row_count variable.
-            self.update_feedback(2, row_count)
-        else:
-            # function passes through to here if any other character is used
-            # read.feedback function is then called again.
-            system('clear')
-            print((colored("Invalid entry, please enter only character from"
-                           " C/D/N/ or F to proceed.", 'white', 'on_red',
-                           ['bold'])))
-            sleep(2)
-            self.read_feedback()
+            print("Please review your feedback:\n")
+            # create table with feedback name and 
+            table = [[name, feedback]] 
+            print(tabulate(table, headers = ["Name", "Feedback"],tablefmt="rounded_grid", maxcolwidths=[20, 40]))
+            # request response from user that they are happy with their feedback.
+            user_input = input("\nAre you happy to proceed with this feedback?\n"
+                            "Enter C to Confirm and return to main menu\n" 
+                            "Enter D to Delete entries and return to main menu\n"
+                            "Enter N to change Name\nEnter F to change Feedback:\n")
+            # Check that input is alphabet character only, solution from W3 schools:
+            # https://www.w3schools.com/python/ref_string_isalpha.asp#:~:text=The%20isalpha()%20method%20returns,!%23%25%26%3F%20etc
+            if not user_input.isalpha():
+                system('clear')
+                print(colored("Invalid entry, please enter C/D/N/ or F to proceed.",
+                            'white', 'on_red', ['bold']))
+                sleep(3)
+                system('clear')
+                continue
+            elif len(user_input) > 1:
+                system('clear')
+                print((colored("Invalid entry, please enter only 1 character from"
+                            " C/D/N/ or F to proceed.", 'white', 'on_red',
+                            ['bold'])))
+                sleep(3)
+                system('clear')
+                continue
+            elif user_input.lower() == "c":
+                # if feedback is OK, return from function and allow programme to 
+                # proceed after displaying a thank you message.
+                system('clear')
+                cprint(f"{const.THANK_YOU}", 'light_green', None, None)
+                sleep(2)
+                break
+            elif user_input.lower() == "d":
+                # if user wants to delete their feedback, call delete_feedback 
+                # function and pass in row_count variable.
+                print("Deleting and returning to main menu...")
+                self.delete_feedback(row_count)
+                break
+            elif user_input.lower() == "n":
+                # if user wants to change their name, call update_feedback 
+                # function and pass in int 1 to denote name and row_count variable.
+                self.update_feedback(1, row_count)
+                system('clear')
+                continue
+            elif user_input.lower() == "f":
+                # if user wants to change their feedback, call update_feedback 
+                # function and pass in int 2 to denote feedback and row_count variable.
+                self.update_feedback(2, row_count)
+                system('clear')
+                continue
+            else:
+                # function passes through to here if any other character is used
+                # read.feedback function is then called again.
+                system('clear')
+                print((colored("Invalid entry, please enter only character from"
+                            " C/D/N/ or F to proceed.", 'white', 'on_red',
+                            ['bold'])))
+                sleep(3)
+                system('clear')
+                continue
             
         return
 
