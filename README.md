@@ -71,25 +71,26 @@ The objective of the site is to allow users to review past weather for a locatio
 ### Scope
 #### Essential Content
  - The app will allow users to enter a date and receive the weather for that given day.
- - The app will allow users to enter latitude and longitude coordinates to obtain a weather forecast for that location. <br><br>
+ - The app will allow users to enter latitude and longitude coordinates to obtain a weather forecast for that location. 
 #### Optional Content
-- A feedback option where users can leave their feedback on the app.<br><br>
+- A feedback option where users can leave their feedback on the app.
 ### Structure
- - **ADD
+The structure of the app was defined and mapped out on a [flow chart](views/README-files/flowchart.png). This helped define the required interactions to develop a usuable product.
 ### Skeleton
 #### Wireframes
 - **ADD
 ### Surface (Design)
 #### Colour Scheme
 - The Termcolor library was used, providing *"ANSI color formatting for output in terminal"*.
-- The availalble colours are understandably limited however the following colour schemes were used for specific terminal outputs throughout the program:
+- The availalble colours are limited however the following colour schemes were used for specific terminal outputs throughout the program:
   - **Errors**: errors (invalid entries, exceptions etc.) are formatted with bold white writing on a red background.<br><br>![Error Message](views/README-files/error-message-formatting.png)
   - **Information**: information that the user should know before taking an action formatted as bold green.<br><br> ![Information Message](views/README-files/information-message-formatting.png)
   - **Data**: pertinent data points either sourced/calculated from Google Sheets or Open Weather API are formatted as bold blue.<br><br> ![Data Message](views/README-files/data-message-formatting.png)
   - **Feedback**: a message to request the user does not leave the feedback message empty in bold magenta. Although this could be deemed an app error, I felt that the white on red would be too forceful to request feedback is entered. <br><br>![Feedback Message](views/README-files/feedback-message-formatting.png)
 - There are a series of screens using text art to depict titles or loading information. Different colours were selected for each one to differentiate them from the others.
   - **Title**: Displayed when the program first runs.![Title Screen](views/README-files/title-screen.png)
-  - **Loading**: Displayed when the program is laoding data that may take time to read.![Title Screen](views/README-files/loading-screen.gif)
+  - **Loading**: Displayed when the program is laoding data that may take time to load.<br><br>
+  ![Loading Screen](views/README-files/loading-screen.gif)
   - **Forecast Days**: Displayed when the program is about to display the weather for a given forecast day.![Day One](views/README-files/forecast-one.png) ![Day Two](views/README-files/forecast-two.png) ![Day Three](views/README-files/forecast-three.png)
 #### Imagery
 - The background image was sourced from [Pexels](https://www.pexels.com/) and was selected for exhibiting a number of different weather types in one image.
