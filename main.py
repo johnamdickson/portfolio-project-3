@@ -81,6 +81,10 @@ def restart_user_selection(choice):
 
 
 def run_feedback():
+    """
+    Function to create instance of Feedback class
+    and call methods in the correct order.
+    """
     feedback = Feedback()
     feedback.create_feedback()
     feedback.read_feedback()
