@@ -6,7 +6,7 @@ from termcolor import colored, cprint
 import datetime as d
 from os import system
 from main import run_past_weather
-
+import functions as f
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -49,11 +49,9 @@ def find_historical_data_row(date, date_range):
     except AttributeError:
         # Handle error by informing user of exception and then re-running the
         # main() function.
-        error_message = (colored(f"The date you selected is not available."
-                                 f" You entered {date}\n\nDate should be "
-                                 f"between {date_range[0]} and "
-                                 f"{date_range[1]}.\n", 'white', 'on_red',
-                                 ['bold']))
+        error_message = (f"The date you selected is not available. You entered"
+                         f" {date}\nDate should be between {date_range[0]}"
+                         f" and {date_range[1]}.\n")
         return False, error_message
 
 
@@ -71,8 +69,8 @@ def get_date(sheet_dates):
                               ['bold'])
         print(f"Please enter the date to check the historical weather data for"
               " Dublin Airport.\n")
-        print(f"Available dates between {earliest_date} and {latest_date}.\n")
-        print("The date format should be: DD/MM/YYYY e.g 30/04/1978\n")
+        print(f"Available dates between {earliest_date} and {latest_date}. \n")
+        print("The date format should be: DD/MM/YYYY e.g 30/04/1978 \n")
         date = input("Enter your date below:\n")
         if validate_date(date):
             # Give user feedback the data is valid and then break from
@@ -101,13 +99,9 @@ def validate_date(date):
     # If the date validation goes wrong
     except ValueError:
         # printing the appropriate text if ValueError occurs
-        system('clear')
-        print(colored(f"Incorrect data format, you entered '{date}'\n"
-                      f"Date should be in the format DD/MM/YYYY "
-                      "e.g. 30/04/1978\n",
-                      'white', 'on_red', ['bold']))
-        sleep(4)
-        system('clear')
+        f.print_error_message(f"Incorrect data format, you entered '{date}' "
+                              "\nDate should be in the format DD/MM/YYYY "
+                              "e.g. 30/04/1978\n", 3)
         return False
     else:
         return True

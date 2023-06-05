@@ -8,6 +8,7 @@ import numpy as np
 import constants as const
 import itertools
 from tabulate import tabulate
+import functions as f
 
 
 class PastWeather:
@@ -156,19 +157,12 @@ class Feedback:
             # Check that input is alphabet character only, solution from W3 schools:
             # https://www.w3schools.com/python/ref_string_isalpha.asp#:~:text=The%20isalpha()%20method%20returns,!%23%25%26%3F%20etc
             if not user_input.isalpha():
-                system('clear')
-                print(colored("Invalid entry, please enter C/D/N/ or F to proceed.",
-                            'white', 'on_red', ['bold']))
-                sleep(3)
-                system('clear')
+                f.print_error_message("Invalid entry, please enter "
+                                      "C/D/N or F to proceed.", 3)
                 continue
             elif len(user_input) > 1:
-                system('clear')
-                print((colored("Invalid entry, please enter only 1 character from"
-                            " C/D/N/ or F to proceed.", 'white', 'on_red',
-                            ['bold'])))
-                sleep(3)
-                system('clear')
+                f.print_error_message("Invalid entry, please enter only 1 "
+                                      "character from C/D/N or F to proceed.", 3)
                 continue
             elif user_input.lower() == "c":
                 # if feedback is OK, return from function and allow programme to 
@@ -181,6 +175,7 @@ class Feedback:
                 # if user wants to delete their feedback, call delete_feedback 
                 # function and pass in row_count variable.
                 print("Deleting and returning to main menu...")
+                sleep(1)
                 self.delete_feedback(row_count)
                 break
             elif user_input.lower() == "n":
@@ -198,12 +193,8 @@ class Feedback:
             else:
                 # function passes through to here if any other character is used
                 # read.feedback function is then called again.
-                system('clear')
-                print((colored("Invalid entry, please enter only character from"
-                            " C/D/N/ or F to proceed.", 'white', 'on_red',
-                            ['bold'])))
-                sleep(3)
-                system('clear')
+                f.print_error_message("Invalid entry, please enter only a character"
+                                      " from C/D/N or F to proceed.", 3)
                 continue
         return
 

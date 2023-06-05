@@ -6,23 +6,23 @@ from os import system
 import weather_forecast as wf
 import constants as const
 import threading
-
+import functions as f
 
 def user_options(number_of_options):
     """
     Function to assign 4 options to user on completion
     of past weather or forecast weather code.
     """
-    user_input = 0
-    five_options = ("\nPress 1 to return to main menu\nPress 2 "
-                   "to look for past weather \nPress 3 for forecast"
-                   " at your chosen location\nPress 4 to leave" 
-                   "feedback\nPress 5 to see the 3 day summary.\n")
-    four_options = ("\nPress 1 to return to main menu\nPress 2 "
-                   "to look for past weather \nPress 3 for forecast"
-                   " at your chosen location\nPress 4 to leave "
-                   "feedback.\n")
     while True:
+        user_input = 0
+        five_options = ("\nPress 1 to return to main menu\nPress 2 "
+                    "to look for past weather \nPress 3 for forecast"
+                    " at your chosen location\nPress 4 to leave" 
+                    "feedback\nPress 5 to see the 3 day summary.\n")
+        four_options = ("\nPress 1 to return to main menu\nPress 2 "
+                    "to look for past weather \nPress 3 for forecast"
+                    " at your chosen location\nPress 4 to leave "
+                    "feedback.\n")
         try:
             if number_of_options == 5:
                 user_input = int(input(five_options))
@@ -30,30 +30,26 @@ def user_options(number_of_options):
                 user_input = int(input(four_options))
         except ValueError:
             if number_of_options == 5:
-                print(colored("Invalid entry, please enter an integer"
-                              " between 1 and 5\n", 'white', 'on_red',
-                              ['bold']))
+                f.print_error_message("Invalid entry, please enter an integer"
+                                      " between 1 and 5", 3)
                 continue
             else:
-                print(colored("Invalid entry, please enter an integer"
-                              " between 1 and 4\n", 'white', 'on_red',
-                              ['bold']))
+                f.print_error_message("Invalid entry, please enter an integer"
+                                      " between 1 and 4", 3)
                 continue
         else:
             if number_of_options == 5:
                 if user_input not in range(1, 6):
-                    print(colored("Invalid entry, please enter an integer"
-                                  " between 1 and 5\n", 'white', 'on_red',
-                                  ['bold']))
-                    user_options(5)
+                    f.print_error_message("Invalid entry, please enter an integer"
+                                  " between 1 and 5", 3)
+                    continue
                 else:
                     break
             elif number_of_options == 4:
                 if user_input not in range(1, 5):
-                    print(colored("Invalid entry, please enter an integer"
-                                  " between 1 and 4\n", 'white', 'on_red',
-                                  ['bold']))  
-                    user_options(4)  
+                    f.print_error_message("Invalid entry, please enter an integer"
+                                          " between 1 and 4", 3)
+                    continue
                 else:
                     break
     return user_input
@@ -117,10 +113,8 @@ def run_past_weather():
     loading.complete = True
     if historical_data[0] != True:
         loading.complete = True
-        system('clear')
         sleep(0.5)
-        print(historical_data[1])
-        sleep(4)
+        f.print_error_message(historical_data[1], 4)
         run_past_weather()
     else:
         past_weather = PastWeather(historical_data[1], user_date)
@@ -154,8 +148,8 @@ def run_weather_forecast():
     # Check if get_forecast call was successful, based on boolean
     # passed from function return.
     if get_forecast[0] == False:
-        cprint("Sorry, the following error was encountered:\n"
-               f" ** {get_forecast[1][0]} ** ", 'white', 'on_red', ['bold'])
+        f.print_error_message("Sorry, the following error was encountered:\n"
+                              f" ** {get_forecast[1][0]} ** ", 3)
         print("\nPlease select an option:")
         user_option = user_options(4)
         restart_user_selection(user_option)
@@ -191,18 +185,23 @@ def user_selection():
     """
     user_input = 0
     while True:
+        print("Welcome to Weather: Past or Forecast?\n"
+              "\nThe app which lets you review historical"
+              " weather at Dublin Airport or access a\n"
+              " 3 day weather forecast for your location.\n"
+              "\nPress 1 for past weather.\nPress 2 for "
+              "the weather forecast.\n")
         try:
             user_input = int(input("Please make a selection:"))
         except ValueError:
-            print(colored("Invalid entry, an integer (1 or 2) is required.",
-                          'white', 'on_red', ['bold']))
+            f.print_error_message("Invalid entry, an integer (1 or 2) is required.", 3)
             continue
         else:
             if user_input not in range(1, 3):
-                cprint("Invalid number, please enter 1 or 2",
-                       'white', 'on_red', ['bold'])         
-                user_selection()
+                f.print_error_message("Invalid number, please enter 1 or 2", 3)
+                continue
             elif user_input == 1:
+                system('clear')
                 run_past_weather()
             else:
                 system('clear')
@@ -222,10 +221,5 @@ def main_menu():
     sleep(2)
     loading.complete = True
     system('clear')
-    print("Welcome to Weather: Past or Forecast?\n"
-          "\nThe app which lets you review historical"
-          " weather at Dublin Airport or access a\n"
-          " 3 day weather forecast for your location.\n"
-          "\nPress 1 for past weather.\nPress 2 for "
-          "the weather forecast.\n")
     user_selection()
+
