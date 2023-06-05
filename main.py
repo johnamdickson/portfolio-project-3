@@ -18,11 +18,11 @@ def user_options(number_of_options):
         five_options = ("\nPress 1 to return to main menu\nPress 2 "
                     "to look for past weather \nPress 3 for forecast"
                     " at your chosen location\nPress 4 to leave " 
-                    "feedback\nPress 5 to see the 3 day summary.\n")
+                    "feedback\nPress 5 to see the 3 day summary\n")
         four_options = ("\nPress 1 to return to main menu\nPress 2 "
                     "to look for past weather \nPress 3 for forecast"
                     " at your chosen location\nPress 4 to leave "
-                    "feedback.\n")
+                    "feedback\n")
         try:
             if number_of_options == 5:
                 user_input = int(input(five_options))
