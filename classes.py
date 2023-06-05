@@ -121,8 +121,8 @@ class Feedback:
             self.read_feedback()
         if column == 2:
             feedback = input("Please update your feedback:")
-            if feedback_input.strip() == '':
-                cprint("Please do not leave the feedback section "
+            if feedback.strip() == '':
+                cprint("\nPlease do not leave the feedback section "
                            "empty, we'd love to hear what you think of"
                            " the app.\n", 'magenta', None, ['bold'])
                 self.update_feedback(2, row)
