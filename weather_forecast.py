@@ -38,11 +38,15 @@ def get_user_coordinates():
                               " a whitespace, please make two entries - "
                               "one for latitude and another for longitude.",
                               'white', 'on_red', ['bold']))
+                sleep(2)
+                system('clear')
             elif e.args[0] == "too many values to unpack (expected 2)":
                 system('clear')
                 print(colored("You entered too many numbers, please make two"
                               "entries, one for latitude and another for "
                               "longitude.", 'white', 'on_red', ['bold']))
+                sleep(2)
+                system('clear')
             continue
         try:
             latitude = float(latitude)
@@ -52,6 +56,8 @@ def get_user_coordinates():
             print(colored(f"Invalid entry, please enter a number between "
                           "-90 to 90 for latitude and -180 to 180 for "
                           "longitude. ", 'white', 'on_red', ['bold']))
+            sleep(2)
+            system('clear')
             continue
         else:
             if latitude < -90 or latitude > 90:
