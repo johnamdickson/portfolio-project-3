@@ -2,7 +2,7 @@ from time import sleep
 from os import system
 from termcolor import colored, cprint
 
-def print_error_message(string):
+def print_error_message(string, delay):
     """
     Function to print off error message with 
     steps to clear screen, print in color and 
@@ -10,6 +10,6 @@ def print_error_message(string):
     """
     system('clear')
     cprint(string, 'white', 'on_red', ['bold'])
-    sleep(3)
+    sleep(delay)
     system('clear')
     return
