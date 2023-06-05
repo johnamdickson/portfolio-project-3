@@ -24,7 +24,7 @@ def get_user_coordinates():
 
         colored_latitude = colored("-90 and 90,",'green', None, ['bold'])
         colored_longitude = colored("-180 and 180.", 'green', None, ['bold'])
-        colored_whitespace = colored("separated by a\nwhitespace.\n", 'green', None, ['bold'])
+        colored_whitespace = colored("separated by a\nspace.\n", 'green', None, ['bold'])
         print("Please enter your chosen location's latitude and longitude "
               f"{colored_whitespace}")
         print(f"Note, latitude must be between {colored_latitude} longitude"
@@ -36,7 +36,7 @@ def get_user_coordinates():
         except ValueError as e:
             if e.args[0] == "not enough values to unpack (expected 2, got 1)":
                 f.print_error_message("You only made one entry or did not include"
-                                      " a whitespace, please make two entries - "
+                                      " a space, please make two entries - "
                                       "one for latitude and another for longitude.", 3)
             elif e.args[0] == "too many values to unpack (expected 2)":
                 f.print_error_message("You entered too many numbers, please make two"
