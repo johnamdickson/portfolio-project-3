@@ -4,7 +4,9 @@ from pyowm.utils import timestamps
 import os
 from termcolor import colored, cprint
 import main
-# import time
+from os import system
+from time import sleep
+
 # Testing on Codeanywhere requires local access to api_key on line below
 # import api_key as api
 
@@ -53,12 +55,16 @@ def get_user_coordinates():
                 print(colored("Invalid entry, please enter a latitude"
                               " between -90 and 90",
                               'white', 'on_red', ['bold']))
+                sleep(2)
+                system('clear')
                 get_user_coordinates()
                 return
             if longitude < -180 or longitude > 180:
                 print(colored("Invalid entry, please enter a longitude"
                               " between -180 and 180",
                               'white', 'on_red', ['bold']))
+                sleep(2)
+                system('clear')
                 get_user_coordinates()
                 return
             break
