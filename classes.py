@@ -144,7 +144,6 @@ class Feedback:
         # create table with feedback name and 
         table = [[name, feedback]] 
         print(tabulate(table, headers = ["Name", "Feedback"],tablefmt="rounded_grid", maxcolwidths=[20, 40]))
-        sleep(1)
         # request response from user that they are happy with their feedback.
         user_input = input("\nAre you happy to proceed with this feedback?\n"
                            "Enter C to Confirm and return to main menu\n" 
@@ -153,20 +152,23 @@ class Feedback:
         # Check that input is alphabet character only, solution from W3 schools:
         # https://www.w3schools.com/python/ref_string_isalpha.asp#:~:text=The%20isalpha()%20method%20returns,!%23%25%26%3F%20etc
         if not user_input.isalpha():
+            system('clear')
             print(colored("Invalid entry, please enter C/D/N/ or F to proceed.",
                           'white', 'on_red', ['bold']))
             sleep(2)
-            user_input
+            self.read_feedback()
         elif len(user_input) > 1:
+            system('clear')
             print((colored("Invalid entry, please enter only 1 character from"
-                           "C/D/N/ or F to proceed.", 'white', 'on_red',
+                           " C/D/N/ or F to proceed.", 'white', 'on_red',
                            ['bold'])))
             sleep(2)
-            user_input
+            self.read_feedback()
         elif user_input.lower() == "c":
             # if feedback is OK, return from function and allow programme to 
             # proceed after displaying a thank you message.
-            cprint(f"{const.THANK_YOU}", 'light_yellow', None, None)
+            system('clear')
+            cprint(f"{const.THANK_YOU}", 'light_green', None, None)
             sleep(2)
             return
         elif user_input.lower() == "d":
@@ -185,11 +187,12 @@ class Feedback:
         else:
             # function passes through to here if any other character is used
             # read.feedback function is then called again.
+            system('clear')
             print((colored("Invalid entry, please enter only character from"
-                           "C/D/N/ or F to proceed.", 'white', 'on_red',
+                           " C/D/N/ or F to proceed.", 'white', 'on_red',
                            ['bold'])))
             sleep(2)
-            user_input
+            self.read_feedback()
             
         return
 
