@@ -33,11 +33,13 @@ def get_user_coordinates():
             latitude, longitude = input(f"Please enter coordinates below:\n").split()
         except ValueError as e:
             if e.args[0] == "not enough values to unpack (expected 2, got 1)":
+                system('clear')
                 print(colored("You only made one entry or did not include"
                               " a whitespace, please make two entries - "
                               "one for latitude and another for longitude.",
                               'white', 'on_red', ['bold']))
             elif e.args[0] == "too many values to unpack (expected 2)":
+                system('clear')
                 print(colored("You entered too many numbers, please make two"
                               "entries, one for latitude and another for "
                               "longitude.", 'white', 'on_red', ['bold']))
@@ -46,12 +48,14 @@ def get_user_coordinates():
             latitude = float(latitude)
             longitude = float(longitude)
         except ValueError:
+            system('clear')
             print(colored(f"Invalid entry, please enter a number between "
                           "-90 to 90 for latitude and -180 to 180 for "
                           "longitude. ", 'white', 'on_red', ['bold']))
             continue
         else:
             if latitude < -90 or latitude > 90:
+                system('clear')
                 print(colored("Invalid entry, please enter a latitude"
                               " between -90 and 90",
                               'white', 'on_red', ['bold']))
@@ -59,7 +63,8 @@ def get_user_coordinates():
                 system('clear')
                 get_user_coordinates()
                 return
-            if longitude < -180 or longitude > 180:
+            elif longitude < -180 or longitude > 180:
+                system('clear')
                 print(colored("Invalid entry, please enter a longitude"
                               " between -180 and 180",
                               'white', 'on_red', ['bold']))
