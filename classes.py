@@ -345,7 +345,7 @@ class ForecastWeather():
             """
             description = colored(description, 'blue', None, ['bold'])
             return (f"There will be {description} with a wind speed"
-                    f" of {formatted_wind_speed}. ")
+                    f" of {formatted_wind_speed}.\n")
 
         if wind_speed < 0.5:
             wind_conditions = wind_conditions_string("calm conditions")
