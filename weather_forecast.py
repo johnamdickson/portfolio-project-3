@@ -24,7 +24,7 @@ def get_user_coordinates():
 
         colored_latitude = colored("-90 and 90,",'green', None, ['bold'])
         colored_longitude = colored("-180 and 180.", 'green', None, ['bold'])
-        colored_whitespace = colored("\nseparated by a space.\n", 'green', None, ['bold'])
+        colored_whitespace = colored("separated by a space.\n", 'green', None, ['bold'])
         print("Please enter your chosen location's latitude and longitude "
               f"{colored_whitespace}")
         print(f"Note, latitude must be between {colored_latitude} longitude"
