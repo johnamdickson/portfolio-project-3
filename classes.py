@@ -475,7 +475,7 @@ class ForecastWeather():
         """
         Function called from main to step through forecasts.
         """
-        input("\nHit return to see the next day's forcast\n")
+        input("\nHit return to see the next day's forecast\n")
 
     def print_three_day_summary(self, day_one, day_two, day_three):
         system('clear')
