@@ -32,8 +32,7 @@ This application is showcasing Python coding for Project Portfolio 3 and can be 
 - [Testing](#testing)
   - [Development Testing](#development-testing)
   - [Testing User Stories](#testing-user-stories)
-     - [Adult User Goals](#adult-user-goals)
-     - [Child User Goals](#child-user-goals)
+     - [User Goals](#user-goals)
      - [Site Administrator Goals](#site-administrator-goals)
   - [Responsiveness Testing](#responsiveness-testing)
     - [Physical Device](#physical-device)
@@ -152,12 +151,19 @@ The structure of the app was defined and mapped out on a [flow chart](views/READ
 ### Development Testing
 
 - __Starting Options__
-  - **ADD  <br><br>
+  - The app started successfully and presented the two user options: 1 to run past weather or 2 to start weather forecast. Entering 1 or 2 directs the user to the correct section of the app.  <br><br>
 - __Past Weather__
-  - **ADD <br><br>
+  - The past weather options loaded successfully giving the user the information requried and the correct prompt to enter the selected date.
+  - Various errors were purposefully entered into the terminal to check the app response as detailed below:
+    - *Incorrect date format*: a variety of non-date related strings and characters were entered into the terminal with the expected response detailed below: ![date-validation-error](views/README-files/date-validation-message.png) The message remained on screen for 3 seconds at which point the Past Weather menu reappears to allow user to try and enter a date again.
+    - *Date out of range*: a date outwith the data range contained in the Google Sheet was entered. The loading screen was presented allowing the program to check the date given lies within the archive data range. As expected, the program presented the user with the following error message:![date-out-of-range-error](views/README-files/date-out-of-range-message.png) As in the message above, it remained on screen for 3 seconds before returning to the Past Weather menu.
+  - When a valid date is entered, the screen clears and a series of statements are printed out in plain English with the data obtained or calculated from the Google Sheet formatted in bold blue. 
+  - After a delay, a user options menu is presented to return to the main menu, look for past weather, run a weather forecast for chosen location or leave feedback. The user options menu testing is detailed later on in this section. 
 - __Weather Forecast__
   - **ADD.<br><br>
 - __Feedback__
+  - **ADD.<br><br>
+- __User Options__
   - **ADD.<br><br>
 
 ### Testing User Stories
