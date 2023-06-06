@@ -132,13 +132,14 @@ The structure of the app was defined and mapped out on a [flow chart](views/READ
 ## Technologies Used
 
 ### Languages Used
-- Python: used extensively during project.
-- Markdown: Used exclusively for README.
-- HTML5: minor use when applying styling to app view.
-- CSS3:minor use when applying styling to app view.<br>
+- **Python**: used extensively during project.
+- **Markdown**: Used exclusively for README.
+- **HTML5**: minor use when adding additional elements to the web page.
+- **CSS3**: minor use when applying styling to app view.<br>
 
 ### Frameworks, Libraries & Programs Used
 - **gspread**: used to complete CRUD actions on Google Sheets.
+- **Credentials**: imported from google.oauth.serivice_account to enable access to Google Sheets.
 - **termcolor**: used to apply foreground and background colors to terminal text.
 - **datetime**: from the standard library, used to perform operations on date and time objects and strings.
 - **numpy**: used to create a range of floats due to python range only returning a range of integers.
@@ -146,6 +147,9 @@ The structure of the app was defined and mapped out on a [flow chart](views/READ
 - **pyowm**: library with classes used to manage Open Weather API calls.
 - **time**: from the standard library used to access sleep method for pauses during pertinent points of relaying information to the user.
 - **os**: from the standard library used to access system method to clear terminal screen at appropriate points whilst the program is running.
+- **tabulate**: used to create a table of contents in the feedback and weather forecast sections of the app.
+- **threading**: used to enable multithreading operations used for loading screens.
+
 <br><a href="#contents">BACK TO CONTENTS 🔼</a>
 ## Testing 
 ### Development Testing
