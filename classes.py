@@ -234,20 +234,22 @@ class ForecastWeather():
     """
 
     def __init__(self, forecast_dictionary, location_dictionary):
+        """
+        Initialise class instance with forecast_dictionary and location_dictionary.
+        """
         self.forecast_dictionary = forecast_dictionary
         self.location_dictionary = location_dictionary
-        
+
+    # Create variables for storing 3 days of forecasts
     day_one_parsed = {}
     day_two_parsed = {}
     day_three_parsed = {}
 
     def parse_forecast(self):
-
         """
         Function to extract required data from Open Weather API 
         dictionary.
         """
-
         # Create 3 day forecast by selecting the first three items in the
         # forecast_dictionary.
         day_one = self.forecast_dictionary[0]
@@ -271,7 +273,7 @@ class ForecastWeather():
 
     def create_forecast(self, forecast_dict):
         """
-        Method to create weather report by printing off the weather
+        Method to create weather report by calculating the weather
         report obtained via API.
         """
 
@@ -283,7 +285,9 @@ class ForecastWeather():
             date = d.datetime.fromtimestamp(timestamp).strftime('%d-%m-%y')
             return (date)
 
+        # establish forecast date and return readable format using return_date_function
         forecast_date = return_date_format(forecast_dict['reference_time'])
+
         # Delete 273 from temperatures to account for units in deg Kelvin
         day_temp = round(forecast_dict['temperature']['feels_like_day']
                             - 273, 2)
@@ -291,11 +295,9 @@ class ForecastWeather():
                             - 273, 2)
 
         # calculate wind direction cardinal and ordinal directions from
-        # degrees
+        # degrees in forecast_dictionary and update wind_direction variable
         card_ord_wind_dir = forecast_dict['wind']['deg']
-
         wind_direction = ""
-
         if card_ord_wind_dir in np.arange(0, 22.5, 0.5):
             wind_direction = "northerly"
         elif card_ord_wind_dir in np.arange(22.5, 45, 0.5):
@@ -374,6 +376,7 @@ class ForecastWeather():
         elif wind_speed >= 32.7:
             wind_conditions = wind_conditions_string("hurricane force "
                                                      "winds")
+
         # add wind directions to wind conditions string"
         formatted_wind_direction = colored(f"{wind_direction}", 'blue', None, ['bold'])
         formatted_bearing = colored(f"{card_ord_wind_dir}°", 'blue', None, ['bold'])
@@ -382,15 +385,9 @@ class ForecastWeather():
                             f"{formatted_bearing}.")
 
         # calculate weather icon from weather code callback and
-        # assign appropriate icon ot be printed to terminal.
+        # assign appropriate icon to be printed to terminal.
         weather_icon = ""
         weather_code = forecast_dict['weather_code']
-
-        # Line below for testing the weather const to be removed
-        # on final deployment
-
-        # weather_code = 201
-
         if 200 <= weather_code <= 232:
             weather_icon = const.LIGHTNING
         elif 300 <= weather_code <= 321:
@@ -414,6 +411,8 @@ class ForecastWeather():
         elif weather_code == 804:
             weather_icon = const.OVERCAST
 
+        # create variables for data points to format them prior to passing on
+        # to print_forecast_to_console function
         formatted_conditions = colored(forecast_dict['detailed_status'].title(), 'blue', None, ['bold'])
         formatted_date = colored(forecast_date, 'blue', None, ['bold'])
         formatted_day_temp = colored(f"{day_temp} °C", 'blue', None, ['bold'])
@@ -436,7 +435,7 @@ class ForecastWeather():
             colored_latitude = colored(f"{coordinates[0]}°", 'blue', None, ['bold'])
             colored_longitude = colored(f"{coordinates[1]}°", 'blue', None, ['bold'])
             location = f"latitude {colored_latitude} and longitude {colored_longitude}"
-
+        # select the appropriate title page based on day number passed in and print.
         if day_number == 1:
             system('clear')
             cprint(const.TODAYS_FORECAST, 'green', None, None)
@@ -451,6 +450,8 @@ class ForecastWeather():
             cprint(const.DAY_AFTER_TOMORROWS_FORECAST, 'light_magenta',
                    None, None)
             sleep(4)
+        # print off items from report in order, clearing screen after the icon is 
+        # printed off to ensure console window is fully cleared of text.
         system('clear')
         print(f"Here is the weather forecast for {location} on {forecast[0]}")
         sleep(3)
@@ -470,17 +471,22 @@ class ForecastWeather():
 
     def move_to_next_day(self):
         """
-        Function called from main to step through forecasts.
+        Function called from main.py to step through forecasts.
         """
         input("\nHit return to see the next day's forecast\n")
+        return
 
     def print_three_day_summary(self, day_one, day_two, day_three):
         system('clear')
+        # create table from data passed in. Day and night temps merged in one column to prevent
+        # overspill across lines
         table = [[day_one[0], day_one[2] + "\n/\n" + day_one[3],day_one[5], day_one[4]],
                  [day_two[0], day_two[2] + "\n/\n" + day_two[3],day_two[5], day_two[4]],
                  [day_three[0], day_three[2] + "\n/\n" + day_three[3], day_three[5], day_three[4]]
                  ]
+        # print off table using tabulate method.
         print(tabulate(table, headers = ["Date", "Day/Night Temp","Conditions", "Wind"],tablefmt="rounded_grid", maxcolwidths=[8, 7, 10,25]))
+        return
 
 class LoadingScreens:
     """
