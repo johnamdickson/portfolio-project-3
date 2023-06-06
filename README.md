@@ -95,8 +95,10 @@ The structure of the app was defined and mapped out on a [flow chart](views/READ
 #### Imagery
 - The background image was sourced from [Pexels](https://www.pexels.com/) and was selected for exhibiting a number of different weather types in one image.
 ![Background Image](views/README-files/background-picture.webp)
+- Two weather icon images were sourced from [Favicon.io](https://favicon.io/) to bookend the main title.<br>
+<img src="views/images/title-icon-bolt.png"  width="200" height="200"> <img src="views/images/title-icon-sun.png"  width="200" height="200">
 #### Favicon
-- The Favicon logo was sourced from [Favicon.io](https://favicon.io/) and was selected to show a dramatic weather event.![Favicon Image](views/README-files/icon.png)
+- The Favicon logo is the lightning bolt image described above.
 #### Typography
 - The title font was sourced from Google Fonts and is called Merriweather. This was selected purely on the presence of weather in the name and was seen as a good link back to the purpose of the app.
 <a href="#contents">BACK TO CONTENTS 🔼</a>
