@@ -100,7 +100,7 @@ The structure of the app was defined and mapped out on a [flow chart](views/READ
 #### Favicon
 - The Favicon logo is the lightning bolt image described above.
 #### Typography
-- The title font was sourced from Google Fonts and is called Merriweather. This was selected purely on the presence of weather in the name and was seen as a good link back to the purpose of the app.
+- The title font was sourced from Google Fonts and is called Merriweather. This was selected purely on the presence of weather in the name and was seen as a good link back to the purpose of the app.<br>
 <a href="#contents">BACK TO CONTENTS 🔼</a>
 
 ## Features 
@@ -191,24 +191,22 @@ The structure of the app was defined and mapped out on a [flow chart](views/READ
 ### Validator Testing 
 
 - HTML
-  - No errors were returned for the page when passing through the official W3C HTML validator:
-    ![HTML Validator Results](/assets/README-files/html-validator.jpg)<br><br> **ADD
+  - No errors or warnings were returned for the page when passing through the official W3C HTML validator:
+    ![HTML Validator Results](views/README-files/w3-html-validator-results.png)<br><br> 
     
 - CSS
   - No errors were returned for the page when passing through the official W3C CSS validator:
-    ![HTML Validator Results](/assets/README-files/css-validator.jpg)<br><br> **ADD
+    ![CSS Validator Results](/views/README-files/w3-css-validator-results.png) 
+    There were two warnings returned, both linked to code that existed from the CI template.<br><br>
 
 - Python
   - **ADD.
-  ![JSHint Validator Results](/assets/README-files/jshint.png)<br><br> **ADD
+  ![JSHint Validator Results](/assets/README-files/jshint.png)<br><br> 
 
 - Accessibility
-  - Accessibility of the page was checked using the lighthouse tool in devtools. The results were satisfactory for both desktop and mobile as shown below. **ADD
+  - Accessibility of the page was checked using the lighthouse tool in devtools. The results were satisfactory as shown below. **ADD
      - Desktop results:
-     ![Lighthouse Desktop Results](/assets/README-files/lighthouse-results-desktop.png)
-     - Mobile results:
-     ![Lighthouse Desktop Results](/assets/README-files/lighthouse-results-mobile.png)
-<br><br>
+     ![Lighthouse Results](views/README-files/lighthouse-results.png) <br><br>
   - The colour contrasts **ADD.<br><br>
   
   <table  width = 100% cellspacing="0" cellpadding="0">
