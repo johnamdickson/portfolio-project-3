@@ -151,16 +151,28 @@ The structure of the app was defined and mapped out on a [flow chart](views/READ
 ### Development Testing
 
 - __Starting Options__
-  - The app started successfully and presented the two user options: 1 to run past weather or 2 to start weather forecast. Entering 1 or 2 directs the user to the correct section of the app.  <br><br>
+  - The app started successfully using the Run Program button with the title ANSI graphic title text being presented followed by the main menu.
+  - Entering 1 or 2 directed the user to the correct section of the app.  <br><br>
 - __Past Weather__
-  - The past weather options loaded successfully giving the user the information requried and the correct prompt to enter the selected date.
-  - Various errors were purposefully entered into the terminal to check the app response as detailed below:
-    - *Incorrect date format*: a variety of non-date related strings and characters were entered into the terminal with the expected response detailed below: ![date-validation-error](views/README-files/date-validation-message.png) The message remained on screen for 3 seconds at which point the Past Weather menu reappears to allow user to try and enter a date again.
-    - *Date out of range*: a date outwith the data range contained in the Google Sheet was entered. The loading screen was presented allowing the program to check the date given lies within the archive data range. As expected, the program presented the user with the following error message:![date-out-of-range-error](views/README-files/date-out-of-range-message.png) As in the message above, it remained on screen for 3 seconds before returning to the Past Weather menu.
-  - When a valid date is entered, the screen clears and a series of statements are printed out in plain English with the data obtained or calculated from the Google Sheet formatted in bold blue. 
+  - The past weather date entry page loaded successfully giving the user the information required and the correct prompt to enter the selected date.
+  ![past-weather](views/README-files/past-weather-date-entry.png)
+  - When a valid date is entered, the screen clears and a series of statements are printed out in readable language with the data obtained or calculated from the Google Sheet formatted in bold blue. ![past-weather](views/README-files/past-weather.gif)
   - After a delay, a user options menu is presented to return to the main menu, look for past weather, run a weather forecast for chosen location or leave feedback. The user options menu testing is detailed later on in this section. 
+  - Various errors were purposefully entered into the terminal to check the app response as detailed below:
+    - *Incorrect date format*: a variety of non-date related strings and characters were entered into the terminal with the expected response detailed below: ![date-validation-error](views/README-files/date-validation-message.png) The message remained on screen for 3 seconds at which point the Past Weather date entry page reappears to allow user to try and enter a date again.
+    - *Date out of range*: a date outwith the data range contained in the Google Sheet was entered. The loading screen was presented allowing the program to check the date given lies within the archive data range. As expected, the program presented the user with the following error message:![date-out-of-range-error](views/README-files/date-out-of-range-message.png) As in the message above, it remained on screen for 3 seconds before returning to the Past Weather date entry page.
 - __Weather Forecast__
-  - **ADD.<br><br>
+  - The forecast weather coordinate entry page loaded successfully giving the user the information required and the correct prompt to enter the required latitude and longitude. ![forecast-weather](views/README-files/weather-forecast-coord-entry.png)
+  - On receipt of valid coordinates, the app presents todays forecast. This consists of a title screen followed by feedback on location and date of forecast. This is then followed by weather icon with conditions underneath before a series of readable language statements is presented with the data obtained or calculated from the Open Weather API formatted in bold blue. ![weather-forecast](views/README-files/weather-forecast-today.gif)
+  - After a delay a prompt to hit enter to see the next days forecast is presented to the user. Hitting enter runs tomorrows forecast which is identical to the process above and then hitting enter at end of tomorrows forecast returns the day after tomorrows forecast.
+  - At the end of the day after tomorrows forecast, the user options menu is presented with the same options as described in the Past Weather development testing section with an additional option to see a 5 day summary. This will be described in more detail in the User Options section below.
+  - Various errors were purposefully entered into the terminal or manaully created to check the app response as detailed below:
+    - *Single entry*: a single entry was made in the terminal which correctly resulted in the error message below: ![single-entry-error](views/README-files/one-entry-weather-forecast.png) The message remained on screen for 3 seconds at which point the Weather Forecast coordinate entry page reappears to allow user to try and enter coordinates again.
+    - *Too many entries*: three numbers were entered which resulted in the error message below: ![too-many-entries-error](views/README-files/too-many-entries-message.png) The message persisted for 3 seconds before returning to the coordinate entry page.
+    - *Latitude out of range*: a latitude was entered which was not within the acceptable range of -90 to 90 resulting in the error message below: ![incorrect latitude-error](views/README-files/incorrect-latitude-message.png) The message persisted for 3 seconds before returning to the coordinate entry page.
+    - *Longitude out of range*: a longitude was entered which was not within the acceptable range of -180 to 180 resulting in the error message below: ![incorrect longitude-error](views/README-files/incorrect-longitude-message.png) The message persisted for 3 seconds before returning to the coordinate entry page.
+    - *API errors*: a single digit was deleted from the API key config var in Heroku to simulate an error returned from the API which generated the message below: ![api-error](views/README-files/invalid-api-message.png) The message persisted for 3 seconds however in this instance, the user menu was made available as the user may want to navigate away from the Weather Forecast, given that the error came from the API so may be a time bound issue on the providers side.
+
 - __Feedback__
   - **ADD.<br><br>
 - __User Options__
