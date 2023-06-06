@@ -95,7 +95,7 @@ The structure of the app was defined and mapped out on a [flow chart](views/READ
 #### Imagery
 - The background image was sourced from [Pexels](https://www.pexels.com/) and was selected for exhibiting a number of different weather types in one image.
 ![Background Image](views/README-files/background-picture.webp)
-- Two weather icon images were sourced from [Favicon.io](https://favicon.io/) to bookend the main title.<br>
+- Two weather icon images were sourced from [Favicon.io](https://favicon.io/) to bookend the main title.<br><br>
 <img src="views/images/title-icon-bolt.png"  width="200" height="200"> <img src="views/images/title-icon-sun.png"  width="200" height="200">
 
 #### Favicon
@@ -139,14 +139,14 @@ The structure of the app was defined and mapped out on a [flow chart](views/READ
 - CSS3:minor use when applying styling to app view.<br>
 
 ### Frameworks, Libraries & Programs Used
-- gspread: used to complete CRUD actions on Google Sheets.
-- termcolor: used to apply foreground and background colors to terminal text.
-- datetime: from the standard library, used to perform operations on date and time objects and strings.
-- numpy: used to create a range of floats due to python range only returning a range of integers.
-- itertools: from standard library used to iterate over list for loading animation.
-- pyowm: library with classes used to manage Open Weather API calls.
-- time: from the standard library used to access sleep method for pauses during pertinent points of relaying information to the user.
-- os: from the standard library used to access system method to clear terminal screen at appropriate points whilst the program is running.
+- **gspread**: used to complete CRUD actions on Google Sheets.
+- **termcolor**: used to apply foreground and background colors to terminal text.
+- **datetime**: from the standard library, used to perform operations on date and time objects and strings.
+- **numpy**: used to create a range of floats due to python range only returning a range of integers.
+- **itertools**: from standard library used to iterate over list for loading animation.
+- **pyowm**: library with classes used to manage Open Weather API calls.
+- **time**: from the standard library used to access sleep method for pauses during pertinent points of relaying information to the user.
+- **os**: from the standard library used to access system method to clear terminal screen at appropriate points whilst the program is running.
 <br><a href="#contents">BACK TO CONTENTS 🔼</a>
 ## Testing 
 ### Development Testing
