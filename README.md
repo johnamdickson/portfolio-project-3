@@ -307,13 +307,15 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 <a href="#contents">BACK TO CONTENTS 🔼</a>
 ## Credits 
 ### Content 
-NOTE: Specific links are included within the HTML, CSS or Javascript files. The list below summarises content credits in general.
+NOTE: Specific links are included within the Python, HTML, CSS  files. The list below summarises content credits in general.
 - Stack Overflow, W3 Docs, MDN Web Docs and other online resources were a massive help for HTML, CSS or JS code that enabled some of the functionality I was looking for.
 - Beafort scale used to describe weather from given wind speed. Source in [wikipedia.](https://en.wikipedia.org/wiki/Beaufort_scale)
 - Cardinal and ordinal wind directions taken from [Windy](https://windy.app/blog/what-is-wind-direction.html).
-- **ADD
+- The idea to use the Open Weather API was inspired by the Clima project, taught as part of the London App Brewery's iOS App Development Bootcamp.
 ### Media
 - Merriweather font was sourced from Google Fonts.
 - All gifs were generated on [ezif.com.](https://ezgif.com/video-to-gif)
+- The ASCII weather icons were generated [here](https://asciiart.club/) using icons sourced from [Flaticon](https://www.flaticon.com/). *A full list of icons used with corresponding links can be found [here](views/README-files/flaticon-links.pdf).*
+- ASCII title text was generated using this [Text to ASCII Art Generator.](https://patorjk.com/software/taag)
 <br><br>
 <a href="#contents">BACK TO CONTENTS 🔼</a>
