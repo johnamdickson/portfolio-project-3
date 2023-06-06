@@ -36,11 +36,11 @@ def get_user_coordinates():
         except ValueError as e:
             if e.args[0] == "not enough values to unpack (expected 2, got 1)":
                 f.print_error_message("You only made one entry or did not include"
-                                      " a space, please make two entries - "
-                                      "one for latitude and another for longitude.", 3)
+                                      " a space, please make two entries, "
+                                      "\none for latitude and another for longitude.", 3)
             elif e.args[0] == "too many values to unpack (expected 2)":
                 f.print_error_message("You entered too many numbers, please make two"
-                                      " entries, one for latitude and another for "
+                                      " entries, one for latitude and \nanother for "
                                       "longitude.", 3)
             continue
         try:
