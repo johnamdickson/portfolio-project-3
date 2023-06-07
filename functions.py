@@ -13,3 +13,10 @@ def print_error_message(string, delay):
     sleep(delay)
     system('clear')
     return
+
+def format_data_strings(string, colour):
+    """
+    Function to format data points that will be 
+    highlighted blue for feedback to user.
+    """
+    return colored(string, colour, None, ['bold'])
