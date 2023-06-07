@@ -96,7 +96,7 @@ def get_weather_forecast(coordinates):
     geo_mgr = owm.geocoding_manager()
     # obtain forecast and location from Open Weather using coordinates.
     try:
-        one_call = mgr.one_call(latitude, longitude)
+        one_call = mgr.one_call(latitude, longitude, exclude='alerts')
         forecast_weather_dictionary = ([weather.to_dict() for weather
                                     in one_call.forecast_daily])
         location = geo_mgr.reverse_geocode(latitude, longitude)
