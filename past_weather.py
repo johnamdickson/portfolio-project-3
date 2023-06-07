@@ -63,10 +63,8 @@ def get_date(sheet_dates):
     while True:
         # Solution to highlighting text found in stack overflow:
         # https://www.studytonight.com/python-howtos/how-to-print-colored-text-in-python
-        earliest_date = colored(sheet_dates[0], 'green', None,
-                                ['bold'])
-        latest_date = colored(sheet_dates[1], 'green', None,
-                              ['bold'])
+        earliest_date = f.format_data_strings(sheet_dates[0], 'green')
+        latest_date = f.format_data_strings(sheet_dates[1], 'green')
         print(f"Please enter the date to check the historical weather data for"
               " Dublin Airport.\n")
         print(f"Available dates between {earliest_date} and {latest_date}. \n")

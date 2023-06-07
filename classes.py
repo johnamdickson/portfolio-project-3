@@ -32,13 +32,13 @@ class PastWeather:
         # class.
         data = self.weather_data
         # format all the relevant data points and add units to string.
-        max_temp = colored(data[2] + "°C", 'blue', None, ['bold'])
-        min_temp = colored(data[4] + "°C", 'blue', None, ['bold'])
-        rain = colored(data[8] + " mm", 'blue', None, ['bold'])
-        atmos_pressure = colored(data[9] + " mbar", 'blue', None, ['bold'])
-        mean_wind_speed = colored(data[10] + " knots", 'blue', None, ['bold'])
+        max_temp = f.format_data_strings(data[2] + "°C", 'blue')
+        min_temp = f.format_data_strings(data[4] + "°C", 'blue')
+        rain = f.format_data_strings(data[8] + " mm", 'blue')
+        atmos_pressure = f.format_data_strings(data[9] + " mbar", 'blue')
+        mean_wind_speed = f.format_data_strings(data[10] + " knots", 'blue')
         sunshine_duration = data[17]
-        sunshine_duration_string = colored(data[17], 'blue', None, ['bold'])
+        sunshine_duration_string = f.format_data_strings(data[17], 'blue')
         # assign verb and noun for sunshine duration description.
         sunshine_string = ["were", "hours"]
         # Code below to calculate day of the week from date using
@@ -46,7 +46,7 @@ class PastWeather:
         # https://www.programiz.com/python-programming/datetime/strftime
         date_format = '%d/%m/%Y'
         date = d.datetime.strptime(self.date, date_format)
-        day = colored(date.strftime('%A'), 'blue', None, ['bold'])
+        day = f.format_data_strings(date.strftime('%A'), 'blue')
         # Code below to handle singular sunshine hour with correct grammar
         # returned in instance of 1 hour of sunshine.
         if float(sunshine_duration) == 1:
@@ -70,7 +70,7 @@ class PastWeather:
             )
         sleep(3)
         print(f"There {data['sun_verb']} {data['sun_dur']} "
-            f"{colored(data['sun_noun'], 'blue', None, ['bold'])} "
+            f"{f.format_data_strings(data['sun_noun'], 'blue')} "
             f"of sunshine with a total rainfall of {data['r']}.")
         sleep(3)
         print(f"The mean wind speed for the day was {data['ws']}"
@@ -337,15 +337,14 @@ class ForecastWeather():
         # f string for user feedback that includes the wind direction
         #  information as well.
         wind_speed = forecast_dict['wind']['speed']
-        formatted_wind_speed = colored(f"{wind_speed} m/s", 'blue', None,
-                                       ['bold'])
+        formatted_wind_speed = f.format_data_strings(f"{wind_speed} m/s", 'blue')
 
         def wind_conditions_string(description):
             """
             Helper function to return string from wind speed description
             passed in from calculation.
             """
-            description = colored(description, 'blue', None, ['bold'])
+            description = f.format_data_strings(description, 'blue')
             return (f"There will be {description} with a wind speed"
                     f" of {formatted_wind_speed}.\n")
 
@@ -378,8 +377,8 @@ class ForecastWeather():
                                                      "winds")
 
         # add wind directions to wind conditions string"
-        formatted_wind_direction = colored(f"{wind_direction}", 'blue', None, ['bold'])
-        formatted_bearing = colored(f"{card_ord_wind_dir}°", 'blue', None, ['bold'])
+        formatted_wind_direction = f.format_data_strings(f"{wind_direction}", 'blue')
+        formatted_bearing = f.format_data_strings(f"{card_ord_wind_dir}°", 'blue')
         wind_conditions += ("The wind direction will be "
                             f"{formatted_wind_direction} at "
                             f"{formatted_bearing}.")
@@ -413,10 +412,10 @@ class ForecastWeather():
 
         # create variables for data points to format them prior to passing on
         # to print_forecast_to_console function
-        formatted_conditions = colored(forecast_dict['detailed_status'].title(), 'blue', None, ['bold'])
-        formatted_date = colored(forecast_date, 'blue', None, ['bold'])
-        formatted_day_temp = colored(f"{day_temp} °C", 'blue', None, ['bold'])
-        formatted_night_temp = colored(f"{night_temp} °C", 'blue', None, ['bold'])
+        formatted_conditions = f.format_data_strings(forecast_dict['detailed_status'].title(), 'blue')
+        formatted_date = f.format_data_strings(forecast_date, 'blue')
+        formatted_day_temp = f.format_data_strings(f"{day_temp}°C", 'blue')
+        formatted_night_temp = f.format_data_strings(f"{night_temp}°C", 'blue')
 
         return [formatted_date, weather_icon, formatted_day_temp, 
                 formatted_night_temp, wind_conditions,formatted_conditions]
@@ -429,11 +428,10 @@ class ForecastWeather():
         # if open weather returns a location print given location to terminal,
         # otherwise return the latitude and longitude.
         if self.location_dictionary:
-            location = colored(self.location_dictionary[0]['name'], 'blue', None,
-                               ['bold'])
+            location = f.format_data_strings(self.location_dictionary[0]['name'], 'blue')
         else:
-            colored_latitude = colored(f"{coordinates[0]}°", 'blue', None, ['bold'])
-            colored_longitude = colored(f"{coordinates[1]}°", 'blue', None, ['bold'])
+            colored_latitude = f.format_data_strings(f"{coordinates[0]}°", 'blue')
+            colored_longitude = f.format_data_strings(f"{coordinates[1]}°", 'blue')
             location = f"latitude {colored_latitude} and longitude {colored_longitude}"
         # select the appropriate title page based on day number passed in and print.
         if day_number == 1:
@@ -446,7 +444,6 @@ class ForecastWeather():
             sleep(4)
         else:
             system('clear')
-            colored
             cprint(const.DAY_AFTER_TOMORROWS_FORECAST, 'light_magenta',
                    None, None)
             sleep(4)

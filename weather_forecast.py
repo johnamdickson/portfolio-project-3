@@ -22,9 +22,9 @@ def get_user_coordinates():
         # Taking multiple inputs in one command solution found here:
         # https://www.geeksforgeeks.org/taking-multiple-inputs-from-user-in-python/
 
-        colored_latitude = colored("-90 and 90,",'green', None, ['bold'])
-        colored_longitude = colored("-180 and 180.", 'green', None, ['bold'])
-        colored_whitespace = colored("separated by a space.\n", 'green', None, ['bold'])
+        colored_latitude = f.format_data_strings("-90 and 90,",'green')
+        colored_longitude = f.format_data_strings("-180 and 180.", 'green')
+        colored_whitespace = f.format_data_strings("separated by a space.\n", 'green')
         print("Please enter your chosen location's latitude and longitude "
               f"{colored_whitespace}")
         print(f"Note, latitude must be between {colored_latitude} longitude"
