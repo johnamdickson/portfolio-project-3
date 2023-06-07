@@ -111,11 +111,18 @@ The structure of the app was defined and mapped out on a [flow chart](views/READ
 ![Game-Information](assets/README-files/game-information.png)
 
   - **ADD<br><br>
-- __Past Weather__ <br><br>
-![Game-Instructions](/assets/README-files/game-instructions.jpg) 
+- __Past Weather__ 
+  - The past weather section starts with a series of informative statements and prompts ending with a user input requesting a date entry.
+  ![past-weather](views/README-files/past-weather-date-entry.png)
+  - On entering a correctly formatted and in range date
+  a series of statements are printed out in readable language with the data obtained or calculated from the Google Sheet formatted in bold blue.
+![past-weather-outcome](views/README-files/past-weather-result.png) 
+- After a short delay, a menu with four options is presented to allow the user to navigate elsewhere in the app or back to beginning of past weather.
+![four-options](views/README-files/user-options-four.png) 
 
   - **ADD<br><br>
-- __Weather Forecast__ <br><br>
+- __Weather Forecast__ 
+  - This consists of a title screen followed by feedback on location and date of forecast. This is then followed by weather icon with conditions underneath before a series of readable language statements is presented with the data obtained or calculated from the Open Weather API formatted in bold blue.
 ![Game Area](/assets/README-files/game-area-flip-two-cards.gif)
 
     - **ADD
@@ -159,15 +166,14 @@ The structure of the app was defined and mapped out on a [flow chart](views/READ
   - Entering 1 or 2 directed the user to the correct section of the app.  <br><br>
 - __Past Weather__
   - The past weather date entry page loaded successfully giving the user the information required and the correct prompt to enter the selected date.
-  ![past-weather](views/README-files/past-weather-date-entry.png)
-  - When a valid date is entered, the screen clears and a series of statements are printed out in readable language with the data obtained or calculated from the Google Sheet formatted in bold blue. ![past-weather](views/README-files/past-weather.gif)
-  - After a delay, a user options menu is presented to return to the main menu, look for past weather, run a weather forecast for chosen location or leave feedback. The user options menu testing is detailed later on in this section. 
+  - When a valid date is entered, the screen cleared and the past weather was displayed as expected. ![past-weather](views/README-files/past-weather.gif)
+  - After a delay, a user options menu was presented to return to the main menu, look for past weather, run a weather forecast for chosen location or leave feedback. The user options menu testing is detailed later on in this section. 
   - Various errors were purposefully entered into the terminal to check the app response as detailed below:
     - *Incorrect date format*: a variety of non-date related strings and characters were entered into the terminal with the expected response detailed below: ![date-validation-error](views/README-files/date-validation-message.png) The message remained on screen for 3 seconds at which point the Past Weather date entry page reappears to allow user to try and enter a date again.
     - *Date out of range*: a date outwith the data range contained in the Google Sheet was entered. The loading screen was presented allowing the program to check the date given lies within the archive data range. As expected, the program presented the user with the following error message:![date-out-of-range-error](views/README-files/date-out-of-range-message.png) As in the message above, it remained on screen for 3 seconds before returning to the Past Weather date entry page.
 - __Weather Forecast__
   - The forecast weather coordinate entry page loaded successfully giving the user the information required and the correct prompt to enter the required latitude and longitude. ![forecast-weather](views/README-files/weather-forecast-coord-entry.png)
-  - On receipt of valid coordinates, the app presents todays forecast. This consists of a title screen followed by feedback on location and date of forecast. This is then followed by weather icon with conditions underneath before a series of readable language statements is presented with the data obtained or calculated from the Open Weather API formatted in bold blue. ![weather-forecast](views/README-files/weather-forecast-today.gif)
+  - On receipt of valid coordinates, the app presented todays forecast in the expected manner and format. ![weather-forecast](views/README-files/weather-forecast-today.gif)
   - After a delay a prompt to hit enter to see the next days forecast is presented to the user. Hitting enter runs tomorrows forecast which is identical to the process above and then hitting enter at end of tomorrows forecast returns the day after tomorrows forecast.
   - At the end of the day after tomorrows forecast, the user options menu is presented with the same options as described in the Past Weather development testing section with an additional option to see a 5 day summary. This will be described in more detail in the User Options section below.
   - Various errors were purposefully entered into the terminal or manaully created to check the app response as detailed below:
