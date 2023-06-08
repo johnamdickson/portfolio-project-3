@@ -49,9 +49,6 @@ This application is showcasing Python coding for Project Portfolio 3 and can be 
   - [Content](#content)
   - [Media](#media)
 
-
-
-
 ## UX
 ### Strategy
 The objective of the site is to allow users to review past weather for a location in Ireland or obtain a weather forecast for a geographic location using coordinates.
@@ -62,7 +59,8 @@ The objective of the site is to allow users to review past weather for a locatio
   - To be able to leave feedback on the app.
 <br><br>
 - Site Administrator Goals:
-  - To give users the options to access historical weather, weather forecasts and have the option to create, read, update and delete feedback.
+  - To give users the options to access historical weather, weather forecasts and have the option to create, read, update and delete (CRUD) feedback.
+  - To present data in as colourful a format as possible within the constraints of the terminal.
   - To create an application using Python with clean, resuable and commented code, utilising atomic functionality and OOP where appropriate.
   - To handle any potential errors appropriately.
   - To maintain secrecy of API key for weather data provider.
@@ -92,7 +90,7 @@ The structure of the app was defined and mapped out on a [flow chart](views/READ
   ![Loading Screen](views/README-files/loading-screen.gif)
   - **Forecast Days**: Displayed when the program is about to display the weather for a given forecast day.![Day One](views/README-files/forecast-one.png) ![Day Two](views/README-files/forecast-two.png) ![Day Three](views/README-files/forecast-three.png)
 #### Imagery
-- The background image was sourced from [Pexels](https://www.pexels.com/) and was selected for exhibiting a number of different weather types in one image.
+- The background image, sourced from [Pexels](https://www.pexels.com/), was selected for exhibiting a number of different weather types in one image.
 ![Background Image](views/README-files/background-picture.webp)
 - Two weather icon images were sourced from [Favicon.io](https://favicon.io/) to bookend the main title.<br><br>
 <img src="views/images/title-icon-bolt.png"  width="200" height="200"> <img src="views/images/title-icon-sun.png"  width="200" height="200">
@@ -107,10 +105,8 @@ The structure of the app was defined and mapped out on a [flow chart](views/READ
 
 ### Existing Features
 
-- __Starting Options__ <br><br>
-![Game-Information](assets/README-files/game-information.png)
-
-  - **ADD<br><br>
+- __Starting App__ 
+  - When the app first runs, a text art title appears followed by a 2 option main menu to either access past weather or run a weather forecast. ![app-start](views/README-files/app-start.gif)<br><br>
 - __Past Weather__ 
   - The past weather section starts with a series of informative statements and prompts ending with a user input requesting a date entry.
   ![past-weather](views/README-files/past-weather-date-entry.png)
@@ -119,24 +115,22 @@ The structure of the app was defined and mapped out on a [flow chart](views/READ
 ![past-weather-outcome](views/README-files/past-weather-result.png) 
   - After a short delay, a menu with four options is presented to allow the user to navigate elsewhere in the app or back to beginning of past weather.
 ![four-options](views/README-files/user-options-four.png) 
-
-  - **ADD<br><br>
+ <br><br>
 - __Weather Forecast__ 
   - The weather forecast section commences with a series of statements and prompts ending with a user input requesting entry of coordinates separated by a space. ![forecast-weather](views/README-files/weather-forecast-coord-entry.png)
   - On input of correct data, todays forecast begins which consists of a title screen followed by feedback on location and date of forecast. This is then followed by weather icon with conditions underneath before a series of readable language statements is presented with the data obtained or calculated from the Open Weather API formatted in bold blue. ![weather-forecast](views/README-files/weather-forecast-today.gif)
   - After a delay, a prompt to hit enter to see the next days forecast is presented to the user. Hitting enter runs tomorrows forecast which is identical in format to the process above with exception of the title screen. 
   - At the end of tomorrows forecast the user is again requested to hit enter which then returns the day after tomorrows forecast. The format is again identical to the previous two forecasts with the exception of the title screen.
   - At the end of the day after tomorrows forecast, the user options menu is presented with the same options as described in the past weather features section and an additional option to see a three day summary.![five-options](views/README-files/user-options-five.png)
-  - Selecting option five returns a tabulated summary of the three forecast days followed by a propmt to hit enter to access user options. Doing so returns the four option menu previously described.![three-day-summary](views/README-files/three-day-summary.png)
+  - Selecting option five returns a tabulated summary of the three forecast days followed by a propmt to hit enter to access user options. Doing so returns the four option menu previously described.![three-day-summary](views/README-files/three-day-summary.png)<br><br>
 
-
-- __Feedback__ <br><br>
-![Player-Information](/assets/README-files/player-info.gif)
-
-  - **ADD<br><br>
+- __Feedback__ 
+  - The feedback section allows users to enter their name and any feedback they have on the app. Once these details are created on the feedback worksheet of the historical-weather-data sheet they are repeated back to the user in a tabulated format.
+  - There also appears an options menu beneath where the user can select to change their name, change their feedback, confirm they are happy with the feedback or delete it altogher.
+  ![feedback-table-and-options](views/README-files/feedback-table-and-options.png)<br><br>
 
 ### Features Left to Implement
-- **ADD
+- My initial thoughts regarding the ASCII weather icons was for them to be multicoloured. However I felt that the time required to investigate the feasibilty and implement this visual feature was not worth the effort giving no real functional difference.
 
 <a href="#contents">BACK TO CONTENTS 🔼</a>
 
