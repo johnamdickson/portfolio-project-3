@@ -504,12 +504,23 @@ class LoadingScreens:
     #  https://stackoverflow.com/questions/22029562/python-how-to-make-simple-animated-loading-while-process-is-running
 
     def __init__(self, complete, type):
+        """
+        Initialiser taking in a complete argument boolean
+        and type to determine which animation to load.
+        """
         self.complete = complete
         self.type = type
 
     def animate(self):
+        """
+        function to animate loading screen or title 
+        screen using itertools
+        """
         system('clear')
         if self.type == const.LOADING_CONSTANT:
+            # cycle through the loading list array to produce
+            # an animated creation or an ellipsis behind the
+            # loading word.
             for c in itertools.cycle(const.LOADING_LIST):
                 if self.complete:
                     break
