@@ -1,3 +1,7 @@
+# File created to contain constants, especially
+# those that are of a larger screen size such as 
+# weather icons.
+
 CLEAR = """
                          ██
          ▄█▄            ▐██▌            ▄█▄
