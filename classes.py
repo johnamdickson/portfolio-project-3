@@ -121,7 +121,11 @@ class Feedback:
         # using column number (1 for name, 2 for feedback) input
         # new data and upload to appropriate cell.
         if column == 1:
-            name = input("Please update your name:")
+            name = input("Please update your name or hit return to remain anonymous:")
+            # allow user to remain anonymous by returning that as name if no input 
+            # is given.
+            if name == "":
+                name = "anonymous"
             self.FEEDBACK_SHEET.update_cell(row, column, name)
         if column == 2:
             feedback = input("Please update your feedback:")
@@ -208,7 +212,7 @@ class Feedback:
         upload to spreadsheet.
         """
         system('clear')
-        name_input = input("Please enter your name or leave blank to remain"
+        name_input = input("Please enter your name or hit return to remain"
                            " anonymous:\n")
         # allow user to remain anonymous by returning that as name if no input 
         # is given.
