@@ -8,6 +8,9 @@ import constants as const
 import threading
 import functions as f
 
+# main file which handles flow of app through respective
+# function calls and class instantiations.
+
 def user_options(number_of_options):
     """
     Function to assign 4 options to user on completion
@@ -24,11 +27,14 @@ def user_options(number_of_options):
                     " at your chosen location\nPress 4 to leave "
                     "feedback\n")
         try:
+            # check the number of options required to determine the 
+            # input to return.
             if number_of_options == 5:
                 user_input = int(input(five_options))
             else:
                 user_input = int(input(four_options))
         except ValueError:
+            # handle non int entries and print error message to user.
             if number_of_options == 5:
                 f.print_error_message("Invalid entry, please enter an integer"
                                       " between 1 and 5", 3)
@@ -38,6 +44,8 @@ def user_options(number_of_options):
                                       " between 1 and 4", 3)
                 continue
         else:
+            # perform check if number entered is within the required range and
+            # print error message to user if not.
             if number_of_options == 5:
                 if user_input not in range(1, 6):
                     f.print_error_message("Invalid entry, please enter an integer"
