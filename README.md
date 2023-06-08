@@ -191,7 +191,8 @@ The structure of the app was defined and mapped out on a [flow chart](views/READ
   - The confirm option was also tested which presented the thank you message and returned the program to the main menu. ![confirm-feedback](views/README-files/confirm-feedback.gif)
 
 - __User Options__
-  - **ADD.<br><br>
+  - The two User Options formats - 4 choice and 5 choice - were both presented at the appropriate time: past weather and weather forecast respectively.
+  - Each option was selected to confirm direction to the appropriate part of the app.
 
 ### Testing User Stories
 **ADD
