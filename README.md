@@ -183,7 +183,13 @@ The structure of the app was defined and mapped out on a [flow chart](views/READ
     - *API errors*: a single digit was deleted from the API key config var in Heroku to simulate an error returned from the API which generated the message below: ![api-error](views/README-files/invalid-api-message.png) The message persisted for 3 seconds however in this instance, the user menu was made available as the user may want to navigate away from the Weather Forecast, given that the error came from the API so may be a time bound issue on the providers side.
 
 - __Feedback__
-  - **ADD.<br><br>
+  - Entering name and feedback created a new entry in the feedback worksheet, along with a date for the feedback.
+  - The data was then read back from the worksheet and presented to the user in a table as expected.
+  ![create-read-feedback](views/README-files/create-and-read.gif)<br><br>
+  - The user options were presented and updating the spreadsheet was tested successfully. ![update-feedback](views/README-files/update.gif)
+  - The delete option was also tested and worked as expected, presenting a message before returning to the main menu. ![delete-feedback](views/README-files/delete.gif)
+  - The confirm option was also tested which presented the thank you message and returned the program to the main menu. ![confirm-feedback](views/README-files/confirm-feedback.gif)
+
 - __User Options__
   - **ADD.<br><br>
 
