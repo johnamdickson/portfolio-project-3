@@ -195,10 +195,20 @@ The structure of the app was defined and mapped out on a [flow chart](views/READ
   - Each option was selected to confirm direction to the appropriate part of the app.
 
 ### Testing User Stories
-**ADD
 #### User Goals
-- **ADD**
-  - **ADD
+- **To access the historical weather for a selected date at Dublin airport.**
+  - The app prompts the user to enter a chosen date to access the data. 
+  - The app then presents the data back to the user, fulfilling the requirements of this user goal.
+
+- **To access a 3 day weather forecast for a given location.**
+
+  - The user is prompted to enter a latitude and longitude at the appropriate time.
+  - The user is then presented with a series of forecasts, achieving the objective of this goal.
+
+- **To be able to leave feedback on the app.**
+
+  - The user is provided an option to leave feedback at the end of either the past weather or weather forecast sections.
+  - The feedback persists in a Google Spreadsheet. 
 
 #### Site Administrator Goals
   - **ADD.**
