@@ -59,11 +59,11 @@ The objective of the site is to allow users to review past weather for a locatio
   - To be able to leave feedback on the app.
 <br><br>
 - Site Administrator Goals:
-  - To give users the options to access historical weather, weather forecasts and have the option to create, read, update and delete (CRUD) feedback.
+  - To give users the options to access historical weather, weather forecasts and have the option to create, read, update and delete (CRUD) feedback from the terminal.
   - To present data in as colourful a format as possible within the constraints of the terminal.
   - To create an application using Python with clean, resuable and commented code, utilising atomic functionality and OOP where appropriate.
-  - To handle any potential errors appropriately.
-  - To maintain secrecy of API key for weather data provider.
+  - To handle any potential errors appropriately and consistently.
+  - To keep security sensitive information hidden.
 
 ### Scope
 #### Essential Content
@@ -211,8 +211,26 @@ The structure of the app was defined and mapped out on a [flow chart](views/READ
   - The feedback persists in a Google Spreadsheet. 
 
 #### Site Administrator Goals
-  - **ADD.**
-    - **ADD
+  - **To give users the options to access historical weather, weather forecasts and have the option to create, read, update and delete (CRUD) feedback from the terminal.**
+
+    - The user can access historical weather from the historical-weather-data Google Sheet and worksheet Create, Read, Update and Delete the feedback data using terminal commands.
+  - **To present data in as colourful a format as possible within the constraints of the terminal.**
+
+    - The termcolor library was utilised to apply colorised formatting to terminal outputs, making key information stand out to the user.
+  - **To create an application using Python with clean, resuable and commented code, utilising atomic functionality and OOP where appropriate.**
+
+    - The code has been broken into discrete files to try and group together code in an ordered manner that seeks to follow the flow of the program.
+    - OOP was utilised for actions or events where properties and methods are required. In the case of the Weather Forecast, OOP would enable scaling up to more forecast days or adding functionality from currently unused API data.
+    - The functions have been written in a way such that they are atomic and perform discrete operations. The main.py file has many examples of function calls in order to create the end result.
+    - Code is commented throughout to provide future proofing and all functions are annotated with a docstring.
+  - **To handle any potential errors appropriately and consistently.**
+
+    - Throughout the app there are multiple points where error handling is required. This is achieved through try/except in most cases along with if/else statements. 
+    - The error handling messages all have the same formatting to provide consistency.
+  - **To keep security sensitive information hidden.**
+
+    - The Open Weather API key is stored as an environment variable in Heroku project config vars and testing API key added to gitignore file.
+    - Google Sheets access requirements contained in the creds.json file also added to gitignore file. The json file is also stored as a config var in Heroku.
 
 ### Validator Testing 
 
