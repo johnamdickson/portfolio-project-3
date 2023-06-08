@@ -108,6 +108,8 @@ class Feedback:
         """
         Function to delete feedback from Google Sheet.
         """
+        # perform delete of row data with row count information
+        # passed in.
         self.FEEDBACK_SHEET.delete_rows(row_count)
         return
         
@@ -116,6 +118,8 @@ class Feedback:
         Update feedback using column and row indices to determine
         if name or feedback is to be updated.
         """
+        # using column number (1 for name, 2 for feedback) input
+        # new data and upload to appropriate cell.
         if column == 1:
             name = input("Please update your name:")
             self.FEEDBACK_SHEET.update_cell(row, column, name)
