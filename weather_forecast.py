@@ -45,8 +45,8 @@ def get_user_coordinates():
                                       "entries, \none for latitude and another"
                                       " for longitude.", 3)
             elif e.args[0] == "too many values to unpack (expected 2)":
-                f.print_error_message("You entered too many numbers, please "
-                                      "make two entries, one for latitude and"
+                f.print_error_message("You made too many entries, please "
+                                      "make only two, one for latitude and"
                                       "\nanother for longitude.", 3)
             continue
         try:
