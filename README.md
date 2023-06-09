@@ -271,40 +271,67 @@ The structure of the app was defined and mapped out on a [flow chart](views/READ
  
 <a href="#contents">BACK TO CONTENTS 🔼</a>
 ### Bugs / Issues
-**ADD
+
 <table  width = 100% cellspacing="0" cellpadding="0">
    <tr>
    <th>Issue/Bug</th>
    <th>Solution</th>
    </tr>
    <tr>
-   <td>**ADD</td>
-   <td>**ADD</td>
+   <td>Issue with PastWeather class sunshine duration if statement. Converting string to int caused an error due to decimal point as discovered when checking weather for 01/01/2020. </td>
+   <td>Changed to conversion from string to int, to string to float.</td>
    </tr>
    <tr>
-   <td>**ADD</td>
-   <td>**ADD</td>
+   <td>Encountered the following error " NameError: name 'main' is not defined". Error caused by call to main() function from past_weather file</td>
+   <td>Imported run_past_weather function to resolve</td>
    </tr>
    <tr>
-   <td>**ADD</td>
-   <td>**ADD</td>
+   <td>Unable to return to run.py from feedback file and it was not recommended to use exec file function. </td>
+   <td>Opted to make feedback a Class instead.</td>
    </tr>
    <tr>
-   <td>**ADD</td>
-   <td>**ADD</td>
+   <td> Tried to deploy to Heroku app but got ModuleNotFoundError for termcolor and pyowm.</td>
+   <td>Added both libraries to requirements.txt file</td>
    </tr>
    <tr>
-   <td>**ADD</td>
-   <td>**ADD</td>
+   <td>Issue with run_past_weather call from past_weather.py file. Caused multi-threading of loading graphic and code getting caught in loop. </td>
+   <td>Resolved by passing boolean and error message back to run_past_weather and deal with error there.</td>
    </tr>
    <tr>
-   <td>**ADD</td>
-   <td>**ADD</td>
+   <td>Favicon would not load in the title bar.</td>
+   <td>Resolved by adding Github raw link.</td>
+   </tr>
+    <tr>
+   <td>Feedback running twice despite selecting delete/return to main menu. Suspect issue with running function from inside the existing function.</td>
+   <td>Added while loop to resolve issue.</td>
+   </tr>
+    <tr>
+   <td>Encountered error in weather_forecast.py file in get_user_coordinates function where a correct entry made latitudes or longitudes were out of range did not pass any values on to the get weather forecast function.</td>
+   <td> Added a continue as opposed to calling get_user_coordinates again followed by return.
+   </td>
+   </tr>
+    <tr>
+   <td>Issue with element misalignment on some screens identified by Steve Doherty in peer code review.
+   <br><img src="views/README-files/flex-wrap-issue.png" height= 200px></td>
+   <td>Flex-wrap attribute had been mistakenly adde to style. Issue resolved when attribute removed.</td>
+   </tr>
+   </tr>
+   <tr>
+   <td>W3 validator return error “Attribute size not allowed on element link at this point.”</td>
+   <td>Removed size attribute from link.</td>
+   </tr>
+   <tr>
+   <td>Issue with retention of 3 day forecast table as identified by Lewis Dillon in peer code review.</td>
+   <td>Added system(‘clear’) code to resolve.</td>
+   </tr>
+   <tr>
+   <td>Issue again identified by Lewis Dillon where Russian coordinates cause the following error: “Event Description Must be Specified”.</td>
+   <td> I checked API call in browser address bar and observed that JSON returned ‘alerts’ for the region. Excluded alerts from the API call which resolved the issue.</td>
    </tr>
   </table>
 
 ### Unresolved Bugs or Issues
-- **ADD. <br><br>
+- Issue with weather forecast where weather icons move off screen as the weather forecast data prints out and the system clear command does not remove the off screen content. I searched for a solution but could not find anything concrete and decided to opt for a workaround to maintain progress with the project. The solution I adopted was to clear the weather icon from the screen before the weather forecast data is printed. I classify this as unresolved due to the fact I would have preferred the weather icon to remain on screen as the forecast prints out. <br><br>
 <a href="#contents">BACK TO CONTENTS 🔼</a>
 
 ## Deployment
@@ -365,5 +392,6 @@ NOTE: Specific links are included within the Python, HTML, CSS  files. The list 
 - All gifs were generated on [ezif.com.](https://ezgif.com/video-to-gif)
 - The ASCII weather icons were generated [here](https://asciiart.club/) using icons sourced from [Flaticon](https://www.flaticon.com/). *A full list of icons used with corresponding links can be found [here](views/README-files/flaticon-links.pdf).*
 - ASCII title text was generated using this [Text to ASCII Art Generator.](https://patorjk.com/software/taag)
+- Thanks to Steve Doherty and Lewis Dillon for their code review feedback of which I was able to resolve two errors.
 <br><br>
 <a href="#contents">BACK TO CONTENTS 🔼</a>
