@@ -28,7 +28,7 @@ class PastWeather:
         Select pertinent information from Dublin Airport historical weather
         data spreadsheet and return a string detailing all info.
         """
-        # set variable 'data' as weather data passed in during instantiation of 
+        # set variable 'data' as weather data passed in during instantiation of
         # class.
         data = self.weather_data
         # format all the relevant data points and add units to string.
@@ -52,13 +52,16 @@ class PastWeather:
         if float(sunshine_duration) == 1:
             sunshine_string = ["was", "hour"]
         # return the pertinent data required when printing data to the console.
-        return {'d': day, 'max_t': max_temp, 'min_t': min_temp,'sun_verb': sunshine_string[0], 
-               'sun_dur': sunshine_duration_string, 'sun_noun': sunshine_string[1], 'r': rain, 
-               'ws': mean_wind_speed, 'ap': atmos_pressure}
+        return {'d': day, 'max_t': max_temp, 'min_t': min_temp,
+                'sun_verb': sunshine_string[0],
+                'sun_dur': sunshine_duration_string,
+                'sun_noun': sunshine_string[1], 'r': rain,
+                'ws': mean_wind_speed, 'ap': atmos_pressure}
 
     def print_weather_to_console(self, data):
         """
-        Print past weather data to the console using data from 'data' parameter dictionary.
+        Print past weather data to the console using data from 'data'
+        parameter dictionary.
         """
         # Clear terminal and print out readable data to user with
         # pauses in between for effect.
@@ -66,22 +69,23 @@ class PastWeather:
         print(f"{self.date} was a {data['d']}.")
         sleep(2)
         print("On that day at Dublin Airport the maximum temperature was "
-            f"{data['max_t']} and the minimum \ntemperature was {data['min_t']}."
-            )
+              f"{data['max_t']} and the minimum \ntemperature was "
+              f"{data['min_t']}."
+              )
         sleep(3)
         print(f"There {data['sun_verb']} {data['sun_dur']} "
-            f"{f.format_data_strings(data['sun_noun'], 'blue')} "
-            f"of sunshine with a total rainfall of {data['r']}.")
+              f"{f.format_data_strings(data['sun_noun'], 'blue')} "
+              f"of sunshine with a total rainfall of {data['r']}.")
         sleep(3)
         print(f"The mean wind speed for the day was {data['ws']}"
-            f" with an atmospheric pressure of \n{data['ap']}.")
+              f" with an atmospheric pressure of \n{data['ap']}.")
         sleep(2)
         return
 
 
 class Feedback:
     """
-    Class for user feedback on past weather with associated methods to 
+    Class for user feedback on past weather with associated methods to
     create, read, update and delete data in Google Sheets.
     """
     SCOPE = [
@@ -103,7 +107,7 @@ class Feedback:
         nothing.
         """
         return
-    
+
     def delete_feedback(self, row_count):
         """
         Function to delete feedback from Google Sheet.
@@ -112,18 +116,19 @@ class Feedback:
         # passed in.
         self.FEEDBACK_SHEET.delete_rows(row_count)
         return
-        
+
     def update_feedback(self, column, row):
-        """ 
+        """
         Update feedback using column and row indices to determine
         if name or feedback is to be updated.
         """
         # using column number (1 for name, 2 for feedback) input
         # new data and upload to appropriate cell.
         if column == 1:
-            name = input("Please update your name or hit return to remain anonymous:")
-            # allow user to remain anonymous by returning that as name if no input 
-            # is given.
+            name = input("Please update your name or hit return to"
+                         " remain anonymous:")
+            # allow user to remain anonymous by returning that as name
+            # if no input is given.
             if name == "":
                 name = "anonymous"
             self.FEEDBACK_SHEET.update_cell(row, column, name)
@@ -131,11 +136,10 @@ class Feedback:
             feedback = input("Please update your feedback:")
             if feedback.strip() == '':
                 cprint("\nPlease do not leave the feedback section "
-                           "empty, we'd love to hear what you think of"
-                           " the app.\n", 'magenta', None, ['bold'])
+                       "empty, we'd love to hear what you think of"
+                       " the app.\n", 'magenta', None, ['bold'])
                 self.update_feedback(2, row)
             self.FEEDBACK_SHEET.update_cell(row, column, feedback)
-
 
     def read_feedback(self):
         """
@@ -154,15 +158,21 @@ class Feedback:
             feedback = feedback_row[1]
             system('clear')
             print("Please review your feedback:\n")
-            # create table with feedback name and 
-            table = [[name, feedback]] 
-            print(tabulate(table, headers = ["Name", "Feedback"],tablefmt="rounded_grid", maxcolwidths=[20, 40]))
-            # request response from user that they are happy with their feedback.
-            user_input = input("\nAre you happy to proceed with this feedback?\n"
-                            "Enter C to Confirm and return to main menu\n" 
-                            "Enter D to Delete entries and return to main menu\n"
-                            "Enter N to change Name\nEnter F to change Feedback:\n")
-            # Check that input is alphabet character only, solution from W3 schools:
+            # create table with name and feedback
+            table = [[name, feedback]]
+            print(tabulate(table, headers=["Name", "Feedback"],
+                           tablefmt="rounded_grid", maxcolwidths=[20, 40]))
+            # request response from user that they are happy with their
+            # feedback.
+            user_input = input("\nAre you happy to proceed with this "
+                               "feedback?\n"
+                               "Enter C to Confirm and return to main menu\n"
+                               "Enter D to Delete entries and return to main "
+                               "menu\n"
+                               "Enter N to change Name"
+                               "\nEnter F to change Feedback:\n")
+            # Check that input is alphabet character only, solution from
+            # W3 schools:
             # https://www.w3schools.com/python/ref_string_isalpha.asp#:~:text=The%20isalpha()%20method%20returns,!%23%25%26%3F%20etc
             if not user_input.isalpha():
                 f.print_error_message("Invalid entry, please enter "
@@ -170,39 +180,43 @@ class Feedback:
                 continue
             elif len(user_input) > 1:
                 f.print_error_message("Invalid entry, please enter only 1 "
-                                      "character from C/D/N or F to proceed.", 3)
+                                      "character from C/D/N or F to proceed.",
+                                      3)
                 continue
             elif user_input.lower() == "c":
-                # if feedback is OK, return from function and allow programme to 
-                # proceed after displaying a thank you message.
+                # if feedback is OK, return from function and allow programme
+                # to proceed after displaying a thank you message.
                 system('clear')
                 cprint(f"{const.THANK_YOU}", 'light_green', None, None)
                 sleep(2)
                 break
             elif user_input.lower() == "d":
-                # if user wants to delete their feedback, call delete_feedback 
+                # if user wants to delete their feedback, call delete_feedback
                 # function and pass in row_count variable.
                 print("Deleting and returning to main menu...")
                 sleep(1)
                 self.delete_feedback(row_count)
                 break
             elif user_input.lower() == "n":
-                # if user wants to change their name, call update_feedback 
-                # function and pass in int 1 to denote name and row_count variable.
+                # if user wants to change their name, call update_feedback
+                # function and pass in int 1 to denote name and row_count
+                # variable.
                 self.update_feedback(1, row_count)
                 system('clear')
                 continue
             elif user_input.lower() == "f":
-                # if user wants to change their feedback, call update_feedback 
-                # function and pass in int 2 to denote feedback and row_count variable.
+                # if user wants to change their feedback, call update_feedback
+                # function and pass in int 2 to denote feedback and row_count
+                # variable.
                 self.update_feedback(2, row_count)
                 system('clear')
                 continue
             else:
-                # function passes through to here if any other character is used
-                # read.feedback function is then called again.
-                f.print_error_message("Invalid entry, please enter only a character"
-                                      " from C/D/N or F to proceed.", 3)
+                # function passes through to here if any other character is
+                # used read.feedback function is then called again.
+                f.print_error_message("Invalid entry, please enter only a "
+                                      "character from C/D/N or F to proceed.",
+                                      3)
                 continue
         return
 
@@ -214,7 +228,7 @@ class Feedback:
         system('clear')
         name_input = input("Please enter your name or hit return to remain"
                            " anonymous:\n")
-        # allow user to remain anonymous by returning that as name if no input 
+        # allow user to remain anonymous by returning that as name if no input
         # is given.
         if name_input == "":
             name_input = "anonymous"
@@ -223,8 +237,9 @@ class Feedback:
             # solution to detecting no characters from link below:
             # https://bobbyhadz.com/blog/python-check-if-input-is-empty
             if feedback_input.strip() == '':
-                cprint("Please do not leave the feedback section empty, we'd love"
-                      " to hear what you think of the app.\n", 'magenta', None, ['bold'])
+                cprint("Please do not leave the feedback section empty, "
+                       "we'd love to hear what you think of the app.\n",
+                       'magenta', None, ['bold'])
             else:
                 break
         # Create a date and time for feedback entry.
@@ -235,7 +250,6 @@ class Feedback:
         self.FEEDBACK_SHEET.append_row(feedback_data)
 
 
-
 class ForecastWeather():
     """
     Class for user feedback on forecasted weather with associated methods
@@ -243,7 +257,8 @@ class ForecastWeather():
 
     def __init__(self, forecast_dictionary, location_dictionary):
         """
-        Initialise class instance with forecast_dictionary and location_dictionary.
+        Initialise class instance with forecast_dictionary and
+        location_dictionary.
         """
         self.forecast_dictionary = forecast_dictionary
         self.location_dictionary = location_dictionary
@@ -255,7 +270,7 @@ class ForecastWeather():
 
     def parse_forecast(self):
         """
-        Function to extract required data from Open Weather API 
+        Function to extract required data from Open Weather API
         dictionary.
         """
         # Create 3 day forecast by selecting the first three items in the
@@ -293,14 +308,15 @@ class ForecastWeather():
             date = d.datetime.fromtimestamp(timestamp).strftime('%d-%m-%y')
             return (date)
 
-        # establish forecast date and return readable format using return_date_function
+        # establish forecast date and return readable format using
+        # return_date_function
         forecast_date = return_date_format(forecast_dict['reference_time'])
 
         # Delete 273 from temperatures to account for units in deg Kelvin
         day_temp = round(forecast_dict['temperature']['feels_like_day']
-                            - 273, 2)
+                         - 273, 2)
         night_temp = round(forecast_dict['temperature']['feels_like_night']
-                            - 273, 2)
+                           - 273, 2)
 
         # calculate wind direction cardinal and ordinal directions from
         # degrees in forecast_dictionary and update wind_direction variable
@@ -345,7 +361,8 @@ class ForecastWeather():
         # f string for user feedback that includes the wind direction
         #  information as well.
         wind_speed = forecast_dict['wind']['speed']
-        formatted_wind_speed = f.format_data_strings(f"{wind_speed} m/s", 'blue')
+        formatted_wind_speed = f.format_data_strings(f"{wind_speed} m/s",
+                                                     'blue')
 
         def wind_conditions_string(description):
             """
@@ -385,8 +402,10 @@ class ForecastWeather():
                                                      "winds")
 
         # add wind directions to wind conditions string"
-        formatted_wind_direction = f.format_data_strings(f"{wind_direction}", 'blue')
-        formatted_bearing = f.format_data_strings(f"{card_ord_wind_dir}°", 'blue')
+        formatted_wind_direction = f.format_data_strings(f"{wind_direction}",
+                                                         'blue')
+        formatted_bearing = f.format_data_strings(f"{card_ord_wind_dir}°",
+                                                  'blue')
         wind_conditions += ("The wind direction will be "
                             f"{formatted_wind_direction} at "
                             f"{formatted_bearing}.")
@@ -420,28 +439,34 @@ class ForecastWeather():
 
         # create variables for data points to format them prior to passing on
         # to print_forecast_to_console function
-        formatted_conditions = f.format_data_strings(forecast_dict['detailed_status'].title(), 'blue')
+        formatted_cond = f.format_data_strings(forecast_dict['detailed_status']
+                                               .title(), 'blue')
         formatted_date = f.format_data_strings(forecast_date, 'blue')
         formatted_day_temp = f.format_data_strings(f"{day_temp}°C", 'blue')
         formatted_night_temp = f.format_data_strings(f"{night_temp}°C", 'blue')
 
-        return [formatted_date, weather_icon, formatted_day_temp, 
-                formatted_night_temp, wind_conditions,formatted_conditions]
+        return [formatted_date, weather_icon, formatted_day_temp,
+                formatted_night_temp, wind_conditions, formatted_cond]
 
     def print_forecast_to_console(self, day_number, forecast, coordinates):
         """
-        Return forecast to terminal along with the forcast 
+        Return forecast to terminal along with the forcast
         title graphics determined from day number
         """
         # if open weather returns a location print given location to terminal,
         # otherwise return the latitude and longitude.
         if self.location_dictionary:
-            location = f.format_data_strings(self.location_dictionary[0]['name'], 'blue')
+            location = f.format_data_strings(self.location_dictionary[0]
+                                             ['name'], 'blue')
         else:
-            colored_latitude = f.format_data_strings(f"{coordinates[0]}°", 'blue')
-            colored_longitude = f.format_data_strings(f"{coordinates[1]}°", 'blue')
-            location = f"latitude {colored_latitude} and longitude {colored_longitude}"
-        # select the appropriate title page based on day number passed in and print.
+            colored_latitude = f.format_data_strings(f"{coordinates[0]}°",
+                                                     'blue')
+            colored_longitude = f.format_data_strings(f"{coordinates[1]}°",
+                                                      'blue')
+            location = (f"latitude {colored_latitude} and longitude "
+                        f"{colored_longitude}")
+        # select the appropriate title page based on day number passed in
+        # and print.
         if day_number == 1:
             system('clear')
             cprint(const.TODAYS_FORECAST, 'green', None, None)
@@ -455,8 +480,8 @@ class ForecastWeather():
             cprint(const.DAY_AFTER_TOMORROWS_FORECAST, 'light_magenta',
                    None, None)
             sleep(4)
-        # print off items from report in order, clearing screen after the icon is 
-        # printed off to ensure console window is fully cleared of text.
+        # print off items from report in order, clearing screen after the icon
+        # is printed off to ensure console window is fully cleared of text.
         system('clear')
         print(f"Here is the weather forecast for {location} on {forecast[0]}")
         sleep(3)
@@ -483,15 +508,18 @@ class ForecastWeather():
 
     def print_three_day_summary(self, day_one, day_two, day_three):
         system('clear')
-        # create table from data passed in. Day and night temps merged in one column to prevent
-        # overspill across lines
-        table = [[day_one[0], day_one[2] + "\n/\n" + day_one[3],day_one[5], day_one[4]],
-                 [day_two[0], day_two[2] + "\n/\n" + day_two[3],day_two[5], day_two[4]],
-                 [day_three[0], day_three[2] + "\n/\n" + day_three[3], day_three[5], day_three[4]]
-                 ]
+        # create table from data passed in. Day and night temps merged in one
+        # column to prevent overspill across lines
+        table = [[day_one[0], day_one[2] + "\n/\n" + day_one[3], day_one[5],
+                 day_one[4]], [day_two[0], day_two[2] + "\n/\n" + day_two[3],
+                 day_two[5], day_two[4]], [day_three[0], day_three[2] + "\n/\n"
+                 + day_three[3], day_three[5], day_three[4]]]
         # print off table using tabulate method.
-        print(tabulate(table, headers = ["Date", "Day/Night Temp","Conditions", "Wind"],tablefmt="rounded_grid", maxcolwidths=[8, 7, 10,25]))
+        print(tabulate(table, headers=["Date", "Day/Night Temp", "Conditions",
+                       "Wind"], tablefmt="rounded_grid",
+                       maxcolwidths=[8, 7, 10, 25]))
         return
+
 
 class LoadingScreens:
     """
@@ -513,7 +541,7 @@ class LoadingScreens:
 
     def animate(self):
         """
-        function to animate loading screen or title 
+        function to animate loading screen or title
         screen using itertools
         """
         system('clear')
