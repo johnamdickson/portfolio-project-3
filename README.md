@@ -38,7 +38,7 @@ This application is showcasing Python coding for Project Portfolio 3 and can be 
   - [Bugs / Issues](#bugs--issues)
   - [Unresolved Bugs / Issues](#unresolved-bugs-or-issues)
 - [Deployment](#deployment)
-  - [Git Hub Pages](#github-pages)
+  - [Deploying to Heroku](#deploying-to-heroku)
   - [Forking the GitHub Repository](#forking-the-github-repository)
   - [Making a Local Clone](#making-a-local-clone)
 - [Credits](#credits)
@@ -336,27 +336,39 @@ The structure of the app was defined and mapped out on a [flow chart](views/READ
 
 ## Deployment
 
-### GitHub Pages
-The site was deployed to GitHub pages. The steps to deploy are as follows: 
-1. Log in to GitHub and locate the [GitHub Repository.](https://github.com/)
-2. Under the repository name, click ⚙ Settings. If you cannot see the "Settings" tab, select the  dropdown menu, then click Settings.
-3. In the "Code and automation" section of the sidebar, click  Pages
-4. Under "Build and deployment", under "Branch", use the None or Branch dropdown menu and select a publishing source.
-5. Once the master branch has been selected, the page will be automatically refreshed with a detailed ribbon display to indicate the successful deployment. 
+### Deploying to Heroku
+* This site was deployed by completing the following steps:
 
-The live link can be found [here.](https://johnamdickson.github.io/Portfolio-Project-2/index.html)
+1. Log in to [Heroku](https://id.heroku.com) or create an account.
+2. On the main page click the button labelled New in the top right corner and from the drop-down menu select Create New App.
+3. You must enter a unique app name.
+4. Next select your region.
+5. Click on the Create App button
+6. The next page is the project’s Deploy Tab. Click on the Settings Tab and scroll down to Config Vars.
+7. Click Reveal Config Vars and enter the following:
+    - Add port into the Key box and 8000 into the Value box and click the Add button.
+    - Enter CREDS into the next available Key box and the Google credentials into the corresponding Value box.
+    - Enter API_KEY into the next available Key box and the Open Weather API key into the corresponding Value box.
+8. Next, scroll down to the Buildpack section click Add Buildpack select python and click Save Changes.
+9. Repeat step 8 to add node.js. o Note: The Buildpacks must be in the correct order. If not click and drag them to move into the correct order.
+10. Scroll to the top of the page and choose the Deploy tab.
+11. Select Github as the deployment method.
+12. Confirm you want to connect to GitHub.
+13. Search for the repository name and click the connect button.
+14. Scroll to the bottom of the deploy page and select the preferred deployment type.
+15. Click either Enable Automatic Deploys for automatic deployment when you push updates to Github.
 
 ### Forking the GitHub Repository
 
 By forking the GitHub Repository we make a copy of the original repository on our GitHub account to view and/or make changes without affecting the original repository by using the following steps:
 
-1. Log in to GitHub and locate the [GitHub Repository.](https://github.com/johnamdickson/Portfolio-Project-2)
+1. Log in to GitHub and locate the [GitHub Repository.](https://github.com/johnamdickson/Portfolio-Project-3)
 2. At the top of the Repository (not top of page) just above the "Settings" Button on the menu, locate the "Fork" Button.
 3. You should now have a copy of the original repository in your GitHub account.
 
 ### Making a Local Clone
 
-1. Log in to GitHub and locate the [GitHub Repository.](https://github.com/johnamdickson/Portfolio-Project-2)
+1. Log in to GitHub and locate the [GitHub Repository.](https://github.com/johnamdickson/Portfolio-Project-3)
 2. Under the repository name, click "Clone or download".
 3. To clone the repository using HTTPS, under "Clone with HTTPS", copy the link.
 4. Open Git Bash
