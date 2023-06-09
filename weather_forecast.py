@@ -43,11 +43,11 @@ def get_user_coordinates():
                 f.print_error_message("You only made one entry or did not "
                                       "include a space.\nPlease make two "
                                       "entries, one for latitude and another"
-                                      " for longitude.", 3)
+                                      " for longitude.", 3.5)
             elif e.args[0] == "too many values to unpack (expected 2)":
                 f.print_error_message("You made too many entries.\nPlease "
                                       "make two entries, one for latitude and"
-                                      "\nanother for longitude.", 3)
+                                      "another for longitude.", 3.5)
             continue
         try:
             # convert user coordinates into discrete floats.
