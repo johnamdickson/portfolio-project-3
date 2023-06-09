@@ -85,6 +85,8 @@ The structure of the app was defined and mapped out on a [flow chart](views/READ
   - **Loading**: Displayed when the program is laoding data that may take time to load.<br><br>
   ![Loading Screen](views/README-files/loading-screen.gif)
   - **Forecast Days**: Displayed when the program is about to display the weather for a given forecast day.![Day One](views/README-files/forecast-one.png) ![Day Two](views/README-files/forecast-two.png) ![Day Three](views/README-files/forecast-three.png)
+- The two colours used for the title and button were selected from the background picture using the colour pallette dropper in keynote. The yellow *(Ronchi)* and dark blue *(Big Stone)* contrast each other well and are reminiscent of the weather types exhibited in the image.
+![Colour Pallett](views/README-files/color-pallette.png)
 #### Imagery
 - The background image, sourced from [Pexels](https://www.pexels.com/), was selected for exhibiting a number of different weather types in one image.
 ![Background Image](views/README-files/background-picture.webp)
@@ -262,7 +264,7 @@ The structure of the app was defined and mapped out on a [flow chart](views/READ
   - Accessibility of the page was checked using the lighthouse tool in devtools. The results were satisfactory as shown below. **ADD
      - Desktop results:
      ![Lighthouse Results](views/README-files/lighthouse-results.png) <br><br>
-  - The colour contrasts were checked using Web AIM contrast checker.
+  - The title and button colour contrasts were checked using Web AIM contrast checker.
   ![Contrast Check](views/README-files/web-aim-contrast-checker.png)
   <br><br>
 
