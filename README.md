@@ -34,10 +34,6 @@ This application is showcasing Python coding for Project Portfolio 3 and can be 
   - [Testing User Stories](#testing-user-stories)
      - [User Goals](#user-goals)
      - [Site Administrator Goals](#site-administrator-goals)
-  - [Responsiveness Testing](#responsiveness-testing)
-    - [Physical Device](#physical-device)
-    - [Simulated Devices](#simulated-devices)
-  - [Browser Compatability](#browser-compatability)
   - [Validator Testing](#validator-testing)
   - [Bugs / Issues](#bugs--issues)
   - [Unresolved Bugs / Issues](#unresolved-bugs-or-issues)
@@ -154,7 +150,8 @@ The structure of the app was defined and mapped out on a [flow chart](views/READ
 - **os**: from the standard library used to access system method to clear terminal screen at appropriate points whilst the program is running.
 - **tabulate**: used to create a table of contents in the feedback and weather forecast sections of the app.
 - **threading**: used to enable multithreading operations used for loading screens.
-- **CI PEP8 Linter**: used to perform check of Python code.
+- **Code Institute PEP8 Linter**: used to perform check of Python code.
+- **Open Weather API** used to access weather forecast data for given coordinates.A one call subscription was made for this service which enables 1000 calls per day free before entering the payment tier.
 
 <br><a href="#contents">BACK TO CONTENTS 🔼</a>
 ## Testing 
@@ -190,6 +187,8 @@ The structure of the app was defined and mapped out on a [flow chart](views/READ
   - The user options were presented and updating the spreadsheet was tested successfully. ![update-feedback](views/README-files/update.gif)
   - The delete option was also tested and worked as expected, presenting a message before returning to the main menu. ![delete-feedback](views/README-files/delete.gif)
   - The confirm option was also tested which presented the thank you message and returned the program to the main menu. ![confirm-feedback](views/README-files/confirm-feedback.gif)
+  - An empty name input returned the string *anonymous* as expected.
+  - When the feedback was left blank, an attention message was presented to the user with an option to leave feedback reappearing shortly afterward. ![feedback-attention-message](views/README-files/feedback-attention-message.png)
 
 - __User Options__
   - The two User Options formats - 4 choice and 5 choice - were both presented at the appropriate time: past weather and weather forecast respectively.
