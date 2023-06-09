@@ -18,13 +18,15 @@ def get_user_coordinates():
     error checking before returning both in a list.
     """
     while True:
-        
+
         # Taking multiple inputs in one command solution found here:
         # https://www.geeksforgeeks.org/taking-multiple-inputs-from-user-in-python/
 
-        colored_latitude = f.format_data_strings("-90 and 90,",'green')
+        # apply color formatting to strings to be highlighted to user.
+        colored_latitude = f.format_data_strings("-90 and 90,", 'green')
         colored_longitude = f.format_data_strings("-180 and 180.", 'green')
-        colored_whitespace = f.format_data_strings("separated by a space.\n", 'green')
+        colored_whitespace = f.format_data_strings("separated by a space.\n",
+                                                   'green')
         print("Please enter your chosen location's latitude and longitude "
               f"{colored_whitespace}")
         print(f"Note, latitude must be between {colored_latitude} longitude"
@@ -32,26 +34,34 @@ def get_user_coordinates():
         print("Latitudes west of the Prime Meridian(Greenwich, London) and "
               "longitudes south of the equator should be negative.\n")
         try:
-            latitude, longitude = input(f"Please enter coordinates below:\n").split()
+            # capture both values in one input using .spilt method.
+            latitude, longitude = input(f"Please enter coordinates "
+                                        "below:\n").split()
         except ValueError as e:
+            # handle value errors from entering too many or too few entries.
             if e.args[0] == "not enough values to unpack (expected 2, got 1)":
-                f.print_error_message("You only made one entry or did not include"
-                                      " a space, please make two entries, "
-                                      "\none for latitude and another for longitude.", 3)
+                f.print_error_message("You only made one entry or did not "
+                                      "include a space, please make two "
+                                      "entries, \none for latitude and another"
+                                      " for longitude.", 3)
             elif e.args[0] == "too many values to unpack (expected 2)":
-                f.print_error_message("You entered too many numbers, please make two"
-                                      " entries, one for latitude and \nanother for "
-                                      "longitude.", 3)
+                f.print_error_message("You entered too many numbers, please "
+                                      "make two entries, one for latitude and"
+                                      "\nanother for longitude.", 3)
             continue
         try:
+            # convert user coordinates into discrete floats.
             latitude = float(latitude)
             longitude = float(longitude)
         except ValueError:
-            f.print_error_message("Invalid entry, please enter a number between "
-                                  "-90 to 90 for latitude and -180 to 180 for "
-                                  "longitude. ", 3)
+            # handle value errors whereby coordinates can not be formatted as
+            # floats.
+            f.print_error_message("Invalid entry, please enter a number "
+                                  "between -90 to 90 for latitude and -180 to"
+                                  " 180 for longitude. ", 3)
             continue
         else:
+            # check if latitude and longitude are within the allowable range.
             if latitude < -90 or latitude > 90:
                 f.print_error_message("Invalid entry, please enter a latitude"
                                       " between -90 and 90", 3)
@@ -98,7 +108,7 @@ def get_weather_forecast(coordinates):
     try:
         one_call = mgr.one_call(latitude, longitude, exclude='alerts')
         forecast_weather_dictionary = ([weather.to_dict() for weather
-                                    in one_call.forecast_daily])
+                                       in one_call.forecast_daily])
         location = geo_mgr.reverse_geocode(latitude, longitude)
         location_dict = [location.to_dict() for location in location]
     # Following code to handle any errors coming back from OWM API
@@ -108,7 +118,3 @@ def get_weather_forecast(coordinates):
         return False, err.args
     else:
         return True, forecast_weather_dictionary, location_dict
-
-
-
- 
