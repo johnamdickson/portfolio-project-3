@@ -82,7 +82,7 @@ The structure of the app was defined and mapped out on a [flow chart](views/READ
   - **Feedback**: a message to request the user does not leave the feedback message empty in bold magenta. Although this could be deemed an app error, I felt that the white on red would be too forceful to request feedback is entered. <br><br>![Feedback Message](views/README-files/feedback-message-formatting.png)
 - There are a series of screens using text art to depict titles or loading information. Different colours were selected for each one to differentiate them from the others.
   - **Title**: Displayed when the program first runs.![Title Screen](views/README-files/title-screen.png)
-  - **Loading**: Displayed when the program is laoding data that may take time to load.<br><br>
+  - **Loading**: Displayed when the program is loading data that may take time to load.<br><br>
   ![Loading Screen](views/README-files/loading-screen.gif)
   - **Forecast Days**: Displayed when the program is about to display the weather for a given forecast day.![Day One](views/README-files/forecast-one.png) ![Day Two](views/README-files/forecast-two.png) ![Day Three](views/README-files/forecast-three.png)
 - The two colours used for the title and button were selected from the background picture using the colour pallette dropper in keynote. The yellow *(Ronchi)* and dark blue *(Big Stone)* contrast each other well and are reminiscent of the weather types exhibited in the image.
@@ -154,7 +154,7 @@ The structure of the app was defined and mapped out on a [flow chart](views/READ
 - **threading**: used to enable multithreading operations used for loading screens.
 - **Code Institute PEP8 Linter**: used to perform check of Python code.
 - **Open Weather API** used to access weather forecast data for given coordinates.A one call subscription was made for this service which enables 1000 calls per day free before entering the payment tier.
--**Keynote** use of eyedropper in colour pallette to select CSS theme colours.
+- **Keynote** use of eyedropper in colour pallette to select CSS theme colours.
 
 <br><a href="#contents">BACK TO CONTENTS 🔼</a>
 ## Testing 
@@ -383,15 +383,23 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 ## Credits 
 ### Content 
 NOTE: Specific links are included within the Python, HTML, CSS  files. The list below summarises content credits in general.
-- Stack Overflow, W3 Docs, MDN Web Docs and other online resources were a massive help for HTML, CSS or JS code that enabled some of the functionality I was looking for.
-- Beafort scale used to describe weather from given wind speed. Source in [wikipedia.](https://en.wikipedia.org/wiki/Beaufort_scale)
+- Stack Overflow, W3 Docs and other online resources were a massive help for HTML, CSS or JS code that enabled some of the functionality I was looking for.
+- Beafort scale used to describe weather from given wind speed. Source in [Wikipedia.](https://en.wikipedia.org/wiki/Beaufort_scale)
 - Cardinal and ordinal wind directions taken from [Windy](https://windy.app/blog/what-is-wind-direction.html).
+- This [website](https://www.scaler.com/topics/multiline-comment-in-python/) gave guidance for making multi-line comments where using `“””` is recommended for docstrings and using `#` for comments.
 - The idea to use the Open Weather API was inspired by the Clima project, taught as part of the London App Brewery's iOS App Development Bootcamp.
+- The Love Sandwiches walkthrough project gave much inspiration for my PP3.
+- Thanks to my tutor Gurjot for his advice during the mentoring sessions.
+- Thanks to Steve Doherty and Lewis Dillon for their code review feedback of which I was able to resolve three errors.
 ### Media
 - Merriweather font was sourced from Google Fonts.
-- All gifs were generated on [ezif.com.](https://ezgif.com/video-to-gif)
+- All gifs were generated on [ezgif.com.](https://ezgif.com/video-to-gif)
 - The ASCII weather icons were generated [here](https://asciiart.club/) using icons sourced from [Flaticon](https://www.flaticon.com/). *A full list of icons used with corresponding links can be found [here](views/README-files/flaticon-links.pdf).*
 - ASCII title text was generated using this [Text to ASCII Art Generator.](https://patorjk.com/software/taag)
-- Thanks to Steve Doherty and Lewis Dillon for their code review feedback of which I was able to resolve two errors.
+- ASCII weather forecast icons were generated [here.](
+https://asciiart.club/ )
+- The background image was taken from [Pexels](https://www.pexels.com/photo/island-during-golden-hour-and-upcoming-storm-1118873/). Photo by Johannes Plenio.
+- The colour names were sourced from [Name That Color.](https://chir.ag/projects/name-that-color/)
+- The site colour scheme pallete was generated using the palette creation tool in [Color Hex.](https://www.color-hex.com/) 
 <br><br>
 <a href="#contents">BACK TO CONTENTS 🔼</a>
