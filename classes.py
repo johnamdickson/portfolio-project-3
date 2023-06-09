@@ -69,7 +69,7 @@ class PastWeather:
         print(f"{self.date} was a {data['d']}.")
         sleep(2)
         print("On that day at Dublin Airport the maximum temperature was "
-              f"{data['max_t']} and the minimum \ntemperature was "
+              f"{data['max_t']} and the \nminimum temperature was "
               f"{data['min_t']}."
               )
         sleep(3)
