@@ -49,14 +49,14 @@ def user_options(number_of_options):
             # print error message to user if not.
             if number_of_options == 5:
                 if user_input not in range(1, 6):
-                    f.print_error_message("Invalid entry, please enter an
+                    f.print_error_message("Invalid entry, please enter an "
                                           "integer between 1 and 5", 3)
                     continue
                 else:
                     break
             elif number_of_options == 4:
                 if user_input not in range(1, 5):
-                    f.print_error_message("Invalid entry, please enter an
+                    f.print_error_message("Invalid entry, please enter an "
                                           "integer between 1 and 4", 3)
                     continue
                 else:
@@ -111,7 +111,7 @@ def run_past_weather():
     available_dates = past.find_date_range()
     # loading completion by passing in true to 'loading' instance.
     loading.complete = True
-    # sleep for one second to prevent clearing screen during past weather
+    # sleep for 1/2 second to prevent clearing screen during past weather
     # terminal information printed for user.
     sleep(0.5)
     user_date = past.get_date(available_dates)
@@ -120,12 +120,17 @@ def run_past_weather():
     thread_2.start()
     historical_data = past.find_historical_data_row(user_date, available_dates)
     loading.complete = True
-    if historical_data[0] not True:
+    # check if not True meaning error returned from find_historical_data_row
+    # function before completing the loading animation and printing error to
+    # console.
+    if historical_data[0] is False:
         loading.complete = True
         sleep(0.5)
         f.print_error_message(historical_data[1], 4)
         run_past_weather()
     else:
+        # create instance of Past Weather class to parse past weather data
+        # and return report to console.
         past_weather = PastWeather(historical_data[1], user_date)
         loading_complete = True
         # sleep for one second to prevent clearing screen during past weather
@@ -133,6 +138,8 @@ def run_past_weather():
         sleep(1)
         weather_data = past_weather.parse_data()
         past_weather.print_weather_to_console(weather_data)
+        # Present user with the 4 options menu and feed this option into
+        # restart_user_selection function.
         user_option = user_options(4)
         restart_user_selection(user_option)
 
@@ -143,8 +150,12 @@ def run_weather_forecast():
     instantiate respective class.
     """
     system('clear')
+    # obtain coordinates from user.
     coordinates = wf.get_user_coordinates()
+    # activate loading screen.
     loading = LoadingScreens(False, const.LOADING_CONSTANT)
+    # use multithreading as previously to enable loading animation to
+    # run whilst getting forecast from Open Weather API.
     thread = threading.Thread(target=loading.animate)
     thread.start()
     # get data from Open Weather API
@@ -157,12 +168,16 @@ def run_weather_forecast():
     # Check if get_forecast call was successful, based on boolean
     # passed from function return.
     if get_forecast[0] is False:
+        # print off error argument passed back from the API before presenting
+        # user options menu.
         f.print_error_message("Sorry, the following error was encountered:\n"
                               f" ** {get_forecast[1][0]} ** ", 3)
         print("\nPlease select an option:")
         user_option = user_options(4)
         restart_user_selection(user_option)
     else:
+        # create instance of ForecastWeather class and pass in forecast data
+        # and location data.
         forecast = ForecastWeather(get_forecast[1], get_forecast[2])
         # Create parsed three day forecast dictionaries by calling
         # parse_forecast method.
@@ -222,6 +237,10 @@ def user_selection():
 
 
 def main_menu():
+    """
+    Main menu function called from run.py. Handles loading screen with title
+    and calls user selection function.
+    """
     system('clear')
     # Instantiate loading screen class for title and then call animate method
     # followed by a delay before updating complete status to true to move on
