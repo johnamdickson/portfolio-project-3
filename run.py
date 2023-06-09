@@ -8,6 +8,11 @@ import weather_forecast as wf
 
 
 def main():
+    """
+    Commence the app by calling main menu on main.py
+    """
     m.main_menu()
 
+
 main()
+
