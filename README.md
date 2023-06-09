@@ -23,6 +23,7 @@ This application is showcasing Python coding for Project Portfolio 3 and can be 
     - [Colour Scheme](#colour-scheme)
     - [Imagery](#imagery)
     - [Favicon](#favicon)
+    - [Typography](#typography)
 - [Features](#features)
   - [Existing Features](#existing-features)
   - [Features Left to Implement](#features-left-to-implement)
