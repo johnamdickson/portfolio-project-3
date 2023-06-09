@@ -154,6 +154,7 @@ The structure of the app was defined and mapped out on a [flow chart](views/READ
 - **os**: from the standard library used to access system method to clear terminal screen at appropriate points whilst the program is running.
 - **tabulate**: used to create a table of contents in the feedback and weather forecast sections of the app.
 - **threading**: used to enable multithreading operations used for loading screens.
+- **CI PEP8 Linter**: used to perform check of Python code.
 
 <br><a href="#contents">BACK TO CONTENTS 🔼</a>
 ## Testing 
@@ -244,8 +245,18 @@ The structure of the app was defined and mapped out on a [flow chart](views/READ
     There were two warnings returned, both linked to code that existed from the CI template.<br><br>
 
 - Python
-  - **ADD.
-  ![JSHint Validator Results](/assets/README-files/jshint.png)<br><br> 
+  - The classes.py file was passed through the linter with no warnings or errors returned.
+  ![Classes File PEP8 Results](views/README-files/classes-file-pep8-results.png)<br><br> 
+   - The constants.py file was passed through the linter with no warnings or errors returned.
+  ![Constants File PEP8 Results](views/README-files/constants-file-pep8-results.png)<br><br> 
+  - The functions.py file was passed through the linter with no warnings or errors returned.
+  ![Functions File PEP8 Results](views/README-files/functions-file-pep8-results.png)<br><br> 
+  - The past_weather.py file was passed through the linter with no warnings or errors returned.
+  ![Past Weather File PEP8 Results](views/README-files/pastweather-file-PEP8-results.png)<br><br> 
+  - The run.py file was passed through the linter with no warnings or errors returned.
+  ![Run File PEP8 Results](views/README-files/run-file-PEP8-results.png)<br><br>  
+  - The weather_forecast.py file was passed through the linter with no warnings or errors returned.
+  ![Weather Forecast PEP8 Results](views/README-files/weatherforecast-file-PEP8-results.png)<br><br>  
 
 - Accessibility
   - Accessibility of the page was checked using the lighthouse tool in devtools. The results were satisfactory as shown below. **ADD
