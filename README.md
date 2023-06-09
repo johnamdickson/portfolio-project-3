@@ -152,6 +152,7 @@ The structure of the app was defined and mapped out on a [flow chart](views/READ
 - **threading**: used to enable multithreading operations used for loading screens.
 - **Code Institute PEP8 Linter**: used to perform check of Python code.
 - **Open Weather API** used to access weather forecast data for given coordinates.A one call subscription was made for this service which enables 1000 calls per day free before entering the payment tier.
+-**Keynote** use of eyedropper in colour pallette to select CSS theme colours.
 
 <br><a href="#contents">BACK TO CONTENTS 🔼</a>
 ## Testing 
@@ -213,7 +214,7 @@ The structure of the app was defined and mapped out on a [flow chart](views/READ
 #### Site Administrator Goals
   - **To give users the options to access historical weather, weather forecasts and have the option to create, read, update and delete (CRUD) feedback from the terminal.**
 
-    - The user can access historical weather from the historical-weather-data Google Sheet and worksheet Create, Read, Update and Delete the feedback data using terminal commands.
+    - The user can access historical weather from the historical-weather-data Google Sheet and is able to Create, Read, Update and Delete the feedback data using terminal commands.
   - **To present data in as colourful a format as possible within the constraints of the terminal.**
 
     - The termcolor library was utilised to apply colorised formatting to terminal outputs, making key information stand out to the user.
@@ -261,14 +262,9 @@ The structure of the app was defined and mapped out on a [flow chart](views/READ
   - Accessibility of the page was checked using the lighthouse tool in devtools. The results were satisfactory as shown below. **ADD
      - Desktop results:
      ![Lighthouse Results](views/README-files/lighthouse-results.png) <br><br>
-  - The colour contrasts **ADD.<br><br>
-  
-  <table  width = 100% cellspacing="0" cellpadding="0">
-  <tr>
-  <td><img src="assets/README-files/biscay-confetti-contrast.png" ></td>
-  <td> <img src="assets/README-files/biscay-powder-blue-contrast.png"></td>
-  </tr>
-  </table>
+  - The colour contrasts were checked using Web AIM contrast checker.
+  ![Contrast Check](views/README-files/web-aim-contrast-checker.png)
+  <br><br>
 
  
 <a href="#contents">BACK TO CONTENTS 🔼</a>
