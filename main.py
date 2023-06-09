@@ -11,6 +11,7 @@ import functions as f
 # main file which handles flow of app through respective
 # function calls and class instantiations.
 
+
 def user_options(number_of_options):
     """
     Function to assign 4 options to user on completion
@@ -19,15 +20,15 @@ def user_options(number_of_options):
     while True:
         user_input = 0
         five_options = ("\nPress 1 to return to main menu\nPress 2 "
-                    "to look for past weather \nPress 3 for forecast"
-                    " at your chosen location\nPress 4 to leave " 
-                    "feedback\nPress 5 to see the 3 day summary\n")
+                        "to look for past weather \nPress 3 for forecast"
+                        " at your chosen location\nPress 4 to leave "
+                        "feedback\nPress 5 to see the 3 day summary\n")
         four_options = ("\nPress 1 to return to main menu\nPress 2 "
-                    "to look for past weather \nPress 3 for forecast"
-                    " at your chosen location\nPress 4 to leave "
-                    "feedback\n")
+                        "to look for past weather \nPress 3 for forecast"
+                        " at your chosen location\nPress 4 to leave "
+                        "feedback\n")
         try:
-            # check the number of options required to determine the 
+            # check the number of options required to determine the
             # input to return.
             if number_of_options == 5:
                 user_input = int(input(five_options))
@@ -48,15 +49,15 @@ def user_options(number_of_options):
             # print error message to user if not.
             if number_of_options == 5:
                 if user_input not in range(1, 6):
-                    f.print_error_message("Invalid entry, please enter an integer"
-                                  " between 1 and 5", 3)
+                    f.print_error_message("Invalid entry, please enter an
+                                          "integer between 1 and 5", 3)
                     continue
                 else:
                     break
             elif number_of_options == 4:
                 if user_input not in range(1, 5):
-                    f.print_error_message("Invalid entry, please enter an integer"
-                                          " between 1 and 4", 3)
+                    f.print_error_message("Invalid entry, please enter an
+                                          "integer between 1 and 4", 3)
                     continue
                 else:
                     break
@@ -97,7 +98,7 @@ def run_feedback():
 
 def run_past_weather():
     """
-    Function to run past weather main functions and 
+    Function to run past weather main functions and
     instantiate respective class.
     """
     # Use of threading and loading screens class to create animation
@@ -110,7 +111,7 @@ def run_past_weather():
     available_dates = past.find_date_range()
     # loading completion by passing in true to 'loading' instance.
     loading.complete = True
-    # sleep for one second to prevent clearing screen during past weather 
+    # sleep for one second to prevent clearing screen during past weather
     # terminal information printed for user.
     sleep(0.5)
     user_date = past.get_date(available_dates)
@@ -119,7 +120,7 @@ def run_past_weather():
     thread_2.start()
     historical_data = past.find_historical_data_row(user_date, available_dates)
     loading.complete = True
-    if historical_data[0] != True:
+    if historical_data[0] not True:
         loading.complete = True
         sleep(0.5)
         f.print_error_message(historical_data[1], 4)
@@ -127,7 +128,7 @@ def run_past_weather():
     else:
         past_weather = PastWeather(historical_data[1], user_date)
         loading_complete = True
-        # sleep for one second to prevent clearing screen during past weather 
+        # sleep for one second to prevent clearing screen during past weather
         # terminal information printed for user.
         sleep(1)
         weather_data = past_weather.parse_data()
@@ -138,7 +139,7 @@ def run_past_weather():
 
 def run_weather_forecast():
     """
-    Function to run weather forecast main functions and 
+    Function to run weather forecast main functions and
     instantiate respective class.
     """
     system('clear')
@@ -155,7 +156,7 @@ def run_weather_forecast():
     sleep(1)
     # Check if get_forecast call was successful, based on boolean
     # passed from function return.
-    if get_forecast[0] == False:
+    if get_forecast[0] is False:
         f.print_error_message("Sorry, the following error was encountered:\n"
                               f" ** {get_forecast[1][0]} ** ", 3)
         print("\nPlease select an option:")
@@ -163,11 +164,12 @@ def run_weather_forecast():
         restart_user_selection(user_option)
     else:
         forecast = ForecastWeather(get_forecast[1], get_forecast[2])
-        # Create parsed three day forecast dictionaries by calling parse_forecast
-        # method.
+        # Create parsed three day forecast dictionaries by calling
+        # parse_forecast method.
         forecast.parse_forecast()
-        # Create forecast from three day dictionaries and then print each to 
-        # console followed by user prompts to move to next or menu options at end.
+        # Create forecast from three day dictionaries and then print each to
+        # console followed by user prompts to move to next or menu options
+        # at end.
         day_one = forecast.create_forecast(forecast.day_one_parsed)
         forecast.print_forecast_to_console(1, day_one, coordinates)
         forecast.move_to_next_day()
@@ -189,8 +191,7 @@ def run_weather_forecast():
 
 def user_selection():
     """
-    Main menu selection for user at initiation of the 
-    app.
+    Main menu selection for user at initiation of the app.
     """
     user_input = 0
     while True:
@@ -203,7 +204,8 @@ def user_selection():
         try:
             user_input = int(input("Please make a selection:"))
         except ValueError:
-            f.print_error_message("Invalid entry, an integer (1 or 2) is required.", 3)
+            f.print_error_message("Invalid entry, an integer (1 or 2) "
+                                  "is required.", 3)
             continue
         else:
             if user_input not in range(1, 3):
@@ -221,14 +223,12 @@ def user_selection():
 
 def main_menu():
     system('clear')
-    # Instantiate loading screen class for title and then 
-    # call animate method followed by a delay before 
-    # updating complete status to true to move on through
-    # program.
+    # Instantiate loading screen class for title and then call animate method
+    # followed by a delay before updating complete status to true to move on
+    # through program.
     loading = LoadingScreens(False, const.TITLE_CONSTANT)
     loading.animate()
     sleep(2)
     loading.complete = True
     system('clear')
     user_selection()
-
