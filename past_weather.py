@@ -27,8 +27,12 @@ def find_date_range():
     Calculate date range in worksheet to display to user before making
     their entry.
     """
+    # obtain earliest date by reading cell value at top most date entry
+    # excluding header.
     earliest_date = WEATHER_ARCHIVE_SHEET.cell(2, 1).value
     row_count = len(WEATHER_ARCHIVE_SHEET.get_all_values())
+    # obtain latest date by passing row count into cell method and returning
+    # value.
     latest_date = WEATHER_ARCHIVE_SHEET.cell(row_count, 1).value
     return [earliest_date, latest_date]
 
@@ -71,7 +75,7 @@ def get_date(sheet_dates):
         print("The date format should be: DD/MM/YYYY e.g 30/04/1978 \n")
         date = input("Enter your date below:\n")
         if validate_date(date):
-            # Give user feedback the data is valid and then break from
+            # Clear console for loading screen and break from
             # While loop to return date.
             system('clear')
             break
