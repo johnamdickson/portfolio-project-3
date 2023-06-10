@@ -248,6 +248,7 @@ The structure of the app was defined and mapped out on a [flow chart](views/READ
     There were two warnings returned, both linked to code that existed from the CI template.<br><br>
 
 - Python
+Each Python file was passed through the Code Institute Linter. The initial results are detailed [here.](views/README-files/linter-results.pdf) After refactoring, the code was passed through the linter again and the results are shown below.
   - The classes.py file was passed through the linter with no warnings or errors returned.
   ![Classes File PEP8 Results](views/README-files/classes-file-pep8-results.png)<br><br> 
    - The constants.py file was passed through the linter with no warnings or errors returned.
