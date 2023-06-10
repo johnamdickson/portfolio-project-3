@@ -185,6 +185,8 @@ The structure of the app was defined and mapped out on a [flow chart](views/READ
   - The 3 day summary option was selected and presented back the 3 forecasts in the correct format.
   - Coordinates were entered for my home, Edinburgh and Toronto with the corresponding weather forecasts cross checked. Each one was a close aproximation of that provided by iOS.
   - Storm Biparjoy - at time of writing in the Indian Ocean - was used to test the wind information in the forecast, comparing with current windspeed returned from [Earth NullSchool.](https://earth.nullschool.net/)
+  ![storm-windspeed](views/README-files/storm-nullschool.png)
+  ![wind-speed-gif](views/README-files/storm-wind-speed.gif)
   - Various errors were purposefully entered into the terminal or manaully created to check the app response as detailed below:
     - *Single entry*: a single entry was made in the terminal which correctly resulted in the error message below: ![single-entry-error](views/README-files/one-entry-weather-forecast.png) The message remained on screen for 3.5 seconds (longer than normal due to length of string) at which point the Weather Forecast coordinate entry page reappears to allow user to try and enter coordinates again.
     - *Too many entries*: three numbers were entered which resulted in the error message below: ![too-many-entries-error](views/README-files/too-many-entries-message.png) The message persisted for 3.5 seconds before returning to the coordinate entry page.
