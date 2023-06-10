@@ -485,7 +485,8 @@ class ForecastWeather():
         # print off items from report in order, clearing screen after the icon
         # is printed off to ensure console window is fully cleared of text.
         system('clear')
-        print(f"Here is the weather forecast for {location} on {forecast[0]}")
+        print(f"Here is the weather forecast for {location}.\n"
+              f"The forecast date is: {forecast[0]}")
         sleep(3)
         system('clear')
         print(forecast[1])
