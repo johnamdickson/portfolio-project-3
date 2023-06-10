@@ -97,7 +97,7 @@ The structure of the app was defined and mapped out on a [flow chart](views/READ
 #### Favicon
 - The Favicon logo is the lightning bolt image described above.
 #### Typography
-- The title font was sourced from Google Fonts and is called Merriweather. This was selected purely on the presence of weather in the name and was seen as a good link back to the purpose of the app.<br>
+- The title font was sourced from Google Fonts and is called Merriweather. This was selected purely on the presence of weather in the name and was seen as a good link back to the purpose of the app.<br><br>
 <a href="#contents">BACK TO CONTENTS 🔼</a>
 
 ## Features 
@@ -166,7 +166,7 @@ The structure of the app was defined and mapped out on a [flow chart](views/READ
   - Entering 1 or 2 directed the user to the correct section of the app.  
   - Various errors were purposefully entered into the terminal to check the app response as detailed below:
     - *Non-integer entry*: a variety of non-integer entries were made with the expected response detailed below: ![non-integer-error](views/README-files/invalid-entry-non-integer.png) The message remained on screen for 3 seconds at which point the main menu reappears to allow the user to try again.
-    - *Invalid number*: a variety of integers other than 1 or 2 were inputed with the expected response detailed below: ![invalid-number](views/README-files/invalid-number-main-menu.png) The message persisted as detailed in error above for same period before returning to main menu..
+    - *Invalid number*: a variety of integers other than 1 or 2 were inputed with the expected response detailed below: ![invalid-number](views/README-files/invalid-number-main-menu.png)<br> The message persisted as detailed in error above for same period before returning to main menu..
     <br><br>
 - __Past Weather__
   - The past weather date entry page loaded successfully giving the user the information required and the correct prompt to enter the selected date.
@@ -190,13 +190,13 @@ The structure of the app was defined and mapped out on a [flow chart](views/READ
 
 - __Feedback__
   - Entering name and feedback created a new entry in the feedback worksheet, along with a date for the feedback.
+  - An empty name input returned the string *anonymous* as expected.
+  - When the feedback was left blank, an attention message was presented to the user with an option to leave feedback reappearing shortly afterward. ![feedback-attention-message](views/README-files/feedback-attention-message.png)
   - The data was then read back from the worksheet and presented to the user in a table as expected.
   ![create-read-feedback](views/README-files/create-and-read.gif)<br><br>
   - The user options were presented and updating the spreadsheet was tested successfully. ![update-feedback](views/README-files/update.gif)
   - The delete option was also tested and worked as expected, presenting a message before returning to the main menu. ![delete-feedback](views/README-files/delete.gif)
   - The confirm option was also tested which presented the thank you message and returned the program to the main menu. ![confirm-feedback](views/README-files/confirm-feedback.gif)
-  - An empty name input returned the string *anonymous* as expected.
-  - When the feedback was left blank, an attention message was presented to the user with an option to leave feedback reappearing shortly afterward. ![feedback-attention-message](views/README-files/feedback-attention-message.png)
 
 - __User Options__
   - The two User Options formats - 4 choice and 5 choice - were both presented at the appropriate time: past weather and weather forecast respectively.
@@ -221,7 +221,7 @@ The structure of the app was defined and mapped out on a [flow chart](views/READ
 #### Site Administrator Goals
   - **To give users the options to access historical weather, weather forecasts and have the option to create, read, update and delete (CRUD) feedback from the terminal.**
 
-    - The user can access historical weather from the historical-weather-data Google Sheet and is able to Create, Read, Update and Delete the feedback data using terminal commands.
+    - The user can access historical weather from the historical-weather-data Google Sheet, return a weather forecast for a given location via Open Weather API and is able to Create, Read, Update and Delete the feedback data using terminal commands.
   - **To present data in as colourful a format as possible within the constraints of the terminal.**
 
     - The termcolor library was utilised to apply colorised formatting to terminal outputs, making key information stand out to the user.
@@ -252,22 +252,22 @@ The structure of the app was defined and mapped out on a [flow chart](views/READ
     There were two warnings returned, both linked to code that existed from the CI template.<br><br>
 
 - Python
-Each Python file was passed through the Code Institute Linter. The initial results are detailed [here.](views/README-files/linter-results.pdf) After refactoring, the code was passed through the linter again and the results are shown below.
-  - The classes.py file was passed through the linter with no warnings or errors returned.
+  - Each Python file was passed through the Code Institute Linter. The initial results are detailed [here.](views/README-files/linter-results.pdf) After refactoring, the code was passed through the linter again and the results are shown below.
+    - The classes.py file was passed through the linter with no warnings or errors returned.
   ![Classes File PEP8 Results](views/README-files/classes-file-pep8-results.png)<br><br> 
-   - The constants.py file was passed through the linter with no warnings or errors returned.
+     - The constants.py file was passed through the linter with no warnings or errors returned.
   ![Constants File PEP8 Results](views/README-files/constants-file-pep8-results.png)<br><br> 
-  - The functions.py file was passed through the linter with no warnings or errors returned.
+    - The functions.py file was passed through the linter with no warnings or errors returned.
   ![Functions File PEP8 Results](views/README-files/functions-file-pep8-results.png)<br><br> 
-  - The past_weather.py file was passed through the linter with no warnings or errors returned.
+    - The past_weather.py file was passed through the linter with no warnings or errors returned.
   ![Past Weather File PEP8 Results](views/README-files/pastweather-file-PEP8-results.png)<br><br> 
-  - The run.py file was passed through the linter with no warnings or errors returned.
+    - The run.py file was passed through the linter with no warnings or errors returned.
   ![Run File PEP8 Results](views/README-files/run-file-PEP8-results.png)<br><br>  
-  - The weather_forecast.py file was passed through the linter with no warnings or errors returned.
+    - The weather_forecast.py file was passed through the linter with no warnings or errors returned.
   ![Weather Forecast PEP8 Results](views/README-files/weatherforecast-file-PEP8-results.png)<br><br>  
 
 - Accessibility
-  - Accessibility of the page was checked using the lighthouse tool in devtools. The results were satisfactory as shown below. **ADD
+  - Accessibility of the page was checked using the lighthouse tool in devtools. The results were satisfactory as shown below. 
      - Desktop results:
      ![Lighthouse Results](views/README-files/lighthouse-results.png) <br><br>
   - The title and button colour contrasts were checked using Web AIM contrast checker.
@@ -327,7 +327,7 @@ Each Python file was passed through the Code Institute Linter. The initial resul
    <td>Removed size attribute from link.</td>
    </tr>
    <tr>
-   <td>Issue with retention of 3 day forecast table as identified by Lewis Dillon in peer code review.</td>
+   <td>Issue with retention of top part of 3 day forecast table after system clear command as identified by Lewis Dillon in peer code review.</td>
    <td>Added system(‘clear’) code to resolve.</td>
    </tr>
    <tr>
@@ -407,7 +407,7 @@ NOTE: Specific links are included within the Python, HTML, CSS  files. The list 
 - This [website](https://www.scaler.com/topics/multiline-comment-in-python/) gave guidance for making multi-line comments where using `“””` is recommended for docstrings and using `#` for comments.
 - The idea to use the Open Weather API was inspired by the Clima project, taught as part of the London App Brewery's iOS App Development Bootcamp.
 - Deployment information to Heroku derived from PP3 weekly open stand up [example project.](https://github.com/PedroCristo/portfolio_project_3/blob/main/README.md)
-- Background image and other styling from other PP3 weelkly open stand up [example project.](https://github.com/useriasminna/american_pizza_order_system)
+- Background image and other styling from other PP3 weekly open stand up [example project.](https://github.com/useriasminna/american_pizza_order_system)
 - The Love Sandwiches walkthrough project gave much inspiration for my PP3.
 - Thanks to my tutor Gurjot for his advice during the mentoring sessions.
 - Thanks to Steve Doherty and Lewis Dillon for their code review feedback of which I was able to resolve three errors.
