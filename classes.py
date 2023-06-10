@@ -31,12 +31,14 @@ class PastWeather:
         # set variable 'data' as weather data passed in during instantiation of
         # class.
         data = self.weather_data
+        # convert windspeed: knots to km/h 
+        km_wind_speed = round((float(data[10]) * 1.852))
         # format all the relevant data points and add units to string.
         max_temp = f.format_data_strings(data[2] + "°C", 'blue')
         min_temp = f.format_data_strings(data[4] + "°C", 'blue')
         rain = f.format_data_strings(data[8] + " mm", 'blue')
         atmos_pressure = f.format_data_strings(data[9] + " mbar", 'blue')
-        mean_wind_speed = f.format_data_strings(data[10] + " knots", 'blue')
+        mean_wind_speed = f.format_data_strings(km_wind_speed + " km/h", 'blue')
         sunshine_duration = data[17]
         sunshine_duration_string = f.format_data_strings(data[17], 'blue')
         # assign verb and noun for sunshine duration description.
