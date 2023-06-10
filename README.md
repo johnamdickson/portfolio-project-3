@@ -414,12 +414,13 @@ NOTE: Specific links are included within the Python, HTML, CSS  files. The list 
 ### Media
 - Merriweather font was sourced from Google Fonts.
 - All gifs were generated on [ezgif.com.](https://ezgif.com/video-to-gif)
-- The ASCII weather icons were generated [here](https://asciiart.club/) using icons sourced from [Flaticon](https://www.flaticon.com/). *A full list of icons used with corresponding links can be found [here](views/README-files/flaticon-links.pdf).*
+- The ASCII weather icons were generated [here](https://asciiart.club/) using icons sourced from [Flaticon](https://www.flaticon.com/). <br><sup><sub>*A full list of icons used with corresponding links can be found [here](views/README-files/flaticon-links.pdf).*</sub></sup>
 - ASCII title text was generated using this [Text to ASCII Art Generator.](https://patorjk.com/software/taag)
 - ASCII weather forecast icons were generated [here.](
 https://asciiart.club/ )
 - The background image was taken from [Pexels](https://www.pexels.com/photo/island-during-golden-hour-and-upcoming-storm-1118873/). Photo by Johannes Plenio.
 - The colour names were sourced from [Name That Color.](https://chir.ag/projects/name-that-color/)
 - The site colour scheme pallete was generated using the palette creation tool in [Color Hex.](https://www.color-hex.com/) 
+- The title icons were from [Favicon](https://favicon.io/) which in turn sourced them from [Twemoji.](https://twemoji.twitter.com/)
 <br><br>
 <a href="#contents">BACK TO CONTENTS 🔼</a>
