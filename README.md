@@ -407,6 +407,7 @@ NOTE: Specific links are included within the Python, HTML, CSS  files. The list 
 - This [website](https://www.scaler.com/topics/multiline-comment-in-python/) gave guidance for making multi-line comments where using `“””` is recommended for docstrings and using `#` for comments.
 - The idea to use the Open Weather API was inspired by the Clima project, taught as part of the London App Brewery's iOS App Development Bootcamp.
 - Deployment information to Heroku derived from PP3 weekly open stand up [example project.](https://github.com/PedroCristo/portfolio_project_3/blob/main/README.md)
+- Background image and other styling from other PP3 weelkly open stand up [example project.](https://github.com/useriasminna/american_pizza_order_system)
 - The Love Sandwiches walkthrough project gave much inspiration for my PP3.
 - Thanks to my tutor Gurjot for his advice during the mentoring sessions.
 - Thanks to Steve Doherty and Lewis Dillon for their code review feedback of which I was able to resolve three errors.
