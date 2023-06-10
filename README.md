@@ -163,7 +163,11 @@ The structure of the app was defined and mapped out on a [flow chart](views/READ
 
 - __Starting Options__
   - The app started successfully using the Run Program button with the title ANSI graphic title text being presented followed by the main menu.
-  - Entering 1 or 2 directed the user to the correct section of the app.  <br><br>
+  - Entering 1 or 2 directed the user to the correct section of the app.  
+  - Various errors were purposefully entered into the terminal to check the app response as detailed below:
+    - *Non-integer entry*: a variety of non-integer entries were made with the expected response detailed below: ![non-integer-error](views/README-files/invalid-entry-non-integer.png) The message remained on screen for 3 seconds at which point the main menu reappears to allow the user to try again.
+    - *Invalid number*: a variety of integers other than 1 or 2 were inputed with the expected response detailed below: ![invalid-number](views/README-files/invalid-number-main-menu.png) The message persisted as detailed in error above for same period before returning to main menu..
+    <br><br>
 - __Past Weather__
   - The past weather date entry page loaded successfully giving the user the information required and the correct prompt to enter the selected date.
   - When a valid date is entered, the screen cleared and the past weather was displayed as expected. ![past-weather](views/README-files/past-weather.gif)
@@ -178,8 +182,8 @@ The structure of the app was defined and mapped out on a [flow chart](views/READ
   - At the end of the day after tomorrows forecast, the five user options menu was presented with each one working satisfactorily. 
   - The 3 day summary option was selected and presented back the 3 forecasts in the correct format.
   - Various errors were purposefully entered into the terminal or manaully created to check the app response as detailed below:
-    - *Single entry*: a single entry was made in the terminal which correctly resulted in the error message below: ![single-entry-error](views/README-files/one-entry-weather-forecast.png) The message remained on screen for 3 seconds at which point the Weather Forecast coordinate entry page reappears to allow user to try and enter coordinates again.
-    - *Too many entries*: three numbers were entered which resulted in the error message below: ![too-many-entries-error](views/README-files/too-many-entries-message.png) The message persisted for 3 seconds before returning to the coordinate entry page.
+    - *Single entry*: a single entry was made in the terminal which correctly resulted in the error message below: ![single-entry-error](views/README-files/one-entry-weather-forecast.png) The message remained on screen for 3.5 seconds (longer than normal due to length of string) at which point the Weather Forecast coordinate entry page reappears to allow user to try and enter coordinates again.
+    - *Too many entries*: three numbers were entered which resulted in the error message below: ![too-many-entries-error](views/README-files/too-many-entries-message.png) The message persisted for 3.5 seconds before returning to the coordinate entry page.
     - *Latitude out of range*: a latitude was entered which was not within the acceptable range of -90 to 90 resulting in the error message below: ![incorrect latitude-error](views/README-files/incorrect-latitude-message.png) The message persisted for 3 seconds before returning to the coordinate entry page.
     - *Longitude out of range*: a longitude was entered which was not within the acceptable range of -180 to 180 resulting in the error message below: ![incorrect longitude-error](views/README-files/incorrect-longitude-message.png) The message persisted for 3 seconds before returning to the coordinate entry page.
     - *API errors*: a single digit was deleted from the API key config var in Heroku to simulate an error returned from the API which generated the message below: ![api-error](views/README-files/invalid-api-message.png) The message persisted for 3 seconds however in this instance, the user menu was made available as the user may want to navigate away from the Weather Forecast, given that the error came from the API so may be a time bound issue on the providers side.
