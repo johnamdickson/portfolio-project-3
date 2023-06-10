@@ -32,7 +32,7 @@ class PastWeather:
         # class.
         data = self.weather_data
         # convert windspeed: knots to km/h 
-        km_wind_speed = string(round((float(data[10]) * 1.852)))
+        km_wind_speed = str(round((float(data[10]) * 1.852)))
         # format all the relevant data points and add units to string.
         max_temp = f.format_data_strings(data[2] + "°C", 'blue')
         min_temp = f.format_data_strings(data[4] + "°C", 'blue')
