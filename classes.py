@@ -361,7 +361,8 @@ class ForecastWeather():
         # f string for user feedback that includes the wind direction
         #  information as well.
         wind_speed = forecast_dict['wind']['speed']
-        formatted_wind_speed = f.format_data_strings(f"{wind_speed} m/s",
+        km_wind_speed = float(wind_speed) * 3.6
+        formatted_wind_speed = f.format_data_strings(f"{km_wind_speed} km/hr",
                                                      'blue')
 
         def wind_conditions_string(description):
