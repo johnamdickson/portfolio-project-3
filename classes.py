@@ -127,22 +127,27 @@ class Feedback:
         """
         # using column number (1 for name, 2 for feedback) input
         # new data and upload to appropriate cell.
-        if column == 1:
-            name = input("Please update your name or hit return to"
-                         " remain anonymous:")
-            # allow user to remain anonymous by returning that as name
-            # if no input is given.
-            if name == "":
-                name = "anonymous"
-            self.FEEDBACK_SHEET.update_cell(row, column, name)
-        if column == 2:
-            feedback = input("Please update your feedback:")
-            if feedback.strip() == '':
-                cprint("\nPlease do not leave the feedback section "
-                       "empty, we'd love to hear what you think of"
-                       " the app.\n", 'magenta', None, ['bold'])
-                self.update_feedback(2, row)
-            self.FEEDBACK_SHEET.update_cell(row, column, feedback)
+        while True:
+            if column == 1:
+                name = input("Please update your name or hit return to"
+                            " remain anonymous:")
+                # allow user to remain anonymous by returning that as name
+                # if no input is given.
+                if name == "":
+                    name = "anonymous"
+                self.FEEDBACK_SHEET.update_cell(row, column, name)
+                break
+            if column == 2:
+                feedback = input("Please update your feedback:")
+                if feedback.strip() == '':
+                    cprint("\nPlease do not leave the feedback section "
+                        "empty, we'd love to hear what you think of"
+                        " the app.\n", 'magenta', None, ['bold'])
+                    continue
+                else:   
+                    self.FEEDBACK_SHEET.update_cell(row, column, feedback)
+                break
+        return
 
     def read_feedback(self):
         """
