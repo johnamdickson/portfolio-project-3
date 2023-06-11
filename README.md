@@ -410,8 +410,11 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 ### Content 
 NOTE: Specific links are included within the Python, HTML, CSS  files. The list below summarises content credits in general.
 - Stack Overflow, W3 Docs and other online resources were a massive help for Python, HTML or CSS code that enabled some of the functionality I was looking for.
+- The past weather data in csv format was obtained from Met Eireann historical archive[here.](https://www.met.ie/climate/available-data/historical-data)
 - Beafort scale used to describe weather from given wind speed. Source in [Wikipedia.](https://en.wikipedia.org/wiki/Beaufort_scale)
 - Cardinal and ordinal wind directions taken from [Windy](https://windy.app/blog/what-is-wind-direction.html).
+- Weather codes and corresponding weather conditions from [Open Weather.](https://openweathermap.org/weather-conditions)
+- Information on geographic coordinate system found [here.](https://www.ibm.com/docs/en/db2/11.1?topic=systems-geographic-coordinate)
 - This [website](https://www.scaler.com/topics/multiline-comment-in-python/) gave guidance for making multi-line comments where using `“””` is recommended for docstrings and using `#` for comments.
 - The idea to use the Open Weather API was inspired by the Clima project, taught as part of the London App Brewery's iOS App Development Bootcamp.
 - Deployment information to Heroku derived from PP3 weekly open stand up [example project.](https://github.com/PedroCristo/portfolio_project_3/blob/main/README.md)
