@@ -130,7 +130,7 @@ class Feedback:
         while True:
             if column == 1:
                 name = input("Please update your name or hit return to"
-                            " remain anonymous:")
+                             " remain anonymous:")
                 # allow user to remain anonymous by returning that as name
                 # if no input is given.
                 if name == "":
@@ -141,10 +141,10 @@ class Feedback:
                 feedback = input("Please update your feedback:")
                 if feedback.strip() == '':
                     cprint("\nPlease do not leave the feedback section "
-                        "empty, we'd love to hear what you think of"
-                        " the app.\n", 'magenta', None, ['bold'])
+                           "empty, we'd love to hear what you think of"
+                           " the app.\n", 'magenta', None, ['bold'])
                     continue
-                else:   
+                else:
                     self.FEEDBACK_SHEET.update_cell(row, column, feedback)
                 break
         return
