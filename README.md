@@ -158,8 +158,10 @@ The structure of the app was defined and mapped out on a [flow chart](views/READ
 - **Keynote** use of eyedropper in colour pallette to select CSS theme colours.
 - **Apple Maps App** used to obtain GPS coordinates for testing app.
 - **Apple Weather App** used for comparing app output for given locations.
-- **Code Anywhere** IDE used during earlier part of the project.
-- **Gitpod** IDE used for majority of the project.
+- **Code Anywhere** cloud based IDE used during earlier part of the project.
+- **Gitpod** cloud based IDE used for majority of the project.
+- **Git** used for version control.
+- **GitHub** as cloud repository for Git version control.
 
 <br><a href="#contents">BACK TO CONTENTS 🔼</a>
 ## Testing 
