@@ -69,7 +69,8 @@ The objective of the site is to allow users to review past weather for a locatio
 #### Optional Content
 - A feedback option where users can leave their feedback on the app.
 ### Structure
-The structure of the app was defined and mapped out on a [flow chart](views/README-files/flowchart.png). This helped define the required interactions to develop a usuable product.
+- The structure of the app was defined and mapped out on a [flow chart](views/README-files/flowchart.png). This helped define the required interactions to develop a usuable product.
+- The structure of the data feeding into the historical or past weather of the app is via a Google Sheet called historical-weather-data.
 ### Skeleton
 #### Wireframes
 - The project wireframe can be found [here.](views/README-files/project-portfolio-three-wireframes.pdf)
