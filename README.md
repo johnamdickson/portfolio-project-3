@@ -322,8 +322,8 @@ The objective of the site is to allow users to review past weather for a locatio
    <td>Resolved by adding Github raw link.</td>
    </tr>
     <tr>
-   <td>Feedback running twice despite selecting delete/return to main menu. Suspect issue with running function from inside the existing function.</td>
-   <td>Added while loop to resolve issue.</td>
+   <td>Feedback running twice despite selecting delete/return to main menu. Suspect issue with running function from inside the existing function. Same issue occurred when changing feedback and no string passed to sheet despite one being entered.</td>
+   <td>Added while loop to resolve issue in both instances.</td>
    </tr>
     <tr>
    <td>Encountered error in weather_forecast.py file in get_user_coordinates function where a correct entry made latitudes or longitudes were out of range did not pass any values on to the get weather forecast function.</td>
