@@ -431,5 +431,7 @@ https://asciiart.club/ )
 - The colour names were sourced from [Name That Color.](https://chir.ag/projects/name-that-color/)
 - The site colour scheme pallete was generated using the palette creation tool in [Color Hex.](https://www.color-hex.com/) 
 - The title icons were from [Favicon](https://favicon.io/) which in turn sourced them from [Twemoji.](https://twemoji.twitter.com/)
+- Current wind speeds were taken from [Earth Nullschool.](https://earth.nullschool.net/)
+- Storm Biparjoy details obtained from [Accuweather.](https://www.accuweather.com/en/hurricane/indian/biparjoy-2023)
 <br><br>
 <a href="#contents">BACK TO CONTENTS 🔼</a>
