@@ -143,8 +143,6 @@ The objective of the site is to allow users to review past weather for a locatio
 - **CSS3**: minor use when applying styling to app view.<br>
 
 ### Frameworks, Libraries & Programs Used
-- **gspread**: used to complete CRUD actions on Google Sheets.
-- **Credentials**: imported from google.oauth.serivice_account to enable access to Google Sheets.
 - **termcolor**: used to apply foreground and background colors to terminal text.
 - **datetime**: from the standard library, used to perform operations on date and time objects and strings.
 - **numpy**: used to create a range of floats due to python range only returning a range of integers.
@@ -163,6 +161,11 @@ The objective of the site is to allow users to review past weather for a locatio
 - **Gitpod** cloud based IDE used for majority of the project.
 - **Git** used for version control.
 - **GitHub** as cloud repository for Git version control.
+- **gspread**: used to complete CRUD actions on Google Sheets.
+- **Credentials**: imported from google.oauth.serivice_account to enable access to Google Sheets.
+- **Google Sheets*** a cloud based service where the historical-weather-data spreadsheet containing two worksheets was utilised for this project.
+  - The first sheet, named *archive*, contains all historical weather data for Dublin Airport, downloaded from Met Eireann. ![archive-sheet](views/README-files/archive-sheet.png)
+  - The second sheet, named *feedback*, is the repository for user feedback. ![feedback-sheet](views/README-files/feedback-sheet.png)
 
 <br><a href="#contents">BACK TO CONTENTS 🔼</a>
 ## Testing 
